@@ -416,3 +416,244 @@ FOREIGN KEY ("service_id")
   [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3811021092370886415)[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:46:47 -0500
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:46:47 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 200 OK in 6ms (Views: 2.7ms | ActiveRecord: 0.0ms | Allocations: 727)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:46:48 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 351)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:56:19 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.5ms | Allocations: 357)
+
+
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:56:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:56:19 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 357)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:57:01 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 200 OK in 2ms (Views: 1.0ms | Allocations: 343)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:57:01 -0500
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:57:01 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 2ms (Views: 1.1ms | Allocations: 349)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:08 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 200 OK in 1ms (Views: 0.5ms | Allocations: 345)
+
+
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:08 -0500
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.5ms | Allocations: 345)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:10 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 355)
+
+
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:10 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:10 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 1ms (Views: 0.3ms | Allocations: 355)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:17 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 1ms (Views: 0.5ms | Allocations: 349)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:17 -0500
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.5ms | Allocations: 349)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:25 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 347)
+
+
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:25 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:25 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 347)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:27 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.5ms | Allocations: 358)
+
+
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:27 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:27 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 200 OK in 1ms (Views: 0.3ms | Allocations: 357)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:29 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 1ms (Views: 0.6ms | Allocations: 347)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:29 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 200 OK in 1ms (Views: 0.3ms | Allocations: 347)
+
+
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:29 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:31 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 355)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:31 -0500
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:31 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 357)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:39 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.19ms)
+Completed 200 OK in 1ms (Views: 0.5ms | Allocations: 353)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:39 -0500
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:39 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 366)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:43 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 347)
+
+
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:43 -0500
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:43 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Completed 200 OK in 1ms (Views: 0.3ms | Allocations: 347)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:50 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.3ms | Allocations: 359)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:50 -0500
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:50 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 200 OK in 1ms (Views: 0.8ms | Allocations: 372)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:56 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 351)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:58:56 -0500
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:58:56 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 200 OK in 2ms (Views: 0.6ms | Allocations: 379)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:59:05 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 359)
+
+
+Started GET "/hello" for 127.0.0.1 at 2023-02-25 16:59:05 -0500
+Started GET "/logo192.png" for 127.0.0.1 at 2023-02-25 16:59:05 -0500
+Processing by ApplicationController#hello_world as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 200 OK in 1ms (Views: 0.8ms | Allocations: 361)
+
+
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
