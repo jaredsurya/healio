@@ -1,0 +1,2 @@
+class Healer < User
+end
