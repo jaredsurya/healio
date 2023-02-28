@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import themeOptions from './themeOptions.js';
 
 function Copyright(props) {
   return (
@@ -26,7 +27,7 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme(themeOptions)
 
 function SignIn() {
   const handleSubmit = (event) => {
@@ -44,6 +45,9 @@ function SignIn() {
         <CssBaseline />
         <Box
           sx={{
+            bgcolor: "white",
+            border: 1,
+            borderRadius: 5,
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
@@ -54,7 +58,7 @@ function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign in to Healio!
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -97,7 +101,12 @@ function SignIn() {
               </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Don't have an account? Sign Up..."}
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="/welcome" color="secondary" variant="body2">
+                  {"or, preview Healio as a guest!"}
                 </Link>
               </Grid>
             </Grid>

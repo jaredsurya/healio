@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import themeOptions from './themeOptions';
 
 function Copyright(props) {
   return (
@@ -26,15 +27,18 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
+const theme = createTheme(themeOptions);
 
 function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    console.log("data: ", data)
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+      type: data.get('type') ? true : false,
+      allow_email: data.get('allowemail') ? true : false,
     });
   };
 
@@ -44,6 +48,9 @@ function SignUp() {
         <CssBaseline />
         <Box
           sx={{
+            bgcolor: "white",
+            border: 1,
+            borderRadius: 5,
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
@@ -54,7 +61,7 @@ function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Sign up for Healio
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -91,13 +98,15 @@ function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="healer-yes" color="primary" />}
-                  label="I am signing up to serve as a healer on this website."
+                  name="type"
+                  control={<Checkbox value="true" color="primary" />}
+                  label="I am signing up to serve as a HEALER on this website."
                 />
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  name='allowemail'
+                  control={<Checkbox value="true" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>

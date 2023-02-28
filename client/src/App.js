@@ -1,6 +1,6 @@
 //import {useState, useEffect} from 'react'
 import "./App.css";
-import themeOptions from "./components/themeOptions.ts";
+import themeOptions from "./components/themeOptions.js";
 import { ThemeProvider } from "@mui/material/styles";
 import { Routes, Route } from "react-router-dom";
 import SignIn from "./components/SignIn";
