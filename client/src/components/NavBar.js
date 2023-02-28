@@ -3,7 +3,7 @@ import React from 'react'
 
 const NavBar = () => {
   return (
-    <AppBar position='stick'>
+    <AppBar position='sticky'>
       <Toolbar/>
     </AppBar>
   )

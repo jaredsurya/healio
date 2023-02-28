@@ -1,19 +1,22 @@
 //import {useState, useEffect} from 'react'
-import './App.css';
+import "./App.css";
+import themeOptions from "./components/themeOptions.ts";
+import { ThemeProvider } from "@mui/material/styles";
 import { Routes, Route } from "react-router-dom";
-import Feed from './components/Feed';
-import NavBar from './components/NavBar';
-import RightBar from './components/RightBar';
-import SideBar from './components/SideBar';
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+import Welcome from "./components/Welcome";
 
 function App() {
-  
   return (
     <div className="App">
-      <NavBar/>
-      <SideBar/>
-      <Feed/>
-      <RightBar/>
+      <ThemeProvider theme={themeOptions}>
+        <Routes>
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/welcome" element={<Welcome />} />
+        </Routes>
+      </ThemeProvider>
     </div>
   );
 }
