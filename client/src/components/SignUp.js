@@ -33,11 +33,11 @@ function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log("data: ", data)
+    fetch()
     console.log({
       email: data.get('email'),
       password: data.get('password'),
-      type: data.get('type') ? true : false,
+      type: data.get('type') ? "healer" : "visitor",
       allow_email: data.get('allowemail') ? true : false,
     });
   };
@@ -65,7 +65,8 @@ function SignUp() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
+              {/*  GO IN AND MAKE THE GRID WIDTH SMALLER FOR BELOW ITEMS, ALSO CENTER CONTENT  */}
+              <Grid item xs={11} justifyContent="center">
                 <TextField
                   required
                   fullWidth
@@ -119,7 +120,7 @@ function SignUp() {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="flex-end" padding={2} paddingTop={0}>
               <Grid item>
                 <Link href="/signin" variant="body2">
                   Already have an account? Sign in

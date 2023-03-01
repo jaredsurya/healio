@@ -1,4 +1,4 @@
-//import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import "./App.css";
 import themeOptions from "./components/themeOptions.js";
 import { ThemeProvider } from "@mui/material/styles";
@@ -8,6 +8,13 @@ import SignUp from "./components/SignUp";
 import Welcome from "./components/Welcome";
 
 function App() {
+  // const [user, setUser] = useState(null)
+
+  // if (!user)
+  // return (
+  //   <SignIn />
+  // );
+
   return (
     <div className="App">
       <ThemeProvider theme={themeOptions}>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,6 +13,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import themeOptions from './themeOptions.js';
+import { useNavigate } from "react-router-dom";
+
+
+
 
 function Copyright(props) {
   return (
@@ -30,12 +34,34 @@ function Copyright(props) {
 const theme = createTheme(themeOptions)
 
 function SignIn() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null)
+  const [errors, setErrors] = useState([])
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const user = {
       email: data.get('email'),
       password: data.get('password'),
+    };
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => {
+          setUser(user);
+        });
+        navigate("/");
+      } else {
+        r.json().then((err) => {
+          setErrors(err.errors);
+        });
+      }
     });
   };
 
@@ -93,7 +119,7 @@ function SignIn() {
             >
               Sign In
             </Button>
-            <Grid container>
+            <Grid container padding={1}>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
@@ -102,11 +128,6 @@ function SignIn() {
               <Grid item>
                 <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up..."}
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/welcome" color="secondary" variant="body2">
-                  {"or, preview Healio as a guest!"}
                 </Link>
               </Grid>
             </Grid>
