@@ -11,16 +11,17 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import AdbIcon from '@mui/icons-material/Adb';
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import MenuIcon from '@mui/icons-material/Menu'
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useContext } from "react";
 import themeOptions from "./themeOptions";
 import UserContext from "./userContext";
+import { useNavigate } from "react-router-dom";
 
 
 const NavBar = () => {
-
+  const navigate = useNavigate();
   const settings = ["Profile", "Account", "Log out"];
   const pages = ["Services", "Healers", "Map"]
 
@@ -50,8 +51,13 @@ const NavBar = () => {
       fetch("/logout", { method: "DELETE" }).then((r) => {
         if (r.ok) {
           setUser(null);
+          navigate("/signin")
         }
       });
+    } else if (setting === "Profile"){
+      console.log(setting, "profile!")
+    } else {
+      console.log(setting, "Account!")
     }
     setAnchorElUser(null);
   };
@@ -64,7 +70,8 @@ const NavBar = () => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* HEALIO ICON */}
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+
+            <AllInclusiveIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
             <Typography
               variant="h6"
               noWrap
@@ -125,7 +132,7 @@ const NavBar = () => {
             </Box>
 
 
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <AllInclusiveIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
             <Typography
               variant="h5"
               noWrap
@@ -142,7 +149,7 @@ const NavBar = () => {
                 textDecoration: "none",
               }}
             >
-              LOGO
+              Healio
             </Typography>
 
 
@@ -162,7 +169,7 @@ const NavBar = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt={user.full_name} src="/static/images/avatar/2.jpg" />
                 </IconButton>
               </Tooltip>
               <Menu

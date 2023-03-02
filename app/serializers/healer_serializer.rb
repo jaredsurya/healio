@@ -1,3 +1,3 @@
-class HealerSerializer < User
-  attributes :id, :type, :full_name, :username, :email, :password_digest, :image
+class HealerSerializer < ActiveModel::Serializer
+  attributes :id, :type, :full_name, :email, :image
 end

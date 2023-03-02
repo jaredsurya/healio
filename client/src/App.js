@@ -11,6 +11,11 @@ import UserContext from "./components/userContext";
 function App() {
   const [user, setUser] = useState(null);
 
+  // MAKE USER ROLES AUTHENTICATE PATHS SPECIFICALLY FOR THEM
+  // AUTHENTICATE USER AND USE LOGIC TO REDIRECT TO /SIGNIN IF USER IS NOT LOGGED IN
+
+  // SET UP IMAGE UPLOADING FEATURE AS A PART OF USER PROFILE EDITOR
+
   return (
     <div className="App">
       <ThemeProvider theme={themeOptions}>

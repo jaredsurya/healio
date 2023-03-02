@@ -58,7 +58,7 @@ function SignIn() {
         r.json().then((user) => {
           setUser(user);
         });
-        //navigate("/");
+        navigate("/main");
       } else {
         r.json().then((err) => {
           setErrors(err.errors);
