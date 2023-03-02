@@ -61,7 +61,8 @@ function SignUp() {
       if (r.ok) {
         r.json().then((user) => {
           setUser(user)
-          setUserType(user.type);
+          setUserType(user.type)
+          console.log(userType, user);
         });
         //navigate("/");
       } else {

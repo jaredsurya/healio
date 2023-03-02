@@ -3,14 +3,14 @@ class UsersController < ApplicationController
   wrap_parameters format: []
 
   def create
-    byebug
     if params[:user_type] == "healer"
       user = Healer.create(user_params)
     else
       user = Visitor.create(user_params)
     end
-    login_user
-    render json: user, status: 201
+    login_user(user)
+    render json: user, status: 201, serializer: UserSerializer
+
   end
 
   def show

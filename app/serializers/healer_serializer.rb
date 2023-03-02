@@ -1,3 +1,3 @@
 class HealerSerializer < User
-  attributes :id
+  attributes :id, :type, :full_name, :username, :email, :password_digest, :image
 end
