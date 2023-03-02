@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import themeOptions from './themeOptions.js';
 import { useNavigate } from "react-router-dom";
+import UserContext from './userContext.js';
 
 
 
@@ -21,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+      {'Copyright © Healio'}
       <Link color="inherit" href="/">
         Healio
       </Link>{' '}
@@ -33,9 +34,10 @@ function Copyright(props) {
 
 const theme = createTheme(themeOptions)
 
+
 function SignIn() {
+  const { user, setUser } = useContext(UserContext)
   const navigate = useNavigate();
-  const [user, setUser] = useState(null)
   const [errors, setErrors] = useState([])
 
   const handleSubmit = (event) => {
@@ -56,7 +58,7 @@ function SignIn() {
         r.json().then((user) => {
           setUser(user);
         });
-        navigate("/");
+        //navigate("/");
       } else {
         r.json().then((err) => {
           setErrors(err.errors);
@@ -115,7 +117,7 @@ function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, borderRadius: 5 }}
             >
               Sign In
             </Button>

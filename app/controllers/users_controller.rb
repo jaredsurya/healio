@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, only: [:update, :destroy]
-  
+  wrap_parameters format: []
+
   def create
-    @user = User.create!(user_params)
+    byebug
+    if params[:user_type] == "healer"
+      user = Healer.create(user_params)
+    else
+      user = Visitor.create(user_params)
+    end
     login_user
-    render json: @user, status: 201
+    render json: user, status: 201
   end
 
   def show
@@ -19,7 +25,6 @@ class UsersController < ApplicationController
     users = User.all
     render json: users, include: :heros
   end 
-
 
   def update
     user = User.find(params[:id])
@@ -45,7 +50,7 @@ class UsersController < ApplicationController
   private
 
   def user_params 
-    params.permit(:id, :username, :first_name, :password, :password_confirmation, :email, :bio)
+    params.permit(:id, :full_name, :password, :email, :user_type, :allow_email)
   end
 
   def authenticate_user

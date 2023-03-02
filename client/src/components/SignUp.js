@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import themeOptions from './themeOptions';
+import UserContext from './userContext';
 
 function Copyright(props) {
   return (
@@ -30,15 +31,42 @@ function Copyright(props) {
 const theme = createTheme(themeOptions);
 
 function SignUp() {
-  const handleSubmit = (event) => {
+  const { user, setUser } = useContext(UserContext)
+  const [newUserInfo, setNewUserInfo] = useState({})
+  const [userType, setUserType] = useState(null)
+  const [errors, setErrors] = useState([])
+
+
+
+  function handleSubmit(event) {
+    
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    fetch()
-    console.log({
+    const signUpDeets = {
+      full_name: data.get('fullName'),
       email: data.get('email'),
       password: data.get('password'),
-      type: data.get('type') ? "healer" : "visitor",
+      user_type: data.get('type') ? "healer" : "visitor",
       allow_email: data.get('allowemail') ? true : false,
+    };
+    // console.log(signUpDeets)
+    
+    fetch("/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signUpDeets),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((user) => {
+          setUser(user)
+          setUserType(user.type);
+        });
+        //navigate("/");
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
     });
   };
 
@@ -63,7 +91,7 @@ function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up for Healio
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={(e) => handleSubmit(e)} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               {/*  GO IN AND MAKE THE GRID WIDTH SMALLER FOR BELOW ITEMS, ALSO CENTER CONTENT  */}
               <Grid item xs={11} justifyContent="center">
@@ -96,6 +124,7 @@ function SignUp() {
                   id="password"
                   autoComplete="new-password"
                 />
+                {/* Add showPassword state which uses checkbox w 'show password', affecting type parameter text/password */}
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
@@ -116,7 +145,7 @@ function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, borderRadius: 5 }}
             >
               Sign Up
             </Button>
