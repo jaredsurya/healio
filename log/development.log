@@ -111222,3 +111222,252 @@ Processing by UsersController#create as */*
 Completed 201 Created in 269ms (Views: 1.7ms | ActiveRecord: 2.2ms | Allocations: 2707)
 
 
+Started POST "/signup" for 127.0.0.1 at 2023-03-02 11:55:02 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (41.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"full_name"=>"Flyn Flycatcher1", "email"=>"decemberist@121.edu1", "password"=>"[FILTERED]", "user_type"=>"visitor", "allow_email"=>true}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mVisitor Create (2.1ms)[0m  [1m[32mINSERT INTO "users" ("type", "full_name", "email", "password_digest", "created_at", "updated_at", "allow_email", "user_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["type", "Visitor"], ["full_name", "Flyn Flycatcher1"], ["email", "decemberist@121.edu1"], ["password_digest", "[FILTERED]"], ["created_at", "2023-03-02 16:55:03.221623"], ["updated_at", "2023-03-02 16:55:03.221623"], ["allow_email", true], ["user_type", "visitor"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.47ms)
+Completed 201 Created in 321ms (Views: 11.2ms | ActiveRecord: 7.9ms | Allocations: 18013)
+
+
+Started POST "/signup" for 127.0.0.1 at 2023-03-02 11:56:42 -0500
+Processing by UsersController#create as */*
+  Parameters: {"full_name"=>"Flyn Flycatcher1", "email"=>"decemberist@121.edu1", "password"=>"[FILTERED]", "user_type"=>"visitor", "allow_email"=>true}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mVisitor Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("type", "full_name", "email", "password_digest", "created_at", "updated_at", "allow_email", "user_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["type", "Visitor"], ["full_name", "Flyn Flycatcher1"], ["email", "decemberist@121.edu1"], ["password_digest", "[FILTERED]"], ["created_at", "2023-03-02 16:56:42.946598"], ["updated_at", "2023-03-02 16:56:42.946598"], ["allow_email", true], ["user_type", "visitor"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.48ms)
+Completed 201 Created in 333ms (Views: 2.4ms | ActiveRecord: 4.9ms | Allocations: 9903)
+
+
+Started POST "/signup" for 127.0.0.1 at 2023-03-02 12:00:13 -0500
+Processing by UsersController#create as */*
+  Parameters: {"full_name"=>"Flyn Flycatcher1", "email"=>"decemberist@121.edu1", "password"=>"[FILTERED]", "user_type"=>"visitor", "allow_email"=>true}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mVisitor Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("type", "full_name", "email", "password_digest", "created_at", "updated_at", "allow_email", "user_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["type", "Visitor"], ["full_name", "Flyn Flycatcher1"], ["email", "decemberist@121.edu1"], ["password_digest", "[FILTERED]"], ["created_at", "2023-03-02 17:00:13.436437"], ["updated_at", "2023-03-02 17:00:13.436437"], ["allow_email", true], ["user_type", "visitor"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.31ms)
+Completed 201 Created in 269ms (Views: 1.9ms | ActiveRecord: 2.2ms | Allocations: 2697)
+
+
+Started POST "/signup" for 127.0.0.1 at 2023-03-02 12:01:03 -0500
+Processing by UsersController#create as */*
+  Parameters: {"full_name"=>"Flyn Flycatcher1", "email"=>"decemberist@121.edu1", "password"=>"[FILTERED]", "user_type"=>"visitor", "allow_email"=>true}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mVisitor Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("type", "full_name", "email", "password_digest", "created_at", "updated_at", "allow_email", "user_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["type", "Visitor"], ["full_name", "Flyn Flycatcher1"], ["email", "decemberist@121.edu1"], ["password_digest", "[FILTERED]"], ["created_at", "2023-03-02 17:01:03.328353"], ["updated_at", "2023-03-02 17:01:03.328353"], ["allow_email", true], ["user_type", "visitor"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.26ms)
+Completed 201 Created in 269ms (Views: 1.8ms | ActiveRecord: 2.2ms | Allocations: 2703)
+
+
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 12:01:47 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 12:02:29 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 12:02:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started POST "/signup" for 127.0.0.1 at 2023-03-02 12:02:42 -0500
+Processing by UsersController#create as */*
+  Parameters: {"full_name"=>"Flyn Flycatcher1", "email"=>"decemberist@121.edu1", "password"=>"[FILTERED]", "user_type"=>"visitor", "allow_email"=>true}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mVisitor Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("type", "full_name", "email", "password_digest", "created_at", "updated_at", "allow_email", "user_type") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["type", "Visitor"], ["full_name", "Flyn Flycatcher1"], ["email", "decemberist@121.edu1"], ["password_digest", "[FILTERED]"], ["created_at", "2023-03-02 17:02:42.514379"], ["updated_at", "2023-03-02 17:02:42.514379"], ["allow_email", true], ["user_type", "visitor"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.31ms)
+Completed 201 Created in 271ms (Views: 1.6ms | ActiveRecord: 2.2ms | Allocations: 2678)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisitor Destroy (43.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 11]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisitor Destroy (1.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 10]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisitor Destroy (0.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 9]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisitor Destroy (0.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 8]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisitor Destroy (1.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 7]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisitor Destroy (0.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 6]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisitor Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mHealer Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  [1m[36mTRANSACTION (40.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisitor Destroy (0.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 3]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVisitor Destroy (0.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mHealer Destroy (0.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 12:06:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 12:07:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 12:10:06 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 12:12:49 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 12:59:14 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/static/images/avatar/2.jpg" for 127.0.0.1 at 2023-03-02 13:01:45 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/static/images/avatar/2.jpg"):
+  
+Started GET "/static/images/avatar/2.jpg" for 127.0.0.1 at 2023-03-02 13:02:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/static/images/avatar/2.jpg"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:02:04 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:09:27 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:15:26 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/static/images/avatar/2.jpg" for 127.0.0.1 at 2023-03-02 13:18:26 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/static/images/avatar/2.jpg"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:18:26 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:18:38 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:18:42 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:28:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:31:51 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:38:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:38:28 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:39:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:39:05 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:44:56 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 13:57:05 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 14:00:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/static/images/avatar/2.jpg" for 127.0.0.1 at 2023-03-02 14:04:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/static/images/avatar/2.jpg"):
+  
+Started GET "/static/images/avatar/2.jpg" for 127.0.0.1 at 2023-03-02 14:04:47 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/static/images/avatar/2.jpg"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 14:04:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/static/images/avatar/2.jpg" for 127.0.0.1 at 2023-03-02 14:05:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/static/images/avatar/2.jpg"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-03-02 14:05:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/static/images/avatar/2.jpg" for 127.0.0.1 at 2023-03-02 14:22:23 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/static/images/avatar/2.jpg"):
+  
