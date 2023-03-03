@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import themeOptions from "./components/themeOptions.js";
+import themeOptions from "./utils/themeOptions.js";
 import { ThemeProvider } from "@mui/material/styles";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
-import Main from "./components/Main";
-import UserContext from "./components/userContext";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Main from "./pages/Main";
+import UserContext from "./utils/userContext";
 import Protected from "./utils/Protected";
 
 function App() {
@@ -35,10 +35,13 @@ function App() {
     <div className="App">
       <ThemeProvider theme={themeOptions}>
         <UserContext.Provider value={{ user, setUser }}>
+          
           <Routes>
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             {/* PROTECTED ROUTES BELOW */}
+
+            {/* MAY WANT SOME OF THESE FOR JUST VISITOR OR JUST HEALER USERS */}
             <Route
               path="/main"
               element={
@@ -50,6 +53,7 @@ function App() {
             {/* CATCHES ALL NO MATCH ROUTES AND RENAVIGATES THEM */}
             <Route path="*" element={<Navigate to="/signin" replace />} />
           </Routes>
+
         </UserContext.Provider>
       </ThemeProvider>
     </div>

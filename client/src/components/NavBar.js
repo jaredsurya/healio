@@ -15,8 +15,8 @@ import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import MenuIcon from '@mui/icons-material/Menu'
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useContext } from "react";
-import themeOptions from "./themeOptions";
-import UserContext from "./userContext";
+import themeOptions from "../utils/themeOptions";
+import UserContext from "../utils/userContext";
 import { useNavigate } from "react-router-dom";
 
 

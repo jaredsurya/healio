@@ -12,9 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import themeOptions from './themeOptions.js';
+import themeOptions from '../utils/themeOptions.js';
 import { useNavigate } from "react-router-dom";
-import UserContext from './userContext.js';
+import UserContext from '../utils/userContext.js';
 
 
 
@@ -22,7 +22,7 @@ import UserContext from './userContext.js';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © Healio'}
+      {'Copyright © '}
       <Link color="inherit" href="/">
         Healio
       </Link>{' '}

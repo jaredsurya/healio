@@ -1,8 +1,8 @@
 import React from 'react'
-import NavBar from './NavBar'
-import SideBar from './SideBar'
-import RightBar from './RightBar'
-import Feed from './Feed'
+import NavBar from '../components/NavBar'
+import SideBar from '../components/SideBar'
+import RightBar from '../components/RightBar'
+import Feed from '../components/Feed'
 
 const Main = () => {
   return (

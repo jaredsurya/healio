@@ -12,8 +12,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import themeOptions from "./themeOptions";
-import UserContext from "./userContext";
+import themeOptions from "../utils/themeOptions";
+import UserContext from "../utils/userContext";
 import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
