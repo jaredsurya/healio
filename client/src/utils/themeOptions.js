@@ -24,7 +24,7 @@ const themeOptions = {
     },
   },
   typography: {
-    fontFamily: 'Lora',
+    fontFamily: 'PT serif',
   },
 };
 

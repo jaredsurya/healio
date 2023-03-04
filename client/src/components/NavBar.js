@@ -75,9 +75,9 @@ const NavBar = () => {
           <Toolbar disableGutters>
             {/* HEALIO ICON */}
 
-            <AllInclusiveIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <AllInclusiveIcon sx={{ display: { xs: "none", md: "none" }, mr: 2 }} />
             <Typography
-              variant="h5"
+              variant="h4"
               noWrap
               component="a"
               href="/main"
@@ -136,9 +136,9 @@ const NavBar = () => {
             </Box>
 
 
-            <AllInclusiveIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <AllInclusiveIcon sx={{ display: { xs: "none", md: "none" }, mr: 2 }} />
             <Typography
-              variant="h5"
+              variant="h4"
               noWrap
               component="a"
               href=""
@@ -146,9 +146,9 @@ const NavBar = () => {
                 mr: 2,
                 display: { xs: "flex", md: "none" },
                 flexGrow: 1,
-                fontFamily: "monospace",
+                fontFamily: "lobster",
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+                letterSpacing: ".1rem",
                 color: "inherit",
                 textDecoration: "none",
               }}

@@ -39,8 +39,7 @@ function Copyright(props) {
 const theme = createTheme(themeOptions);
 
 function Auth() {
-
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
@@ -129,18 +128,21 @@ function Auth() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ mt: 4, mb: 1, bgcolor: "primary.main" }}>
-              <AllInclusiveIcon />
+            <Avatar
+              style={{ width: "62px", height: "62px" }}
+              sx={{ mt: 3, mb: 2, bgcolor: "primary.main" }}
+            >
+              <AllInclusiveIcon style={{ width: "54px", height: "54px" }} />
             </Avatar>
-            <Typography component="h1" variant="h4" fontFamily={"Lobster"}>
+            <Typography
+              component="h1"
+              variant="h4"
+              gutterBottom
+              fontFamily={"Lobster"}
+            >
               Sign in to Healio!
             </Typography>
-            <Box
-              component="form"
-              onSubmit={loginSubmit}
-              noValidate
-              sx={{ mt: 1 }}
-            >
+            <Box component="form" onSubmit={loginSubmit} noValidate>
               <TextField
                 margin="normal"
                 required
@@ -162,12 +164,18 @@ function Auth() {
                 autoComplete="current-password"
               />
               <Grid item xs={12}>
-                  <FormControlLabel
-                    name="pass"
-                    control={<Switch value="true" onChange={() => setShowPassword(!showPassword)} color="secondary" />}
-                    label="Reveal the password."
-                  />
-                  </Grid>
+                <FormControlLabel
+                  name="pass"
+                  control={
+                    <Switch
+                      value="true"
+                      onChange={() => setShowPassword(!showPassword)}
+                      color="secondary"
+                    />
+                  }
+                  label="Reveal the password."
+                />
+              </Grid>
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
@@ -177,7 +185,14 @@ function Auth() {
                 fullWidth
                 variant="contained"
                 color="secondary"
-                sx={{ mt: 2, mb: 2, borderRadius: 5, color: "", fontWeight:"bold", width: "15vw" }}
+                sx={{
+                  mt: 2,
+                  mb: 2,
+                  borderRadius: 5,
+                  color: "",
+                  fontWeight: "bold",
+                  width: "15vw",
+                }}
               >
                 Sign In
               </Button>
@@ -207,6 +222,8 @@ function Auth() {
       </ThemeProvider>
     );
   } else {
+    
+    
     // SIGN UP LOGIC BELOW
     return (
       <ThemeProvider theme={theme}>
@@ -223,21 +240,21 @@ function Auth() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ mt: 4, mb: 1, bgcolor: "primary.main" }}>
-              <AllInclusiveIcon />
+            <Avatar style={{ width: "62px", height: "62px" }} sx={{ mt: 3, mb: 2, bgcolor: "primary.main" }}>
+              <AllInclusiveIcon style={{ width: "54px", height: "54px" }} />
             </Avatar>
-            <Typography component="h1" variant="h4" fontFamily={"Lobster"}>
+            <Typography component="h1" variant="h4" gutterBottom fontFamily={"Lobster"}>
               Sign up for Healio
             </Typography>
             <Box
               component="form"
               noValidate
               onSubmit={(e) => signupSubmit(e)}
-              sx={{ mt: 3 }}
+              sx={{ mt: 2 }}
             >
               <Grid container spacing={2}>
                 {/*  GO IN AND MAKE THE GRID WIDTH SMALLER FOR BELOW ITEMS, ALSO CENTER CONTENT  */}
-                <Grid item xs={11} justifyContent="center">
+                <Grid item xs={12} justifyContent="center">
                   <TextField
                     required
                     fullWidth
@@ -272,7 +289,13 @@ function Auth() {
                 <Grid item xs={12}>
                   <FormControlLabel
                     name="pass"
-                    control={<Switch value="true" onChange={() => setShowPassword(!showPassword)} color="secondary" />}
+                    control={
+                      <Switch
+                        value="true"
+                        onChange={() => setShowPassword(!showPassword)}
+                        color="secondary"
+                      />
+                    }
                     label="Reveal the password."
                   />
                 </Grid>
@@ -296,7 +319,7 @@ function Auth() {
                 fullWidth
                 color="secondary"
                 variant="contained"
-                sx={{ mt: 3, mb: 2, borderRadius: 4, fontWeight:"bold" }}
+                sx={{ mt: 3, mb: 2, borderRadius: 4, fontWeight: "bold" }}
               >
                 Sign Up
               </Button>
