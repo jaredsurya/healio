@@ -3,15 +3,28 @@ import "./App.css";
 import themeOptions from "./utils/themeOptions.js";
 import { ThemeProvider } from "@mui/material/styles";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+import Auth from "./pages/Auth";
 import Main from "./pages/Main";
 import UserContext from "./utils/userContext";
 import Protected from "./utils/Protected";
 
 function App() {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  
+  // const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("/me").then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setUser(user);
+        });
+      } else {
+        setUser(null);
+        res.json().then((err) => console.log("error in /me",err.error));
+      }
+    });
+  }, []);
 
   //useEffect(() => {
   // check if user is signed in
@@ -37,19 +50,18 @@ function App() {
         <UserContext.Provider value={{ user, setUser }}>
           
           <Routes>
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
+            {!user ? <Route path="/signin" element={<Auth />} /> : <Route path="/main" element={<Main />} />}
             {/* PROTECTED ROUTES BELOW */}
 
             {/* MAY WANT SOME OF THESE FOR JUST VISITOR OR JUST HEALER USERS */}
-            <Route
+            {/* <Route
               path="/main"
               element={
-                <Protected user={user}>
+                <Protected >
                   <Main />
                 </Protected>
               }
-            />
+            /> */}
             {/* CATCHES ALL NO MATCH ROUTES AND RENAVIGATES THEM */}
             <Route path="*" element={<Navigate to="/signin" replace />} />
           </Routes>

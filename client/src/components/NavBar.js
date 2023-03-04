@@ -45,13 +45,16 @@ const NavBar = () => {
     
     setAnchorElNav(null);
   };
-
+  //setUser({foo: "bar"})
   const handleUserMenuClick = (setting) => {
     if (setting === "Log out"){
       fetch("/logout", { method: "DELETE" }).then((r) => {
         if (r.ok) {
           setUser(null);
           navigate("/signin")
+          console.log("THE USER WAS SIGNED OUT")
+        }else{
+          console.log("SOMETHING WENT WRONG")
         }
       });
     } else if (setting === "Profile"){
@@ -61,6 +64,8 @@ const NavBar = () => {
     }
     setAnchorElUser(null);
   };
+
+  console.log("USER in context:", user)
 
   const theme = createTheme(themeOptions);
 
@@ -76,13 +81,13 @@ const NavBar = () => {
               variant="h6"
               noWrap
               component="a"
-              href="/"
+              href="/main"
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
+                fontFamily: "Roboto",
                 fontWeight: 700,
-                letterSpacing: ".3rem",
+                letterSpacing: ".2rem",
                 color: "inherit",
                 textDecoration: "none",
               }}
@@ -169,7 +174,7 @@ const NavBar = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt={user.full_name} src="/static/images/avatar/2.jpg" />
+                  <Avatar alt={user.full_name} src={user.image} />
                 </IconButton>
               </Tooltip>
               <Menu
