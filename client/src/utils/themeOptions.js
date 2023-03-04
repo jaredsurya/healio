@@ -8,7 +8,7 @@ const themeOptions = {
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#079ee2',
+      main: '#c93860',
     },
     background: {
       default: '#e4ecff',

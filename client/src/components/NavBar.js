@@ -19,7 +19,6 @@ import themeOptions from "../utils/themeOptions";
 import UserContext from "../utils/userContext";
 import { useNavigate } from "react-router-dom";
 
-
 const NavBar = () => {
   const navigate = useNavigate();
   const settings = ["Profile", "Account", "Log out"];
@@ -78,16 +77,16 @@ const NavBar = () => {
 
             <AllInclusiveIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
             <Typography
-              variant="h6"
+              variant="h5"
               noWrap
               component="a"
               href="/main"
               sx={{
-                mr: 2,
+                mr: 3,
                 display: { xs: "none", md: "flex" },
-                fontFamily: "Roboto",
+                fontFamily: "Lobster",
                 fontWeight: 700,
-                letterSpacing: ".2rem",
+                letterSpacing: ".1rem",
                 color: "inherit",
                 textDecoration: "none",
               }}

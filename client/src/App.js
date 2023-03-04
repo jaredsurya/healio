@@ -8,49 +8,48 @@ import Main from "./pages/Main";
 import UserContext from "./utils/userContext";
 import Protected from "./utils/Protected";
 
+// infinite loops from rerendering user?
+
 function App() {
   const [user, setUser] = useState(null);
   
-  // const navigate = useNavigate();
-
-  useEffect(() => {
-    fetch("/me").then((res) => {
-      if (res.ok) {
-        res.json().then((user) => {
-          setUser(user);
-        });
-      } else {
-        setUser(null);
-        res.json().then((err) => console.log("error in /me",err.error));
-      }
-    });
-  }, []);
-
-  //useEffect(() => {
-  // check if user is signed in
-  // replace this with your own authentication logic
-  //   const signedIn = true; // replace with your own check for signed in user
-
-  //   if (
-  //     !signedIn &&
-  //     window.location.pathname !== "/signin" &&
-  //     window.location.pathname !== "/signup"
-  //   ) {
-  //     // redirect user to signin page
-  //     navigate("/signin");
-  //   }
-  // }, [user, navigate]);
+    useEffect(() => {
+      fetch("/me").then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            setUser(data);
+          });
+        } else {
+          setUser(null);
+          res.json().then((err) => console.log("error in /me",err.error));
+        }
+      });
+    }, []);
+  
   // MAKE USER ROLES AUTHENTICATE PATHS SPECIFICALLY FOR THEM
+  
   // AUTHENTICATE USER AND USE LOGIC TO REDIRECT TO /SIGNIN IF USER IS NOT LOGGED IN
 
   // SET UP IMAGE UPLOADING FEATURE AS A PART OF USER PROFILE EDITOR
+
+  // USE A SWITCH STATEMENT TO CONDITIONALLY RENDER HEALER VS VISITOR DATA TYPES 
+  
+  if(!user){
+    return (
+      <UserContext.Provider value={{ user, setUser }} >
+        <Auth />
+      </UserContext.Provider>
+    )
+  }
+
+
   return (
     <div className="App">
       <ThemeProvider theme={themeOptions}>
         <UserContext.Provider value={{ user, setUser }}>
           
           <Routes>
-            {!user ? <Route path="/signin" element={<Auth />} /> : <Route path="/main" element={<Main />} />}
+            {/* {!user ? <Route path="/signin" element={<Auth />} /> : <Route path="/main" element={<Main />} />} */}
             {/* PROTECTED ROUTES BELOW */}
 
             {/* MAY WANT SOME OF THESE FOR JUST VISITOR OR JUST HEALER USERS */}
@@ -62,8 +61,9 @@ function App() {
                 </Protected>
               }
             /> */}
-            {/* CATCHES ALL NO MATCH ROUTES AND RENAVIGATES THEM */}
-            <Route path="*" element={<Navigate to="/signin" replace />} />
+            <Route path="*" element={<Navigate to="/main" replace />} />
+            <Route path="/main" element={<Main />} />
+            <Route path="/signin" element={<Auth />} />
           </Routes>
 
         </UserContext.Provider>
