@@ -4,9 +4,9 @@ class UsersController < ApplicationController
 
   def create
     if params[:user_type] == "healer"
-      user = Healer.create(user_params)
+      user = Healer.create!(user_params)
     else
-      user = Visitor.create(user_params)
+      user = Visitor.create!(user_params)
     end
     login_user(user)
     render json: user, status: 201, serializer: UserSerializer

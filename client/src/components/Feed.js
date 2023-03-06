@@ -1,10 +1,11 @@
+import { Box, Typography } from '@mui/material'
 import React from 'react'
 
-const Feed = () => {
+const Feed = ({theme}) => {
   return (
-    <div>
-      
-    </div>
+    <Box flex={6} bgcolor="blue" p={2}>
+      NEWS FEED
+    </Box>
   )
 }
 

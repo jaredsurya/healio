@@ -49,6 +49,7 @@ function Auth() {
 
   const loginSubmit = (event) => {
     event.preventDefault();
+    setErrors([])
     const data = new FormData(event.currentTarget);
     const user = {
       email: data.get("email"),
@@ -83,6 +84,7 @@ function Auth() {
 
   function signupSubmit(event) {
     event.preventDefault();
+    setErrors([])
     const data = new FormData(event.currentTarget);
     const signUpDeets = {
       full_name: data.get("fullName"),
@@ -107,9 +109,12 @@ function Auth() {
           navigate("/main");
         });
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        r.json().then((err) => {
+          console.log(err)
+          setErrors(err.errors)});
+        }
       }
-    });
+    );
   }
 
   if (toggle === true) {
@@ -188,10 +193,11 @@ function Auth() {
                 sx={{
                   mt: 2,
                   mb: 2,
-                  borderRadius: 5,
+                  marginLeft: 2,
+                  borderRadius: 4,
                   color: "",
                   fontWeight: "bold",
-                  width: "15vw",
+                  width: "9em",
                 }}
               >
                 Sign In
@@ -217,7 +223,7 @@ function Auth() {
               </Grid>
             </Box>
           </Box>
-          <Copyright sx={{ mt: 8, mb: 4 }} />
+          <Copyright sx={{ mt: 3 }} />
         </Container>
       </ThemeProvider>
     );
@@ -286,6 +292,7 @@ function Auth() {
                   />
                   {/* Add showPassword state which uses checkbox w 'show password', affecting type parameter text/password */}
                 </Grid>
+                {errors ? errors.map((error) => <Typography key={error} fontWeight={"bold"} color={"error"} paddingLeft={"2em"}>Error: {error}</Typography>) : null}
                 <Grid item xs={12}>
                   <FormControlLabel
                     name="pass"
@@ -341,7 +348,7 @@ function Auth() {
               </Grid>
             </Box>
           </Box>
-          <Copyright sx={{ mt: 5 }} />
+          <Copyright sx={{ mt: 3 }} />
         </Container>
       </ThemeProvider>
     );

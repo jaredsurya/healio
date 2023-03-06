@@ -11,8 +11,8 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
-import MenuIcon from '@mui/icons-material/Menu'
+import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
+import MenuIcon from "@mui/icons-material/Menu";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useContext } from "react";
 import themeOptions from "../utils/themeOptions";
@@ -22,10 +22,9 @@ import { useNavigate } from "react-router-dom";
 const NavBar = () => {
   const navigate = useNavigate();
   const settings = ["Profile", "Account", "Log out"];
-  const pages = ["Services", "Healers", "Map"]
+  const pages = ["Services", "Healers", "Map"];
 
-  const { user, setUser } = useContext(UserContext)
-
+  const { user, setUser } = useContext(UserContext);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -38,33 +37,37 @@ const NavBar = () => {
   };
 
   const handleNavMenuClick = (page) => {
-    if (page === "Services"){
-      console.log(page)
+    if (page === "Services") {
+      console.log(page);
     }
-    
     setAnchorElNav(null);
   };
-  //setUser({foo: "bar"})
+
   const handleUserMenuClick = (setting) => {
-    if (setting === "Log out"){
-      fetch("/logout", { method: "DELETE" }).then((r) => {
-        if (r.ok) {
-          setUser(null);
-          navigate("/signin")
-          console.log("THE USER WAS SIGNED OUT")
-        }else{
-          console.log("SOMETHING WENT WRONG")
-        }
-      });
-    } else if (setting === "Profile"){
-      console.log(setting, "profile!")
+    if (setting === "Log out") {
+      handleLogout();
+    } else if (setting === "Profile") {
+      console.log(setting, "profile!");
     } else {
-      console.log(setting, "Account!")
+      console.log(setting, "Account!");
     }
     setAnchorElUser(null);
   };
 
-  console.log("USER in context:", user)
+  function handleLogout() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      console.log("response", r)
+      if (r.ok) {
+        setUser(null);
+        navigate("/signin");
+        console.log("THE USER WAS SIGNED OUT");
+      } else {
+        console.log("SOMETHING WENT WRONG", r);
+      }
+    });
+  }
+
+  // console.log("USER in context:", user);
 
   const theme = createTheme(themeOptions);
 
@@ -73,30 +76,8 @@ const NavBar = () => {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* HEALIO ICON */}
-
-            <AllInclusiveIcon sx={{ display: { xs: "none", md: "none" }, mr: 2 }} />
-            <Typography
-              variant="h4"
-              noWrap
-              component="a"
-              href="/main"
-              sx={{
-                mr: 3,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "Lobster",
-                fontWeight: 700,
-                letterSpacing: ".1rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              Healio
-            </Typography>
-              {/* MENU ICON FOR NAVIGATION */}
-
-
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            {/* MENU ICON FOR NAVIGATION */}
+            <Box sx={{ flexGrow: 1, display: "flex" }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -107,7 +88,6 @@ const NavBar = () => {
               >
                 <MenuIcon />
               </IconButton>
-
 
               <Menu
                 id="menu-appbar"
@@ -124,9 +104,11 @@ const NavBar = () => {
                 open={Boolean(anchorElNav)}
                 onClose={() => setAnchorElNav(null)}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: "block",
                 }}
-              >  {/* ITEM LIST FOR LEFT NAV MENU */}
+              >
+                {" "}
+                {/* ITEM LIST FOR LEFT NAV MENU */}
                 {pages.map((page) => (
                   <MenuItem key={page} onClick={() => handleNavMenuClick(page)}>
                     <Typography textAlign="center">{page}</Typography>
@@ -135,8 +117,7 @@ const NavBar = () => {
               </Menu>
             </Box>
 
-
-            <AllInclusiveIcon sx={{ display: { xs: "none", md: "none" }, mr: 2 }} />
+            
             <Typography
               variant="h4"
               noWrap
@@ -144,7 +125,7 @@ const NavBar = () => {
               href=""
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: "flex",
                 flexGrow: 1,
                 fontFamily: "lobster",
                 fontWeight: 700,
@@ -156,20 +137,7 @@ const NavBar = () => {
               Healio
             </Typography>
 
-
-            {/* BUTTONS FOR NAV */}
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={() => handleNavMenuClick(page)}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
-              ))}
-            </Box>
-                  {/* USER MENU AND ITEMS */}
+            {/* USER MENU AND ITEMS */}
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -193,7 +161,10 @@ const NavBar = () => {
                 onClose={() => setAnchorElUser(null)}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={() => handleUserMenuClick(setting)}>
+                  <MenuItem
+                    key={setting}
+                    onClick={() => handleUserMenuClick(setting)}
+                  >
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}
