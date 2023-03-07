@@ -3,21 +3,21 @@ import NavBar from "../components/NavBar";
 import LeftBar from "../components/LeftBar";
 import RightBar from "../components/RightBar";
 import Feed from "../components/Feed";
-import { createTheme, Grid, Stack } from "@mui/material";
 import themeOptions from "../utils/themeOptions";
+import { createTheme, Stack, ThemeProvider } from "@mui/material";
 
 const theme = createTheme(themeOptions);
 
 const Main = () => {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <NavBar />
-      <Stack direction="row" spacing={.7} lg={12} justifyContent="space-between">
+      <Stack direction="row" marginTop={1} spacing={.7} lg={12} justifyContent="space-between">
         <LeftBar theme={theme}/>
         <Feed theme={theme}/>
         <RightBar theme={theme}/>
       </Stack>
-    </div>
+    </ThemeProvider>
   );
 };
 
