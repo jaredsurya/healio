@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :weblinks
+  resources :blogs
   resources :comments
   resources :services
   resources :visitors

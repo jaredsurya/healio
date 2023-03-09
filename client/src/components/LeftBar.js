@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
-import { Avatar, Box, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Divider, Stack, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import UserContext from "../utils/userContext";
 
@@ -22,9 +22,15 @@ function ProfileData() {
   );
 }
 
+function SavedInterests () {
+  return (
+    <Box>INTERESTS</Box>
+  )
+}
+
 function ABC () {
   return (
-    <Box>ALPHABETICAL SCROLL</Box>
+    <Box>ALPHABETICAL SCROLL H/S</Box>
   )
 }
 
@@ -33,7 +39,10 @@ function Map (){
     <Box>GOOGLE MAP</Box>
   )
 }
-// CONTAINS: user box, services/healers alphabetical, map
+
+// MAKE INTO MINI VARIANT DRAWER AT SMALL/XS SIZES
+
+// CONTAINS: user box, saved services (MUI chips), services/healers alphabetical, map
 const LeftBar = ({ theme }) => {
   // CANNOT SET BREAKPOINTS IN SX SETTINGS
   // sx={{display:{ xs: "none"}}}
@@ -47,8 +56,9 @@ const LeftBar = ({ theme }) => {
       paddingTop={2}
       sx={{ display: { xs: "none", md: "block" } }}
     >
-      <Stack>
+      <Stack spacing={2} divider={<Divider orientation="horizontal" flexItem />}>
         <ProfileData />
+        <SavedInterests />
         <ABC />
         <Map />
         {/* Conditional rendering of Services/Healers/Map

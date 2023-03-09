@@ -8,6 +8,9 @@ import { createTheme, Stack, ThemeProvider } from "@mui/material";
 
 const theme = createTheme(themeOptions);
 
+//Create Menu context for both left and right menus, with state variables and setters for both
+
+
 const Main = () => {
   return (
     <ThemeProvider theme={theme}>

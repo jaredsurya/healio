@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const settings = ["Profile", "Account", "Log out"];
+  const settings = ["My Profile", "Edit Account", "About Healio", "Log out"];
   const pages = ["Services", "Healers", "Map"];
 
   const { user, setUser } = useContext(UserContext);
@@ -36,20 +36,24 @@ const NavBar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
+  // MAYBE USE A SWITCH TERNARY
   const handleNavMenuClick = (page) => {
     if (page === "Services") {
-      console.log(page);
+      //leftMenuSelect(page);
     }
     setAnchorElNav(null);
   };
 
+    // MAYBE USE A ~SWITCH~ TERNARY combined with state
   const handleUserMenuClick = (setting) => {
     if (setting === "Log out") {
       handleLogout();
-    } else if (setting === "Profile") {
+    } else if (setting === "My Profile") {
       console.log(setting, "profile!");
+    } else if (setting === "Edit Account") {
+      console.log(setting, "Edit Account!");
     } else {
-      console.log(setting, "Account!");
+      console.log("About Healio MODAL Here...")
     }
     setAnchorElUser(null);
   };
@@ -129,7 +133,6 @@ const NavBar = () => {
                 flexGrow: 1,
                 fontFamily: "lobster",
                 fontWeight: 700,
-                letterSpacing: ".1rem",
                 color: "inherit",
                 textDecoration: "none",
               }}

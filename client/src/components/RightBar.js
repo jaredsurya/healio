@@ -1,42 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Stack, Typography, Box } from "@mui/material";
+import { Stack, Typography, Box, Divider } from "@mui/material";
 import { Adsense } from "@ctrl/react-adsense";
+import Quote from "./Quote";
 
-function Quote() {
-  const [quotes, setQuotes] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("https://zenquotes.io/api/quotes", {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setQuotes(data));
-  // }, []);
-  console.log(quotes);
-  return (
-    <Box>
-      QUOTES
-      {quotes.map((quote) => {
-        return <Box bgcolor={"white"}>{quote.h}</Box>;
-      })}
-    </Box>
-  );
+function Ad() {
+  return <Box>ADVERTISEMENT</Box>;
 }
 
-function Ad () {
-
-  return (
-    <Box>ADVERTISEMENT</Box>
-  )
-}
-
-function FeaturedHealer () {
-
-  return (
-    <Box>FEATURED HEALER</Box>
-  )
+function FeaturedHealer() {
+  return <Box>FEATURED HEALER</Box>;
 }
 
 // CONTENTS: Quotes, Advertisements, Featured Healer(daily)
@@ -50,7 +23,10 @@ const RightBar = ({ theme }) => {
       sx={{ display: { xs: "none", md: "none", lg: "block" } }}
       bgcolor="#f7e1e7"
     >
-      <Stack >
+      <Stack
+        spacing={2}
+        divider={<Divider orientation="horizontal" flexItem />}
+      >
         <Quote />
         <FeaturedHealer />
         <Ad />
