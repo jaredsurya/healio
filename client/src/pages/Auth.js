@@ -79,7 +79,6 @@ function Auth() {
 
   // SIGN UP LOGIC BELOW
 
-  const [newUserInfo, setNewUserInfo] = useState({});
   const [userType, setUserType] = useState(null);
 
   function signupSubmit(event) {
@@ -105,7 +104,6 @@ function Auth() {
         r.json().then((user) => {
           setUser(user);
           setUserType(user.type);
-          console.log(userType, user);
           navigate("/main");
         });
       } else {
