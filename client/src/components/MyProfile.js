@@ -13,7 +13,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useCallback, useState } from "react";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import UserContext from "../utils/userContext";
 import ImageUploadBox from "./ImageUploadBox";
@@ -21,9 +21,26 @@ import ImageUploadBox from "./ImageUploadBox";
 
 const MyProfile = () => {
   const { user, setUser } = useContext(UserContext);
+  const [tempUser, setTempUser] = useState(user)
   const [showFormDialog, setShowFormDialog] = useState(false);
 
-  function FormDialog() {
+  // const handleFullNameChange = useCallback(
+  //   (e) => setUser({ ...user, full_name: e.target.value }),
+  //   [user, setUser]
+  // );
+  // const handleEmailChange = useCallback(
+  //   (e) => setUser({ ...user, email: e.target.value }),
+  //   [user, setUser]
+  // );
+  // const handleLocationChange = useCallback(
+  //   (e) => setUser({ ...user, location: e.target.value }),
+  //   [user, setUser]
+  // );
+  // const handleAllowEmailChange = useCallback(() => {
+  //   setUser(prevUser => ({ ...prevUser, allow_email: !prevUser.allow_email }));
+  // }, [setUser]);
+  
+
     const handleClickOpen = () => {
       setShowFormDialog(true);
     };
@@ -32,8 +49,18 @@ const MyProfile = () => {
       setShowFormDialog(false);
     };
 
+    function handleCancel(){
+      setTempUser(user)
+      handleClose()
+    }
+
     function handleDetailSubmit() {
+      setUser(tempUser)
       handleClose();
+    }
+
+    function handleChange(e){
+      setTempUser({...tempUser, [e.target.name]: e.target.value})
     }
 
     console.log(user);
@@ -76,16 +103,22 @@ const MyProfile = () => {
               margin="dense"
               id="name"
               label="Full Name"
-              type="email"
+              type="text"
+              name="full_name"
+              value={tempUser.full_name}
               fullWidth
               variant="standard"
+              onChange={handleChange}
             />
             <TextField
               margin="dense"
               id="name"
               label="Email Address (Required)"
               type="email"
+              name="email"
+              value={tempUser.email}
               fullWidth
+              onChange={handleChange}
               variant="standard"
             />
             <TextField
@@ -93,33 +126,25 @@ const MyProfile = () => {
               id="zip"
               label="Home Zip Code"
               type="number"
+              name="location"
+              value={tempUser.location}
+              onChange={handleChange}
               fullWidth
               variant="standard"
             />
             <FormControlLabel
-              control={<Checkbox value={true} color="primary" />}
+              control={<Checkbox name="allow_email" checked={tempUser.allow_email} onChange={handleChange} color="primary" />}
               label="Allow promotional and inspirational emails."
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleCancel}>Cancel</Button>
             <Button onClick={handleDetailSubmit}>Submit Details</Button>
           </DialogActions>
         </Dialog>
       </div>
     );
-  }
-
-  return (
-    <div>
-      {/* the below typography needs to be set properly so text grows and shrinks with viewwindow changes */}
-      <FormDialog />
-      {/* <UserShow showEdit={showEdit} setShowEdit={setShowEdit} />
-      <Button variant="contained" color="secondary" onClick={setShowEdit(true)}>Edit Details</Button>
-      <UserEdit /> */}
-      {/* make a responsive form that edits the user data. on button click, toggle between edit and view(where data is normally populated in full) */}
-    </div>
-  );
+  
 };
 
 // biography will be a separate button, separate form/modal to edit

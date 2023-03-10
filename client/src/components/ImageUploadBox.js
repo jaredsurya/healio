@@ -39,7 +39,7 @@ function ImageUploadBox() {
           left: 0,
           height: 195,
           width: 130,
-          border: "1.5px dashed purple",
+          border: "1.5px dashed grey",
           borderRadius: "7px",
           cursor: "pointer",
           backgroundColor: "lightgrey"
@@ -47,7 +47,7 @@ function ImageUploadBox() {
         onClick={handleModalOpen}
       >
         <AddPhotoAlternateOutlinedIcon
-          sx={{ fontSize: "3rem", color: "purple" }}
+          sx={{ fontSize: "3rem", color: "grey" }}
         />
       </Box>
       <Dialog open={modalOpen} onClose={handleModalClose}>
