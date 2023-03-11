@@ -1,12 +1,14 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
+import AutocompleteComponent from './AutocompleteComponent'
 import MyProfile from './MyProfile'
 
 const Feed = ({theme}) => {
   return (
-    <Box flex={7} bgcolor="#e5e9ef" p={2}>
+    <Box flex={7} bgcolor="#f7f9ff" p={2}>
       {/* SERVICES AND HEALERS DISPLAY */}
-      <MyProfile />
+      <AutocompleteComponent />
+      {/* <MyProfile /> */}
     </Box>
   )
 }

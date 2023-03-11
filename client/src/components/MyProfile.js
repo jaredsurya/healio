@@ -17,29 +17,12 @@ import React, { useContext, useCallback, useState } from "react";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import UserContext from "../utils/userContext";
 import ImageUploadBox from "./ImageUploadBox";
-
+import HealerDataModal from "./HealerDataModal";
 
 const MyProfile = () => {
   const { user, setUser } = useContext(UserContext);
   const [tempUser, setTempUser] = useState(user)
   const [showFormDialog, setShowFormDialog] = useState(false);
-
-  // const handleFullNameChange = useCallback(
-  //   (e) => setUser({ ...user, full_name: e.target.value }),
-  //   [user, setUser]
-  // );
-  // const handleEmailChange = useCallback(
-  //   (e) => setUser({ ...user, email: e.target.value }),
-  //   [user, setUser]
-  // );
-  // const handleLocationChange = useCallback(
-  //   (e) => setUser({ ...user, location: e.target.value }),
-  //   [user, setUser]
-  // );
-  // const handleAllowEmailChange = useCallback(() => {
-  //   setUser(prevUser => ({ ...prevUser, allow_email: !prevUser.allow_email }));
-  // }, [setUser]);
-  
 
     const handleClickOpen = () => {
       setShowFormDialog(true);
@@ -56,6 +39,19 @@ const MyProfile = () => {
 
     function handleDetailSubmit() {
       setUser(tempUser)
+      fetch(`/users/${user.id}`, {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          console.log(data)
+          //setUser(data);
+        })
       handleClose();
     }
 
@@ -63,7 +59,8 @@ const MyProfile = () => {
       setTempUser({...tempUser, [e.target.name]: e.target.value})
     }
 
-    console.log(user);
+    //console.log(user);
+
     const date = new Date(user.created_at);
     const formattedDate = date.toLocaleDateString("en-US", {
       year: "numeric",
@@ -73,7 +70,7 @@ const MyProfile = () => {
 
     return (
       <div align="center">
-        <Typography variant="h5" align="center" gutterBottom style={{ textDecoration: 'underline' }}>User Details:</Typography>
+        <Typography variant="h5" align="center" gutterBottom style={{ textDecoration: 'underline' }}>Account Details:</Typography>
         <Box><ImageUploadBox /></Box>
         <Box>
           <Typography variant="h4">~{user.full_name}~</Typography>
@@ -142,6 +139,7 @@ const MyProfile = () => {
             <Button onClick={handleDetailSubmit}>Submit Details</Button>
           </DialogActions>
         </Dialog>
+        {user.type === "Healer" ? <HealerDataModal/> : null }
       </div>
     );
   

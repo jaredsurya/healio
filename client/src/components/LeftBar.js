@@ -51,7 +51,7 @@ const LeftBar = ({ theme }) => {
     <Box
       height={"100%"}
       flex={3}
-      bgcolor="#f7e1e7"
+      bgcolor="#f0f4ff"
       p={1}
       paddingTop={2}
       sx={{ display: { xs: "none", md: "block" } }}

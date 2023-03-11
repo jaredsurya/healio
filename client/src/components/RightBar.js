@@ -21,7 +21,7 @@ const RightBar = ({ theme }) => {
       p={1}
       paddingTop={2}
       sx={{ display: { xs: "none", md: "none", lg: "block" } }}
-      bgcolor="#f7e1e7"
+      bgcolor="#f0f4ff"
     >
       <Stack
         spacing={2}

@@ -1,0 +1,9 @@
+li {
+  list-style-type: none;
+  padding-left: 1rem;
+  text-indent: -2rem;
+}
+
+li::before {
+  content: "🕉️ ";
+}
