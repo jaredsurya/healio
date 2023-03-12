@@ -1,8 +1,8 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import LeftBar from "../components/LeftBar";
-import RightBar from "../components/RightBar";
-import Feed from "../components/Feed";
+import NavBar from "../components/DisplayAreas/NavBar";
+import LeftBar from "../components/DisplayAreas/LeftBar";
+import RightBar from "../components/DisplayAreas/RightBar";
+import Feed from "../components/DisplayAreas/Feed";
 import themeOptions from "../utils/themeOptions";
 import { createTheme, Stack, ThemeProvider } from "@mui/material";
 

@@ -1,9 +1,9 @@
-li {
+li.address {
   list-style-type: none;
   padding-left: 1rem;
   text-indent: -2rem;
 }
 
-li::before {
+li.address::before {
   content: "🕉️ ";
 }

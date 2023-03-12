@@ -1,6 +1,7 @@
 import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, TextField } from "@mui/material";
 import React, { useContext, useState } from "react";
 import UserContext from "../utils/userContext";
+import AddressAutocomplete from "./Features/AddressAutocomplete";
 
 const HealerDataModal = () => {
   const { user, setUser } = useContext(UserContext);
@@ -76,17 +77,7 @@ const HealerDataModal = () => {
             onChange={handleChange}
             variant="standard"
           />
-          <TextField
-            margin="dense"
-            id="zip"
-            label="Home Zip Code"
-            type="number"
-            name="location"
-            value={tempUser.location}
-            onChange={handleChange}
-            fullWidth
-            variant="standard"
-          />
+          <AddressAutocomplete/>
           <FormControlLabel
             control={
               <Checkbox
