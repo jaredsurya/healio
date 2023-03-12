@@ -1,4 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
+  include Rails.application.routes.url_helpers
+  
   def attributes(*args)
     data = super
     if object.type == "Visitor"
@@ -15,6 +17,7 @@ class UserSerializer < ActiveModel::Serializer
       data[:type] = object.type
       data[:full_name] = object.full_name
       #data[:image] = object.image
+      data[:avatar] = rails_blob_path(object.avatar, only_path: true) if object.avatar.attached?
       data[:email] = object.email
       data[:created_at] = object.created_at
       data[:location] = object.location

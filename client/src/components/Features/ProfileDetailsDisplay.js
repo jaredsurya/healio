@@ -2,7 +2,9 @@ import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useContext } from 'react'
 import UserContext from '../../utils/userContext'
-import ImageUploadBox from '../ImageUploadBox'
+import AccountModalBtn from '../Buttons/AccountModalBtn'
+import HealerModalButton from '../Buttons/HealerModalButton'
+import ImageUploadBox from './ImageUploadBox'
 
 const ProfileDetailsDisplay = () => {
   const { user, setUser } = useContext(UserContext);
@@ -34,7 +36,7 @@ const ProfileDetailsDisplay = () => {
             {user.allow_email ? "Allowed" : "Denied"}
           </Typography>
         </Box>
-        <Box id="buttons"></Box>
+        <Box id="buttons"><AccountModalBtn/></Box>
     </Box>
   )
 }

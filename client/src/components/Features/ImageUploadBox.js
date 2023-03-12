@@ -14,6 +14,7 @@ import { Container } from "@mui/system";
 
 function ImageUploadBox() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [image, setImage] = useState(null)
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -23,7 +24,8 @@ function ImageUploadBox() {
     setModalOpen(false);
   };
 
-  function handleUpload(){
+  function handleUpload(e){
+    setImage(e.target.files[0])
     setModalOpen(false)
   }
 
