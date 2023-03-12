@@ -1,3 +1,4 @@
+import { Input, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState, useEffect } from 'react';
 
@@ -37,7 +38,8 @@ const AddressAutocomplete = () => {
 
   return (
     <Box>
-      <input type="text" value={searchInput} onChange={handleInputChange} />
+      <Typography></Typography>
+      <TextField type="text" fullWidth label="Address of your healing practice" value={searchInput} onChange={handleInputChange} margin="dense"/>
       {suggestions.length > 0 && (
         <ul>
           {suggestions.map((suggestion) => (

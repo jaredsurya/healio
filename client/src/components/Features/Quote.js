@@ -18,9 +18,9 @@ function Quote() {
   }, [quotes]);
 
   return (
-    <Paper elevation={3} sx={{ p: 2 }}>
+    <Paper elevation={2} sx={{ p: 2 }}>
       {quote.author === "" ? (
-        <Typography variant="body1">Loading...</Typography>
+        <Typography variant="body1">Loading . . .</Typography>
       ) : (
         <>
           <Typography variant="body1" align="justify">
