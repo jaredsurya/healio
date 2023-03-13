@@ -7,11 +7,24 @@ import Auth from "./pages/Auth";
 import Main from "./pages/Main";
 import UserContext from "./utils/userContext";
 import Protected from "./utils/Protected";
+import SwitcherContext from "./utils/switcherContext";
+import Welcome from "./components/Features/Welcome";
 
 // infinite loops from rerendering user?
 
 function App() {
   const [user, setUser] = useState(null);
+  const [feedShow, setFeedShow] = useState(null)
+  const [showSize, setShowSize] = useState(null)
+
+  const widgetClickHandler = (name) => {
+    if (!name){
+      return <Welcome size="full" />
+    }
+    else{
+      return <name size="full"/>
+    }
+  }
   
     useEffect(() => {
       fetch("/me").then((res) => {
@@ -47,7 +60,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={themeOptions}>
         <UserContext.Provider value={{ user, setUser }}>
-          
+          <SwitcherContext.Provider value={{feedShow, setFeedShow, showSize, setShowSize, widgetClickHandler}}>
           <Routes>
             {/* {!user ? <Route path="/signin" element={<Auth />} /> : <Route path="/main" element={<Main />} />} */}
             {/* PROTECTED ROUTES BELOW */}
@@ -65,7 +78,7 @@ function App() {
             <Route path="/main" element={<Main />} />
             <Route path="/signin" element={<Auth />} />
           </Routes>
-
+          </SwitcherContext.Provider>
         </UserContext.Provider>
       </ThemeProvider>
     </div>

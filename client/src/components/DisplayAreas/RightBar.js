@@ -3,6 +3,7 @@ import { Stack, Typography, Box, Divider } from "@mui/material";
 import { Adsense } from "@ctrl/react-adsense";
 import Quote from "../Features/Quote";
 import { SavedInterests } from "./LeftBar";
+import ProfileDetailsDisplay from "../Features/ProfileDetailsDisplay";
 
 
 function Ad() {
@@ -16,6 +17,7 @@ function FeaturedHealer() {
 // CONTENTS: Quotes, Advertisements, Featured Healer(daily)
 
 const RightBar = ({ theme }) => {
+  let size = "widget"
   return (
     <Box
       flex={3}
@@ -28,7 +30,7 @@ const RightBar = ({ theme }) => {
         spacing={2}
         divider={<Divider orientation="horizontal" flexItem />}
       >
-        <Quote />
+        <ProfileDetailsDisplay />
         <FeaturedHealer />
         <Ad />
       </Stack>

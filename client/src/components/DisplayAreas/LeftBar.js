@@ -2,6 +2,8 @@ import { ThemeProvider } from "@emotion/react";
 import { Avatar, Box, Divider, Stack, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import UserContext from "../../utils/userContext";
+import Quote from "../Features/Quote";
+import Welcome from "../Features/Welcome";
 
 function ProfileData() {
   const { user, setUser } = useContext(UserContext);
@@ -50,6 +52,7 @@ function Map() {
 
 // CONTAINS: user box, saved services (MUI chips), services/healers alphabetical, map
 const LeftBar = ({ theme }) => {
+  let size = "widget"
   // CANNOT SET BREAKPOINTS IN SX SETTINGS
   // sx={{display:{ xs: "none"}}}
 
@@ -66,7 +69,8 @@ const LeftBar = ({ theme }) => {
         spacing={2}
         divider={<Divider orientation="horizontal" flexItem />}
       >
-        <ProfileData />
+        <Welcome/>
+        {/* <Quote /> */}
         <SavedInterests />
         <ABC />
         <Map />
