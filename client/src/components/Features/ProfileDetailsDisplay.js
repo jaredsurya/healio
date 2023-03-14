@@ -1,10 +1,9 @@
-import { Paper, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Paper, Typography, Box } from "@mui/material";
 import React, { useContext } from "react";
 import UserContext from "../../utils/userContext";
 import AccountModalBtn from "../Buttons/AccountModalBtn";
 import HealerModalButton from "../Buttons/HealerModalButton";
-import ImageUploadBox from "./ImageUploadBox";
+import ImageUploadBox from "../../utils/ImageUploadBox";
 
 const ProfileDetailsDisplay = ({size}) => {
   const { user, setUser } = useContext(UserContext);
@@ -50,10 +49,9 @@ const ProfileDetailsDisplay = ({size}) => {
     );
   } else {
     return (
-      <Paper elevation={2} sx={{ p: 2 }}>
-        <Typography variant="body1">{user.full_name}</Typography>
-        <Typography variant="body1" align="justify"></Typography>
-        <Typography variant="subtitle1" align="center"></Typography>
+      <Paper elevation={2} sx={{ p: 1.67 }} onClick={() => console.log("clicked!")}>
+        <Typography variant="h6" color="primary" fontWeight={"bold"}>{user.full_name}</Typography>
+        <Typography variant="body1" align="justify">Member since: {formattedDate}</Typography>
       </Paper>
     );
   }

@@ -2,17 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Stack, Typography, Box, Divider } from "@mui/material";
 import { Adsense } from "@ctrl/react-adsense";
 import Quote from "../Features/Quote";
-import { SavedInterests } from "./LeftBar";
 import ProfileDetailsDisplay from "../Features/ProfileDetailsDisplay";
-
-
-function Ad() {
-  return <Box>ADVERTISEMENT</Box>;
-}
-
-function FeaturedHealer() {
-  return <Box>FEATURED HEALER</Box>;
-}
+import Ad from "../Features/Ad";
+import FeaturedHealer from "../Features/FeaturedHealer";
+import SavedInterests from "../Features/SavedInterests";
 
 // CONTENTS: Quotes, Advertisements, Featured Healer(daily)
 
@@ -31,8 +24,9 @@ const RightBar = ({ theme }) => {
         divider={<Divider orientation="horizontal" flexItem />}
       >
         <ProfileDetailsDisplay />
-        <FeaturedHealer />
+        <SavedInterests />
         <Ad />
+        <FeaturedHealer />
       </Stack>
     </Box>
   );

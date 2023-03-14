@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
-import AddressAutocomplete from '../Features/AddressAutocomplete'
+import AddressAutocomplete from '../../utils/AddressAutocomplete'
 import ProfileDetailsDisplay from '../Features/ProfileDetailsDisplay'
 import MyProfile from '../Buttons/AccountModalBtn'
 import Welcome from '../Features/Welcome'
@@ -12,10 +12,9 @@ const Feed = ({theme}) => {
     <Box flex={7} bgcolor="#f7f9ff" p={2}>
       {/* SERVICES AND HEALERS DISPLAY */}
       {/* <AddressAutocomplete /> */}
-      {/* <MyProfile /> */}
-      {/* <ProfileDetailsDisplay/> */}
-      <Welcome size={size}/>
-      <Quote size={size}/>
+      <ProfileDetailsDisplay size={size}/>
+      {/* <Welcome size={size}/>
+      <Quote size={size}/> */}
     </Box>
   )
 }

@@ -1,7 +1,7 @@
 import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, TextField } from "@mui/material";
 import React, { useContext, useState } from "react";
 import UserContext from "../../utils/userContext";
-import AddressAutocomplete from "../Features/AddressAutocomplete";
+import AddressAutocomplete from "../../utils/AddressAutocomplete";
 
 const HealerModalButton = () => {
   const { user, setUser } = useContext(UserContext);
@@ -90,6 +90,7 @@ const HealerModalButton = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel}>Cancel</Button>
+          <Button>Edit Healer Bio</Button>
           <Button onClick={handleDetailSubmit}>Submit Details</Button>
         </DialogActions>
       </Dialog>
