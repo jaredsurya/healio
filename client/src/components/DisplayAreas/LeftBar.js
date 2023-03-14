@@ -18,11 +18,12 @@ const LeftBar = ({ theme }) => {
 
   return (
     <Box
-      height={"100%"}
       flex={3}
+      height='calc(100vh - 100px)'
       bgcolor="#f0f4ff"
       p={1}
       paddingTop={2}
+      overflow="auto"
       sx={{ display: { xs: "none", md: "block" } }}
     >
       <Stack

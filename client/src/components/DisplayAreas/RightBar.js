@@ -14,6 +14,8 @@ const RightBar = ({ theme }) => {
   return (
     <Box
       flex={3}
+      height='calc(100vh - 100px)'
+      overflow={"auto"}
       p={1}
       paddingTop={2}
       sx={{ display: { xs: "none", md: "none", lg: "block" } }}

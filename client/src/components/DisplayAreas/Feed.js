@@ -9,7 +9,7 @@ import Quote from '../Features/Quote'
 const Feed = ({theme}) => {
   let size = "large"
   return (
-    <Box flex={7} bgcolor="#f7f9ff" p={2}>
+    <Box flex={7} bgcolor="#f7f9ff" p={2} height='calc(100vh - 108px)' overflow={"auto"}>
       {/* SERVICES AND HEALERS DISPLAY */}
       {/* <AddressAutocomplete /> */}
       <ProfileDetailsDisplay size={size}/>
