@@ -1,7 +1,10 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import SwitcherContext from "../../utils/switcherContext";
 
 function SavedInterests({ size }) {
+  const { feed, setFeed } = useContext(SwitcherContext);
+
   // sort these alphabetically
   if (size === "large") {
     return (
@@ -17,7 +20,7 @@ function SavedInterests({ size }) {
   } else {
     return (
       <Box>
-        <Typography fontWeight={"bold"}>Saved Interests:</Typography>
+        <Typography fontWeight={"bold"} onClick={() => setFeed("savedinterests")} >Saved Interests:</Typography>
         <Box sx={{ maxHeight: 250, overflow: "auto" }}>
           <Typography>a line of details</Typography>
           <Typography>a line of details</Typography>

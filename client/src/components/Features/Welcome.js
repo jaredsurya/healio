@@ -5,8 +5,7 @@ import UserContext from "../../utils/userContext";
 import HealerModalButton from "../Buttons/HealerModalButton";
 
 function Welcome({ size }) {
-  const { feedShow, setFeedShow, showSize, setShowSize } =
-    useContext(SwitcherContext);
+  const { feed, setFeed } = useContext(SwitcherContext);
     const {user} = useContext(UserContext)
 
   if (size === "large") {
@@ -20,10 +19,10 @@ function Welcome({ size }) {
       </Box>
     );
   } else {
-    return <Box>
+    return <Box onClick={() => setFeed("welcome")}>
       <Typography align="center" fontSize={24} color="primary" fontWeight={"bold"}>We welcome you to Healio!</Typography>
     </Box>;
   }
 }
-
+ 
 export default Welcome;

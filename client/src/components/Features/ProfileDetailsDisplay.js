@@ -4,16 +4,18 @@ import UserContext from "../../utils/userContext";
 import AccountModalBtn from "../Buttons/AccountModalBtn";
 import HealerModalButton from "../Buttons/HealerModalButton";
 import ImageUploadBox from "../../utils/ImageUploadBox";
+import SwitcherContext from "../../utils/switcherContext";
 
 const ProfileDetailsDisplay = ({size}) => {
   const { user, setUser } = useContext(UserContext);
-
+  const { feed, setFeed } = useContext(SwitcherContext);
   const date = new Date(user.created_at);
   const formattedDate = date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+
   if (size === "large") {
     return (
       <Box align="center">
@@ -49,7 +51,7 @@ const ProfileDetailsDisplay = ({size}) => {
     );
   } else {
     return (
-      <Paper elevation={2} sx={{ p: 1.67 }} onClick={() => console.log("clicked!")}>
+      <Paper elevation={2} sx={{ p: 1.67 }} onClick={() => setFeed("profiledetailsdisplay")}>
         <Typography variant="h6" color="primary" fontWeight={"bold"}>{user.full_name}</Typography>
         <Typography variant="body1" align="justify">Member since: {formattedDate}</Typography>
       </Paper>

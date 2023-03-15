@@ -1,13 +1,17 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import AddressAutocomplete from '../../utils/AddressAutocomplete'
 import ProfileDetailsDisplay from '../Features/ProfileDetailsDisplay'
 import MyProfile from '../Buttons/AccountModalBtn'
 import Welcome from '../Features/Welcome'
 import Quote from '../Features/Quote'
+import SwitcherContext from '../../utils/switcherContext'
 
 const Feed = ({theme}) => {
+  const { feed, setFeed } = useContext(SwitcherContext);
   let size = "large"
+  console.log(feed)
+
   return (
     <Box flex={7} bgcolor="#f7f9ff" p={2} height='calc(100vh - 108px)' overflow={"auto"}>
       {/* SERVICES AND HEALERS DISPLAY */}

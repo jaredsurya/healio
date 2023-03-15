@@ -14,8 +14,7 @@ import Welcome from "./components/Features/Welcome";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [feedShow, setFeedShow] = useState(null)
-  const [showSize, setShowSize] = useState(null)
+  const [feed, setFeed] = useState("welcome")
 
   const widgetClickHandler = (name) => {
     if (!name){
@@ -60,7 +59,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={themeOptions}>
         <UserContext.Provider value={{ user, setUser }}>
-          <SwitcherContext.Provider value={{feedShow, setFeedShow, showSize, setShowSize, widgetClickHandler}}>
+          <SwitcherContext.Provider value={{feed, setFeed, widgetClickHandler}}>
           <Routes>
             {/* {!user ? <Route path="/signin" element={<Auth />} /> : <Route path="/main" element={<Main />} />} */}
             {/* PROTECTED ROUTES BELOW */}
