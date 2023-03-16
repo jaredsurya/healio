@@ -1,7 +1,8 @@
-import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, TextField } from "@mui/material";
+import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, TextField, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import UserContext from "../../utils/userContext";
 import AddressAutocomplete from "../../utils/AddressAutocomplete";
+import QuillEditor from "../../utils/QuillEditor"
 
 const HealerModalButton = () => {
   const { user, setUser } = useContext(UserContext);
@@ -48,7 +49,7 @@ const HealerModalButton = () => {
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>
         Edit My Healer Info
       </Button>
-      <Dialog open={showFormDialog} onClose={handleClose}>
+      <Dialog open={showFormDialog} onClose={handleClose} maxWidth="lg" >
         <DialogTitle>Healer Page Editor</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -76,17 +77,8 @@ const HealerModalButton = () => {
             fullWidth
             onChange={handleChange}
           />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="allow_email"
-                checked={tempUser.allow_email}
-                onChange={handleChange}
-                color="primary"
-              />
-            }
-            label="Allow promotional and inspirational emails."
-          />
+          <Typography>Please type your healer biography here:</Typography>
+          <QuillEditor />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel}>Cancel</Button>

@@ -10,8 +10,6 @@ import Protected from "./utils/Protected";
 import SwitcherContext from "./utils/switcherContext";
 import Welcome from "./components/Features/Welcome";
 
-// infinite loops from rerendering user?
-
 function App() {
   const [user, setUser] = useState(null);
   const [feed, setFeed] = useState("welcome")
@@ -38,14 +36,6 @@ function App() {
       });
     }, []);
   
-  // MAKE USER ROLES AUTHENTICATE PATHS SPECIFICALLY FOR THEM
-  
-  // AUTHENTICATE USER AND USE LOGIC TO REDIRECT TO /SIGNIN IF USER IS NOT LOGGED IN
-
-  // SET UP IMAGE UPLOADING FEATURE AS A PART OF USER PROFILE EDITOR
-
-  // USE A SWITCH STATEMENT TO CONDITIONALLY RENDER HEALER VS VISITOR DATA TYPES 
-  
   if(!user){
     return (
       <UserContext.Provider value={{ user, setUser }} >
@@ -61,21 +51,9 @@ function App() {
         <UserContext.Provider value={{ user, setUser }}>
           <SwitcherContext.Provider value={{feed, setFeed, widgetClickHandler}}>
           <Routes>
-            {/* {!user ? <Route path="/signin" element={<Auth />} /> : <Route path="/main" element={<Main />} />} */}
-            {/* PROTECTED ROUTES BELOW */}
-
-            {/* MAY WANT SOME OF THESE FOR JUST VISITOR OR JUST HEALER USERS */}
-            {/* <Route
-              path="/main"
-              element={
-                <Protected >
-                  <Main />
-                </Protected>
-              }
-            /> */}
-            <Route path="*" element={<Navigate to="/main" replace />} />
-            <Route path="/main" element={<Main />} />
+            {/* <Route path="*" element={<Navigate to="/main" replace />} /> */}
             <Route path="/signin" element={<Auth />} />
+            <Route path="/main/*" element={<Main />} />
           </Routes>
           </SwitcherContext.Provider>
         </UserContext.Provider>

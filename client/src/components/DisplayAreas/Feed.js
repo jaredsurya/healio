@@ -1,24 +1,58 @@
 import { Box, Typography } from '@mui/material'
-import React, { useContext } from 'react'
-import AddressAutocomplete from '../../utils/AddressAutocomplete'
+import React, { useContext, useEffect } from 'react'
 import ProfileDetailsDisplay from '../Features/ProfileDetailsDisplay'
-import MyProfile from '../Buttons/AccountModalBtn'
 import Welcome from '../Features/Welcome'
 import Quote from '../Features/Quote'
 import SwitcherContext from '../../utils/switcherContext'
-
-const Feed = ({theme}) => {
-  const { feed, setFeed } = useContext(SwitcherContext);
-  let size = "large"
-  console.log(feed)
+import { Route, Routes, useNavigate } from 'react-router-dom'
+import FeaturedHealer from '../Features/FeaturedHealer'
+import SavedInterests from '../Features/SavedInterests'
+import SortedHealerService from '../Features/SortedHealerService'
+import Map from '../Features/Map'
+  
+  const Feed = ({theme}) => {
+    const { feed, setFeed } = useContext(SwitcherContext);
+    let size = "large"
+    let navigate = useNavigate()
+  
+    useEffect(() => {
+  
+      switch (feed) {
+        case "featuredhealer":
+          navigate("/main/featuredhealer")
+          break;
+        case "map":
+          navigate("/main/map")
+          break;
+        case "profiledetailsdisplay":
+          navigate("/main/myprofile")
+          break;
+        case "quote":
+          navigate("/main/quotes")
+          break;
+        case "savedinterests":
+          navigate("/main/myinterests")
+          break;
+        case "sortedhealerservice":
+          navigate("/main/finder")   
+          break;
+        default:
+          navigate("/main")
+          break;
+      }
+    }, [feed])
 
   return (
     <Box flex={7} bgcolor="#f7f9ff" p={2} height='calc(100vh - 108px)' overflow={"auto"}>
-      {/* SERVICES AND HEALERS DISPLAY */}
-      {/* <AddressAutocomplete /> */}
-      <ProfileDetailsDisplay size={size}/>
-      {/* <Welcome size={size}/>
-      <Quote size={size}/> */}
+      <Routes>
+        <Route path="/featuredhealer" element={<FeaturedHealer size={size} />} />
+        <Route path="/map" element={<Map size={size} />} />
+        <Route path="/myprofile" element={<ProfileDetailsDisplay size={size} />} />
+        <Route path="/quotes" element={<Quote size={size} />} />
+        <Route path="/myinterests" element={<SavedInterests size={size} />} />
+        <Route path="/finder" element={<SortedHealerService size={size} />} />
+        <Route path="/" element={<Welcome size={size} />} />
+      </Routes>
     </Box>
   )
 }
