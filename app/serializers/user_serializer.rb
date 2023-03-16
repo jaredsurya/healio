@@ -11,7 +11,9 @@ class UserSerializer < ActiveModel::Serializer
       data[:email] = object.email
       data[:created_at] = object.created_at
       data[:location] = object.location
-      data[:allow_email] = object.allow_email
+      data[:comment] = object.comment
+      # data[:allow_email] = object.allow_email
+      data[:location] = object.location
     elsif object.type == "Healer"
       data[:id] = object.id
       data[:type] = object.type
@@ -22,7 +24,15 @@ class UserSerializer < ActiveModel::Serializer
       data[:created_at] = object.created_at
       data[:location] = object.location
       data[:full_address] = object.full_address
-      data[:allow_email] = object.allow_email
+      # data[:allow_email] = object.allow_email
+      data[:blogs] = object.blogs
+      data[:weblinks] = object.weblinks
+      data[:services] = object.services
+      data[:full_address] = object.full_address
+      data[:lat] = object.lat
+      data[:lon] = object.lon
+      data[:phone_number] = object.phone_number
+      data[:bio] = object.bio
     end
     data
   end

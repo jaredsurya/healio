@@ -1,14 +1,31 @@
-import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControlLabel, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Chip,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  FormControlLabel,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useContext, useState } from "react";
 import UserContext from "../../utils/userContext";
 import AddressAutocomplete from "../../utils/AddressAutocomplete";
-import QuillEditor from "../../utils/QuillEditor"
+import QuillEditor from "../../utils/QuillEditor";
+import WeblinksInput from "../../utils/WeblinksInput";
 
 const HealerModalButton = () => {
   const { user, setUser } = useContext(UserContext);
   const [tempUser, setTempUser] = useState(user)
   const [showFormDialog, setShowFormDialog] = useState(false);
-  
+  const [weblinks, setWeblinks] = useState(tempUser.weblinks || [])
+
   const handleClickOpen = () => {
     setShowFormDialog(true);
   };
@@ -21,9 +38,10 @@ const HealerModalButton = () => {
     setTempUser(user)
     handleClose()
   }
-
+console.log(user)
   function handleDetailSubmit() {
-    setUser(tempUser)
+    setTempUser({...tempUser, weblinks: weblinks})
+    setUser({...user, weblinks: weblinks})
     fetch(`/users/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -43,22 +61,24 @@ const HealerModalButton = () => {
   function handleChange(e){
     setTempUser({...tempUser, [e.target.name]: e.target.value})
   }
-  
+
   return (
     <div>
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>
         Edit My Healer Info
       </Button>
-      <Dialog open={showFormDialog} onClose={handleClose} maxWidth="lg" >
+      <Dialog open={showFormDialog} onClose={handleClose} maxWidth="lg">
         <DialogTitle>Healer Page Editor</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Please add information for your healer page. This information is visible to all Healio users and helps potential clients align with your services:
+            Please add information for your healer page. This information is
+            visible to all Healio users and helps potential clients align with
+            your services:
           </DialogContentText>
           <TextField
             margin="dense"
             id="tel"
-            label="Work Phone Number"
+            label="Work Phone Number (XXX-XXX-XXXX)"
             type="tel"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             name="phone_number"
@@ -66,23 +86,16 @@ const HealerModalButton = () => {
             fullWidth
             onChange={handleChange}
           />
-            <AddressAutocomplete/>
-          <TextField
-            margin="dense"
-            id="name"
-            label="Email Address (Required)"
-            type="email"
-            name="email"
-            value={tempUser.email}
-            fullWidth
-            onChange={handleChange}
-          />
-          <Typography>Please type your healer biography here:</Typography>
+          <AddressAutocomplete />
+          <WeblinksInput tempUser={tempUser} />
+          <Typography>
+            Please type the biography of you as a healer here:
+          </Typography>
           <QuillEditor />
+          <WeblinksInput weblinks={weblinks} setWeblinks={setWeblinks} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel}>Cancel</Button>
-          <Button>Edit Healer Bio</Button>
           <Button onClick={handleDetailSubmit}>Submit Details</Button>
         </DialogActions>
       </Dialog>

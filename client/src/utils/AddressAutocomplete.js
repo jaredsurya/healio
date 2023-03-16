@@ -39,7 +39,7 @@ const AddressAutocomplete = () => {
   return (
     <Box>
       <Typography></Typography>
-      <TextField type="text" fullWidth label="Address of your healing practice" value={searchInput} onChange={handleInputChange} margin="dense"/>
+      <TextField type="text" fullWidth label="Address of your healing practice (please select one from suggestions)" value={searchInput} onChange={handleInputChange} margin="dense"/>
       {suggestions.length > 0 && (
         <ul>
           {suggestions.map((suggestion) => (
