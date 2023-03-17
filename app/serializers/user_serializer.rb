@@ -25,9 +25,9 @@ class UserSerializer < ActiveModel::Serializer
       data[:location] = object.location
       data[:full_address] = object.full_address
       # data[:allow_email] = object.allow_email
-      data[:blogs] = object.blogs
-      data[:weblinks] = object.weblinks
-      data[:services] = object.services
+      # data[:blogs] = object.blogs
+      # data[:weblinks] = object.weblinks
+      # data[:services] = object.services
       data[:full_address] = object.full_address
       data[:lat] = object.lat
       data[:lon] = object.lon

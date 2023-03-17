@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import themeOptions from "./utils/themeOptions.js";
 import { ThemeProvider } from "@mui/material/styles";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Auth from "./pages/Auth";
 import Main from "./pages/Main";
 import UserContext from "./utils/userContext";

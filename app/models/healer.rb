@@ -1,7 +1,7 @@
 class Healer < User
   validates :email, uniqueness: true
 
-  has_many :weblinks
+  # has_many :weblinks
   has_many :blogs
   has_many :services
   has_many :comments

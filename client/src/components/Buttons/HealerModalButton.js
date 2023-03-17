@@ -63,7 +63,7 @@ console.log(user)
   }
 
   return (
-    <div>
+    <Box>
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>
         Edit My Healer Info
       </Button>
@@ -99,7 +99,7 @@ console.log(user)
           <Button onClick={handleDetailSubmit}>Submit Details</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   );
 };
 

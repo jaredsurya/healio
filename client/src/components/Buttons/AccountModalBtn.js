@@ -55,7 +55,7 @@ const AccountModalBtn = () => {
     }
 
     return (
-      <div align="center">
+      <Box align="center">
         <Button variant="contained" color="secondary" onClick={handleClickOpen}>
           Edit Details
         </Button>
@@ -106,7 +106,7 @@ const AccountModalBtn = () => {
           </DialogActions>
         </Dialog>
         {user.type === "Healer" ? <HealerDataModal/> : null }
-      </div>
+      </Box>
     );
   
 };
