@@ -17,8 +17,10 @@ function Quote({size}) {
     ...theme.typography.body2,
     padding: theme.spacing(1.2),
     textAlign: 'center',
-    marginTop: "17px",
+    margin: "13px",
     color: theme.palette.text.secondary,
+    display: 'inline-block',
+    boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.2)'
   }));
 
   useEffect(() => {
@@ -33,17 +35,17 @@ function Quote({size}) {
   if (size === "large") {
     return (
       <Box>
-      <Typography variant="h4" align="center">Inspirational Quotes</Typography>
-      <Container >
+      <Typography variant="h4" align="center" paddingBottom={2}>Inspirational Quotes</Typography>
+      <Container sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
         {quotes.map((q) => (
           <Item >"{q.quote}"<br/>-{q.author}</Item>
         ))}
       </Container>
       </Box>
     );
-  } else if (size === "widget") {
+  } else {
     return (
-      <Paper elevation={2} sx={{ p: 2 }} onClick={() => setFeed("quote")}>
+      <Paper elevation={2} onClick={() => setFeed("quote")} sx={{ p: 2, "&:hover": { cursor: "pointer" } }}>
         {quote.author === "" ? (
           <Typography variant="body1">Loading . . .</Typography>
         ) : (

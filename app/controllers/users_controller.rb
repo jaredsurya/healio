@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     end
     login_user(user)
     render json: user, status: 201, serializer: UserSerializer
-
   end
 
   def show

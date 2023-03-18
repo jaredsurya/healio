@@ -97,9 +97,9 @@ function Map({ size }) {
   } else {
     return (
       <Box p={0.5}>
-        <Typography align="center" onClick={() => setFeed("map")}>Find your local healers below:</Typography>
+        <Typography align="center" onClick={() => setFeed("map")}>Use the map markers to find your local healers:</Typography>
         {userLocation && (
-          <MapContainer center={position} zoom={10} style={{ height: "400px" }}>
+          <MapContainer center={position} zoom={10} style={{ height: "400px", border: "3px solid #0e643e" }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {markers.map((marker) => (
               <Marker

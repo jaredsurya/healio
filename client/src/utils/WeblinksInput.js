@@ -12,6 +12,7 @@ import UserContext from "./userContext";
 
 function WeblinksInput({ tempUser, weblinks, setWeblinks }) {
   const { user, setUser } = useContext(UserContext);
+  const [linkValue, setLinkValue] = useState('')
 
   function handleAddLink(e) {
     if (weblinks.length < 4) {
@@ -34,7 +35,8 @@ function WeblinksInput({ tempUser, weblinks, setWeblinks }) {
         label="Helpful websites (including your own)"
         type="text"
         name="weblinks"
-        value={tempUser.weblinks}
+        value={linkValue}
+        onChange={(e) => setLinkValue(e.target.value)}
         fullWidth
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -45,7 +47,7 @@ function WeblinksInput({ tempUser, weblinks, setWeblinks }) {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={handleAddLink} color="secondary">
+              <IconButton onClick={(e) => handleAddLink(e)} color="secondary">
                 <AddIcon />
               </IconButton>
             </InputAdornment>

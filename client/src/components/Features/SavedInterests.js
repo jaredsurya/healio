@@ -20,7 +20,7 @@ function SavedInterests({ size }) {
   } else {
     return (
       <Box>
-        <Typography fontWeight={"bold"} onClick={() => setFeed("savedinterests")} >Saved Interests:</Typography>
+        <Typography fontWeight={"bold"} onClick={() => setFeed("savedinterests")} sx={{ "&:hover": { cursor: "pointer" } }}>Saved Interests:</Typography>
         <Box sx={{ maxHeight: 250, overflow: "auto" }}>
           <Typography>a line of details</Typography>
           <Typography>a line of details</Typography>

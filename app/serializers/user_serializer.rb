@@ -1,6 +1,9 @@
 class UserSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  
+  has_many :weblinks, as: :linkable
+  has_one :avatar
+  has_many :services
+
   def attributes(*args)
     data = super
     if object.type == "Visitor"
@@ -36,4 +39,6 @@ class UserSerializer < ActiveModel::Serializer
     end
     data
   end
+
+
 end

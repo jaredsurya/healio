@@ -1,3 +1,5 @@
 class WeblinkSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :url, :title
+
+  belongs_to :linkable, polymorphic: true
 end

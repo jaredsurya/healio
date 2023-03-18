@@ -51,7 +51,7 @@ const ProfileDetailsDisplay = ({size}) => {
     );
   } else {
     return (
-      <Paper elevation={2} sx={{ p: 1.67 }} onClick={() => setFeed("profiledetailsdisplay")}>
+      <Paper elevation={2} onClick={() => setFeed("profiledetailsdisplay")} sx={{ p: 1.67, "&:hover": { cursor: "pointer" } }}>
         <Typography variant="h6" color="primary" fontWeight={"bold"}>{user.full_name}</Typography>
         <Typography variant="body1" align="justify">Member since: {formattedDate}</Typography>
       </Paper>

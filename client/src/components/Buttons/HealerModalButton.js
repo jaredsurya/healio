@@ -87,12 +87,11 @@ console.log(user)
             onChange={handleChange}
           />
           <AddressAutocomplete />
-          <WeblinksInput tempUser={tempUser} />
+          <WeblinksInput tempUser={tempUser} weblinks={weblinks} setWeblinks={setWeblinks} />
           <Typography>
             Please type the biography of you as a healer here:
           </Typography>
           <QuillEditor />
-          <WeblinksInput weblinks={weblinks} setWeblinks={setWeblinks} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancel}>Cancel</Button>
