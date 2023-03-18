@@ -8,15 +8,15 @@ function SortedHealerService({size}) {
   if (size === "large") {
     return (
       <Box>
-        <Typography variant="h5" align="center"></Typography>
+        <Typography variant="h5" align="center">Click the buttons below to explore the healers of this site and the services they offer.</Typography>
       </Box>
     );
   } else {
     return (
       <Box onClick={() => setFeed("sortedhealerservice")}>
-        <Box id="buttons" justifyContent={"space-evenly"}>
-          <Button variant="outlined">Healers</Button>
+        <Box id="buttons" align="center" justifyItems={"space-between"}>
           <Button variant="outlined" color="secondary">Services</Button>
+          <Button variant="outlined">Healers</Button>
         </Box>
         <Box>LIST GOES HERE</Box>
       </Box>
