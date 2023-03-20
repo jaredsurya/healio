@@ -12,12 +12,14 @@ import UserContext from "./userContext";
 
 function WeblinksInput({ tempUser, weblinks, setWeblinks }) {
   const { user, setUser } = useContext(UserContext);
-  const [linkValue, setLinkValue] = useState('')
+  const [url, setUrl] = useState('')
 
   function handleAddLink(e) {
     if (weblinks.length < 4) {
-      setWeblinks([...weblinks, e.target.value]);
-      console.log(e.target.value);
+      setWeblinks([...weblinks, {url: url}]);
+      setUrl('')
+      console.log("eVal: ", e);
+      console.log("weblinks: ", weblinks);
     }
   }
 
@@ -35,8 +37,8 @@ function WeblinksInput({ tempUser, weblinks, setWeblinks }) {
         label="Helpful websites (including your own)"
         type="text"
         name="weblinks"
-        value={linkValue}
-        onChange={(e) => setLinkValue(e.target.value)}
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
         fullWidth
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -62,7 +64,7 @@ function WeblinksInput({ tempUser, weblinks, setWeblinks }) {
             alignItems="center"
             justifyContent={"center"}
           >
-            <Typography>{link}</Typography>
+            <Typography color={"blue"}>{link.url}</Typography>
             <IconButton
               onClick={() => handleDeleteLink(index)}
               color="secondary"

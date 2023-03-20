@@ -25,6 +25,7 @@
     "js-tokens": "^8.0.1",
     "leaflet": "^1.9.3",
     "leaflet-control-geocoder": "^2.4.0",
+    "link-preview-js": "^3.0.4",
     "loose-envify": "^1.4.0",
     "mime-db": "^1.52.0",
     "mime-types": "^2.1.35",

@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React, { useContext } from "react";
+import MyLinkPreview from "../../utils/MyLinkPreview";
 import SwitcherContext from "../../utils/switcherContext";
 import UserContext from "../../utils/userContext";
 import HealerModalButton from "../Buttons/HealerModalButton";
@@ -39,6 +40,7 @@ function Welcome({ size }) {
         ) : null}
         <Box align="center" p={1}>
           <HealerModalButton />
+          <MyLinkPreview />
         </Box>
       </Box>
     );

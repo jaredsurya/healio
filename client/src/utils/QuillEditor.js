@@ -4,7 +4,7 @@ import 'react-quill/dist/quill.snow.css'; // import Quill styles
 import 'react-quill/dist/quill.bubble.css'; // optional theme
 import 'react-quill/dist/quill.core.css'; // minimal styles
 
-function QuillEditor() {
+function QuillEditor({bio, setBio}) {
   const [text, setText] = useState('');
 
   function handleChange(value) {
@@ -39,7 +39,7 @@ console.log(text)
         'list', 'bullet', 'indent',
         'link', 'image', 'video'
       ]}
-      placeholder="Type here..."
+      placeholder="Use this space to construct your healer biography..."
       theme="snow" // or "bubble"
     />
   );

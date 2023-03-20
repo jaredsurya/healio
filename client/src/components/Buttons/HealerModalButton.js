@@ -25,6 +25,7 @@ const HealerModalButton = () => {
   const [tempUser, setTempUser] = useState(user)
   const [showFormDialog, setShowFormDialog] = useState(false);
   const [weblinks, setWeblinks] = useState(tempUser.weblinks || [])
+  const [bio, setBio] = useState(tempUser.bio)
 
   const handleClickOpen = () => {
     setShowFormDialog(true);
@@ -38,10 +39,11 @@ const HealerModalButton = () => {
     setTempUser(user)
     handleClose()
   }
-console.log(user)
+// console.log(user)
+
   function handleDetailSubmit() {
-    setTempUser({...tempUser, weblinks: weblinks})
-    setUser({...user, weblinks: weblinks})
+    // setTempUser({...tempUser, weblinks: weblinks})
+    // setUser({...user, weblinks: weblinks})
     fetch(`/users/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -91,11 +93,11 @@ console.log(user)
           <Typography>
             Please type the biography of you as a healer here:
           </Typography>
-          <QuillEditor />
+          <QuillEditor bio={bio} setBio={setBio}/>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCancel}>Cancel</Button>
-          <Button onClick={handleDetailSubmit}>Submit Details</Button>
+          <Button variant="outlined" onClick={handleCancel}>Cancel</Button>
+          <Button variant="outlined" onClick={handleDetailSubmit}>Submit Healer Info</Button>
         </DialogActions>
       </Dialog>
     </Box>
