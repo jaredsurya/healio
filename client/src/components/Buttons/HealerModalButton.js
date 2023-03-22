@@ -26,7 +26,11 @@ const HealerModalButton = () => {
   const [showFormDialog, setShowFormDialog] = useState(false);
   const [weblinks, setWeblinks] = useState(tempUser.weblinks || [])
   const [bio, setBio] = useState(tempUser.bio)
+  const [lat, setLat] = useState(tempUser.lat)
+  const [lon, setLon] = useState(tempUser.lon)
+  const [full_address, setFullAddress] = useState(tempUser.full_address)
 
+  
   const handleClickOpen = () => {
     setShowFormDialog(true);
   };
@@ -37,26 +41,37 @@ const HealerModalButton = () => {
 
   function handleCancel(){
     setTempUser(user)
+    setWeblinks(user.weblinks)
+    setBio(user.bio)
+    setLat("")
+    setLon("")
     handleClose()
   }
 // console.log(user)
+let body = {...tempUser, bio: bio, lat: lat, lon: lon, weblinks: weblinks, full_address: full_address}
+delete body.created_at
+// delete body.weblinks
+console.log("BODY", body)
 
-  function handleDetailSubmit() {
-    // setTempUser({...tempUser, weblinks: weblinks})
-    // setUser({...user, weblinks: weblinks})
+function handleDetailSubmit() {
+  // setTempUser({...tempUser, weblinks: weblinks})
     fetch(`/users/${user.id}`, {
       method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user),
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        console.log(data)
-        //setUser(data);
-      })
+      body: JSON.stringify(body),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          setUser(data);
+        });
+      } else {
+        alert("error in HealerModalBTN");
+        setTempUser(user)
+      }
+    });
     handleClose();
   }
 
@@ -88,7 +103,7 @@ const HealerModalButton = () => {
             fullWidth
             onChange={handleChange}
           />
-          <AddressAutocomplete />
+          <AddressAutocomplete setLat={setLat} setLon={setLon} setFullAddress={setFullAddress}/>
           <WeblinksInput tempUser={tempUser} weblinks={weblinks} setWeblinks={setWeblinks} />
           <Typography>
             Please type the biography of you as a healer here:

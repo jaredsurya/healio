@@ -5,16 +5,15 @@ import 'react-quill/dist/quill.bubble.css'; // optional theme
 import 'react-quill/dist/quill.core.css'; // minimal styles
 
 function QuillEditor({bio, setBio}) {
-  const [text, setText] = useState('');
 
   function handleChange(value) {
-    setText(value);
+    setBio(value);
   }
-console.log(text)
+//console.log(bio)
   return (
     <ReactQuill
     style={{ height: '225px', fontSize: '18pt' }}
-      value={text}
+      value={bio}
       onChange={handleChange}
       modules={{
         toolbar: [

@@ -33,26 +33,28 @@ const AccountModalBtn = () => {
     }
 
     function handleDetailSubmit() {
-      setUser(tempUser)
       fetch(`/users/${user.id}`, {
         method: "PATCH",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(tempUser),
       })
         .then((r) => r.json())
         .then((data) => {
-          console.log(data)
-          //setUser(data);
+          //console.log(data)
+          setUser(data)
+          setTempUser(data);
         })
       handleClose();
     }
 
-    function handleChange(e){
-      setTempUser({...tempUser, [e.target.name]: e.target.value})
-    }
+    const handleChange = (e) => {
+      const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+      setTempUser({ ...tempUser, [e.target.name]: value })
+      //console.log(tempUser)
+    };
 
     return (
       <Box align="center">
@@ -89,7 +91,7 @@ const AccountModalBtn = () => {
               margin="dense"
               id="zip"
               label="Home Zip Code"
-              type="number"
+              type="text"
               name="location"
               value={tempUser.location}
               onChange={handleChange}

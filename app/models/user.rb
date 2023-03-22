@@ -5,6 +5,5 @@ class User < ApplicationRecord
   has_many :services
   has_many :comments
   has_many :weblinks, as: :linkable
-
   validates :email, uniqueness: true
 end

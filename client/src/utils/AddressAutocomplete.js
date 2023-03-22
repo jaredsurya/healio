@@ -2,7 +2,7 @@ import { Input, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState, useEffect } from 'react';
 
-const AddressAutocomplete = () => {
+const AddressAutocomplete = ({setLat, setLon, setFullAddress}) => {
   const [searchInput, setSearchInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
@@ -32,14 +32,16 @@ const AddressAutocomplete = () => {
 
   const handleItemSelect = (value, lat, lon) => {
     setSearchInput(value);
-    //console.log(lat, lon)
+    setFullAddress(value)
+    setLat(lat)
+    setLon(lon)
     setSuggestions([]);
   };
 
   return (
     <Box>
       <Typography></Typography>
-      <TextField type="text" fullWidth label="Address of your healing practice (please select one from suggestions)" value={searchInput} onChange={handleInputChange} margin="dense"/>
+      <TextField type="text" fullWidth label="Address of your healing practice (please click a suggestion below)" value={searchInput} onChange={handleInputChange} margin="dense"/>
       {suggestions.length > 0 && (
         <ul>
           {suggestions.map((suggestion) => (

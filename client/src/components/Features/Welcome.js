@@ -40,7 +40,6 @@ function Welcome({ size }) {
         ) : null}
         <Box align="center" p={1}>
           <HealerModalButton />
-          <MyLinkPreview />
         </Box>
       </Box>
     );

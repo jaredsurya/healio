@@ -3,6 +3,7 @@ class UserSerializer < ActiveModel::Serializer
   has_many :weblinks, as: :linkable
   has_one :avatar
   has_many :services
+  has_many :blogs
 
   def attributes(*args)
     data = super
@@ -15,7 +16,7 @@ class UserSerializer < ActiveModel::Serializer
       data[:created_at] = object.created_at
       data[:location] = object.location
       data[:comment] = object.comment
-      # data[:allow_email] = object.allow_email
+      data[:allow_email] = object.allow_email
       data[:location] = object.location
     elsif object.type == "Healer"
       data[:id] = object.id
@@ -27,7 +28,7 @@ class UserSerializer < ActiveModel::Serializer
       data[:created_at] = object.created_at
       data[:location] = object.location
       data[:full_address] = object.full_address
-      # data[:allow_email] = object.allow_email
+      data[:allow_email] = object.allow_email
       # data[:blogs] = object.blogs
       # data[:weblinks] = object.weblinks
       # data[:services] = object.services
