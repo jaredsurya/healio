@@ -9,7 +9,7 @@ function QuillEditor({bio, setBio}) {
   function handleChange(value) {
     setBio(value);
   }
-//console.log(bio)
+
   return (
     <ReactQuill
     style={{ height: '225px', fontSize: '18pt' }}
