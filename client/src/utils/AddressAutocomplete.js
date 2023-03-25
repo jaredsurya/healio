@@ -48,6 +48,7 @@ const AddressAutocomplete = ({setLat, setLon, setFullAddress}) => {
         <ul>
           {suggestions.map((suggestion) => (
             <li
+              style={{ cursor: "pointer" }}
               className='address'
               key={suggestion.value}
               onClick={() => handleItemSelect(suggestion.value, suggestion.lat, suggestion.lon)}

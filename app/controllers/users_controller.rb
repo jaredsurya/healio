@@ -5,13 +5,9 @@ class UsersController < ApplicationController
 
 
   def create
-    if params[:user_type] == "healer"
-      user = Healer.create!(user_params)
-    else
-      user = Visitor.create!(user_params)
-    end
+    @user = User.create!(user_params)
     login_user(user)
-    render json: user, status: 201, serializer: UserSerializer
+    render json: @user, status: 201, serializer: UserSerializer
   end
 
   def show
@@ -23,8 +19,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    users = User.all
-    render json: users, include: :heros
+    @users = User.all
+    render json: @users, include: :heros
   end 
 
   def update
@@ -47,6 +43,11 @@ class UsersController < ApplicationController
     else
       render json: { error: "Unauthorized" }, status: 401
     end
+  end
+
+  def healers
+    @healers = User.where(user_type: 'healer')
+    render json: @healers
   end
 
   private

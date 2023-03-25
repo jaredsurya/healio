@@ -32,7 +32,7 @@ const ProfileDetailsDisplay = ({size}) => {
         </Box>
         <Box>
           <Typography variant="h4">~{user.full_name}~</Typography>
-          <Typography variant="h6">User-type: {user.type}</Typography>
+          <Typography variant="h6">User-type: {user.user_type}</Typography>
           <Typography variant="h6">
             Healio member since: {formattedDate}
           </Typography>
@@ -46,6 +46,7 @@ const ProfileDetailsDisplay = ({size}) => {
         </Box>
         <Box id="buttons">
           <AccountModalBtn />
+          {user.user_type === "healer" ? <HealerModalButton/> : null}
         </Box>
       </Box>
     );

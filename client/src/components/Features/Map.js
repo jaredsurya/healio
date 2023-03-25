@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import SwitcherContext from "../../utils/switcherContext";
+import HealersServicesContext from "../../utils/healersServicesContext";
 
 const markerIcon = L.icon({
   iconUrl:
@@ -22,10 +23,11 @@ const markerIcon = L.icon({
 
 function Map({ size }) {
   const { feed, setFeed } = useContext(SwitcherContext);
+  const { healers, setHealers } = useContext(HealersServicesContext);
   const [userLocation, setUserLocation] = useState([43.0481, -76.1474]);
+  const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
-    // Get the user's current location
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -35,31 +37,23 @@ function Map({ size }) {
         console.error(error);
       }
     );
-  }, []);
+    let newMarkers;
+    if (healers) {
+      newMarkers = healers.map((healer) => ({
+        id: healer.id,
+        position: [healer.lat, healer.lon],
+        name: healer.full_name,
+        description: healer.phone_number,
+      }));
+    }
+    setMarkers(newMarkers);
+  }, [healers]);
 
   const position = userLocation;
 
-  const markers = [
-    {
-      position: [43.0481, -76.1474],
-      name: "Marker 1",
-      description: "This is marker 1",
-    },
-    {
-      position: [51.49, -0.1],
-      name: "Marker 2",
-      description: "This is marker 2",
-    },
-    {
-      position: [51.51, -0.1],
-      name: "Marker 3",
-      description: "This is marker 3",
-    },
-  ];
-
-  const handleMarkerClick = (marker) => {
+  const handleMarkerClick = (e) => {
     // Pass the marker data to your feed component
-    console.log("Clicked marker:", marker);
+    console.log("Clicked marker:", e);
   };
 
   if (size === "large") {
@@ -69,11 +63,10 @@ function Map({ size }) {
           Find your healing services below:
         </Typography>
         <Box p={0.5}>
-          A MAP OF THE WORLD GOES HERE
           {userLocation && (
             <MapContainer
               center={position}
-              zoom={10}
+              zoom={15}
               style={{ height: "400px" }}
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -84,8 +77,10 @@ function Map({ size }) {
                   icon={markerIcon}
                 >
                   <Popup>
-                    <h3>{marker.name}</h3>
-                    <p>{marker.description}</p>
+                    <Box onClick={(e) => handleMarkerClick(e)}>
+                      <h3>{marker.name}</h3>
+                      <p>{marker.description}</p>
+                    </Box>
                   </Popup>
                 </Marker>
               ))}
@@ -97,20 +92,31 @@ function Map({ size }) {
   } else {
     return (
       <Box p={0.5}>
-        <Typography align="center" p="5px" onClick={() => setFeed("map")}>Use the map markers to find your local healers:</Typography>
+        <Typography align="center" p="5px" onClick={() => setFeed("map")}>
+          Use the map markers to find your local healers:
+        </Typography>
         {userLocation && (
-          <MapContainer center={position} zoom={10} style={{ height: "400px", border: "3px solid #0e643e", borderRadius: "10px" }}>
+          <MapContainer
+            center={position}
+            zoom={10}
+            style={{
+              height: "400px",
+              border: "3px solid #0e643e",
+              borderRadius: "10px",
+            }}
+          >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {markers.map((marker) => (
               <Marker
                 key={marker.position.toString()}
                 position={marker.position}
                 icon={markerIcon}
-                
               >
-                <Popup onClick={() => handleMarkerClick(marker)}>
-                  <h3>{marker.name}</h3>
-                  <p>{marker.description}</p>
+                <Popup >
+                  <Box onClick={() => handleMarkerClick(marker)}>
+                    <h3>{marker.name}</h3>
+                    <p>{marker.description}</p>
+                  </Box>
                 </Popup>
               </Marker>
             ))}
