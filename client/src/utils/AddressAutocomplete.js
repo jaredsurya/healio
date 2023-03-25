@@ -1,9 +1,11 @@
 import { Input, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from './userContext';
 
 const AddressAutocomplete = ({setLat, setLon, setFullAddress}) => {
-  const [searchInput, setSearchInput] = useState('');
+  const { user, setUser } = useContext(UserContext)
+  const [searchInput, setSearchInput] = useState(user.full_address || "");
   const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {

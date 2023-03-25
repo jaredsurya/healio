@@ -29,7 +29,7 @@ const HealerModalButton = () => {
   const [lat, setLat] = useState(tempUser.lat)
   const [lon, setLon] = useState(tempUser.lon)
   const [full_address, setFullAddress] = useState(tempUser.full_address)
-
+  const type = "user"
   
   const handleClickOpen = () => {
     setShowFormDialog(true);
@@ -48,9 +48,9 @@ const HealerModalButton = () => {
     handleClose()
   }
 // console.log(user)
-let body = {...tempUser, bio: bio, lat: lat, lon: lon, weblinks: weblinks, full_address: full_address}
+let body = {...tempUser, bio: bio, lat: lat, lon: lon, full_address: full_address}
 delete body.created_at
-// delete body.weblinks
+delete body.weblinks
 console.log("BODY", body)
 
 function handleDetailSubmit() {
@@ -104,9 +104,9 @@ function handleDetailSubmit() {
             onChange={handleChange}
           />
           <AddressAutocomplete setLat={setLat} setLon={setLon} setFullAddress={setFullAddress}/>
-          <WeblinksInput tempUser={tempUser} weblinks={weblinks} setWeblinks={setWeblinks} />
+          <WeblinksInput type={type} tempUser={tempUser} weblinks={weblinks} setWeblinks={setWeblinks} />
           <Typography>
-            Please type the biography of you as a healer here:
+            Please type your healers biography below. Include anything that makes you stand out.
           </Typography>
           <QuillEditor bio={bio} setBio={setBio}/>
         </DialogContent>
