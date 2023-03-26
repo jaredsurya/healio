@@ -16,6 +16,8 @@ function App() {
   const [feed, setFeed] = useState("welcome");
   const [services, setServices] = useState([]);
   const [healers, setHealers] = useState([]);
+  const [renderHealer, setRenderHealer] = useState(null);
+  const [renderService, setRenderService] = useState(null);
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -35,7 +37,7 @@ function App() {
       if (res.ok) {
         res.json().then((data) => {
           setServices(data);
-          console.log("svcs", data)
+          console.log("svcs", data);
         });
       } else {
         res.json().then((err) => console.log("error in services ", err.error));
@@ -48,13 +50,13 @@ function App() {
       if (res.ok) {
         res.json().then((data) => {
           setHealers(data);
-          console.log("HLRS",data)
+          console.log("HLRS", data);
         });
       } else {
         res.json().then((err) => console.log("error in services ", err.error));
       }
     });
-  }, []);
+  }, [user]);
 
   if (!user) {
     return (
@@ -69,7 +71,18 @@ function App() {
       <ThemeProvider theme={themeOptions}>
         <UserContext.Provider value={{ user, setUser }}>
           <SwitcherContext.Provider value={{ feed, setFeed }}>
-            <HealersServicesContext.Provider value={{services, setServices, healers, setHealers}}>
+            <HealersServicesContext.Provider
+              value={{
+                renderHealer,
+                renderService,
+                setRenderHealer,
+                setRenderService,
+                services,
+                setServices,
+                healers,
+                setHealers,
+              }}
+            >
               <Routes>
                 {/* <Route path="*" element={<Navigate to="/main" replace />} /> */}
                 <Route path="/signin" element={<Auth />} />

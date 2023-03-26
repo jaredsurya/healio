@@ -24,7 +24,6 @@ function QuillEditor({bio, setBio}) {
 
           [{ 'indent': '-1' }, { 'indent': '+1' }], // outdent/indent
           [{ 'direction': 'rtl' }], // text direction
-          [{ 'size': ['small', false, 'large', 'huge'] }], // custom dropdown
           [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
           [{ 'font': [] }],
@@ -38,7 +37,7 @@ function QuillEditor({bio, setBio}) {
         'list', 'bullet', 'indent',
         'link', 'image', 'video'
       ]}
-      placeholder="Use this space to construct your healer biography..."
+      placeholder="Use this space to write it all out..."
       theme="snow" // or "bubble"
     />
   );

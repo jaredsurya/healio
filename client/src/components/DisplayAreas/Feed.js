@@ -9,14 +9,17 @@ import FeaturedHealer from '../Features/FeaturedHealer'
 import SavedInterests from '../Features/SavedInterests'
 import SortedHealerService from '../Features/SortedHealerService'
 import Map from '../Features/Map'
+import HealerPage from '../Features/HealerPage'
+import ServicePage from '../Features/ServicePage'
+import HealersServicesContext from '../../utils/healersServicesContext'
   
   const Feed = ({theme}) => {
     const { feed, setFeed } = useContext(SwitcherContext);
+    const { renderHealer, renderService } = useContext(HealersServicesContext);
     let size = "large"
     let navigate = useNavigate()
   
     useEffect(() => {
-  
       switch (feed) {
         case "featuredhealer":
           navigate("/main/featuredhealer")
@@ -51,6 +54,8 @@ import Map from '../Features/Map'
         <Route path="/quotes" element={<Quote size={size} />} />
         <Route path="/myinterests" element={<SavedInterests size={size} />} />
         <Route path="/finder" element={<SortedHealerService size={size} />} />
+        <Route path="/healer/:id" element={<HealerPage healer={renderHealer}/>} />
+        <Route path="/service/:id" element={<ServicePage service={renderService}/>} />
         <Route path="/" element={<Welcome size={size} />} />
       </Routes>
     </Box>
