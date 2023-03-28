@@ -54,8 +54,8 @@ import HealersServicesContext from '../../utils/healersServicesContext'
         <Route path="/quotes" element={<Quote size={size} />} />
         <Route path="/myinterests" element={<SavedInterests size={size} />} />
         <Route path="/finder" element={<SortedHealerService size={size} />} />
-        <Route path="/healer/:id" element={<HealerPage healer={renderHealer}/>} />
-        <Route path="/service/:id" element={<ServicePage service={renderService}/>} />
+        <Route path="/healer/:id" element={<HealerPage id={renderHealer}/>} />
+        <Route path="/service/:id" element={<ServicePage id={renderService}/>} />
         <Route path="/" element={<Welcome size={size} />} />
       </Routes>
     </Box>

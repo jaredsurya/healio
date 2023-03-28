@@ -3,10 +3,14 @@ import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import HealersServicesContext from "../../utils/healersServicesContext";
 
-function HealerPage({ healer }) {
+function HealerPage({ id }) {
+  const {healers} = useContext(HealersServicesContext)
+  
+  let healer = healers.find((h) => id === h.id)
+  
   console.log(healer);
   
-  if (!healer) {
+  if (!id) {
     return (
       <Typography variant="h4" align="center">
         LOADING . . .

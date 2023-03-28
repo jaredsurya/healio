@@ -9,8 +9,7 @@ function Quote({size}) {
   const { feed, setFeed } = useContext(SwitcherContext);
   const parsedData = JSON.parse(rawData);
   const quotes = parsedData.map((obj) => ({ quote: obj.q, author: obj.a }));
-  const blockquotes = parsedData.map((obj) => obj.h )
-  const [quote, setQuote] = useState({ quote: "", author: "" });
+  const [quote, setQuote] = useState({ quote: "Forgiveness heals all.", author: "Anon" });
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -27,7 +26,7 @@ function Quote({size}) {
     const intervalId = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * quotes.length);
       setQuote(quotes[randomIndex]);
-    }, 15000);
+    }, 14000);
 
     return () => clearInterval(intervalId);
   }, [quotes]);

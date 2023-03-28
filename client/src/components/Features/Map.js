@@ -5,6 +5,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import SwitcherContext from "../../utils/switcherContext";
 import HealersServicesContext from "../../utils/healersServicesContext";
+import { useNavigate } from "react-router-dom";
 
 const markerIcon = L.icon({
   iconUrl:
@@ -23,9 +24,10 @@ const markerIcon = L.icon({
 
 function Map({ size }) {
   const { feed, setFeed } = useContext(SwitcherContext);
-  const { healers, setHealers } = useContext(HealersServicesContext);
+  const { healers, setRenderHealer } = useContext(HealersServicesContext);
   const [userLocation, setUserLocation] = useState([43.0481, -76.1474]);
   const [markers, setMarkers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -52,6 +54,8 @@ function Map({ size }) {
   const position = userLocation;
 
   const handleMarkerClick = (e) => {
+    setRenderHealer(e.id);
+    navigate(`/main/healer/${e.id}`);
     // Pass the marker data to your feed component
     console.log("Clicked marker:", e);
   };
@@ -60,14 +64,17 @@ function Map({ size }) {
     return (
       <Box>
         <Typography variant="h5" align="center" gutterBottom>
-          Find your healing services below:
+          Use the map markers to find your local healers:
         </Typography>
         <Box p={0.5}>
           {userLocation && (
             <MapContainer
               center={position}
-              zoom={15}
-              style={{ height: "400px" }}
+              zoom={11}
+              style={{ height: "80vh",
+              border: "3px solid #0e643e",
+              borderRadius: "10px",  
+            }}
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
               {markers.map((marker) => (
@@ -77,7 +84,10 @@ function Map({ size }) {
                   icon={markerIcon}
                 >
                   <Popup>
-                    <Box onClick={(e) => handleMarkerClick(e)}>
+                    <Box
+                      onClick={() => handleMarkerClick(marker)}
+                      sx={{ "&:hover": { cursor: "pointer" } }}
+                    >
                       <h3>{marker.name}</h3>
                       <p>{marker.description}</p>
                     </Box>
@@ -92,17 +102,17 @@ function Map({ size }) {
   } else {
     return (
       <Box p={0.5}>
-        <Typography align="center" p="5px" onClick={() => setFeed("map")}>
+        <Typography align="center" p="5px" sx={{ "&:hover": { cursor: "pointer" } }} onClick={() => setFeed("map")}>
           Use the map markers to find your local healers:
         </Typography>
         {userLocation && (
           <MapContainer
             center={position}
-            zoom={10}
+            zoom={9}
             style={{
-              height: "400px",
               border: "3px solid #0e643e",
               borderRadius: "10px",
+              aspectRatio: "1"
             }}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -112,8 +122,11 @@ function Map({ size }) {
                 position={marker.position}
                 icon={markerIcon}
               >
-                <Popup >
-                  <Box onClick={() => handleMarkerClick(marker)}>
+                <Popup>
+                  <Box
+                    onClick={() => handleMarkerClick(marker)}
+                    sx={{ "&:hover": { cursor: "pointer" } }}
+                  >
                     <h3>{marker.name}</h3>
                     <p>{marker.description}</p>
                   </Box>

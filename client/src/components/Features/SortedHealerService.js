@@ -42,30 +42,30 @@ function SortedHealerService({ size }) {
     return services
       .sort((a, b) => a.name.localeCompare(b.name))
       .map((service) => (
-        <Box key={service.id} onClick={() => showService(service)} display="inline-block">
-          <Item>{service.name}</Item>
+        <Box key={service.id}  display="inline-block">
+          <Item onClick={() => showService(service.id)}>{service.name}</Item>
         </Box>
       ));
   }
 
-  function showService(service){
-    setRenderService(service)
-    navigate(`/main/healer/${service.id}`)
+  function showService(id){
+    setRenderService(id)
+    navigate(`/main/service/${id}`)
   }
 
   function sortedHealers() {
     return healers
       .sort((a, b) => a.full_name.localeCompare(b.full_name))
       .map((healer) => (
-        <Box key={healer.id} onClick={() => showHealer(healer)} display="inline-block">
-          <Item>{healer.full_name}</Item>
+        <Box key={healer.id} display="inline-block">
+          <Item onClick={() => showHealer(healer.id)}>{healer.full_name}</Item>
         </Box>
       ));
   }
 
-  function showHealer(healer){
-    setRenderHealer(healer)
-    navigate(`/main/healer/${healer.id}`)
+  function showHealer(id){
+    setRenderHealer(id)
+    navigate(`/main/healer/${id}`)
   }
 
   function onServicesClick() {
@@ -138,6 +138,7 @@ function SortedHealerService({ size }) {
               color: "#0e643e",
               verticalAlign: "middle",
               padding: "12px",
+              cursor: "pointer"
             }}
           />
           <Button

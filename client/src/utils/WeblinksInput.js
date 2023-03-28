@@ -70,7 +70,7 @@ function WeblinksInput({ type, tempUser, weblinks, setWeblinks }) {
 
   return (
     <Box display="flex" flexDirection="column">
-      <Typography variant="body2" paddingTop={"10px"}>Add a title and URL for helpful weblinks below:</Typography>
+      <Typography variant="body2" paddingTop={"10px"}>Add a title and URL for up to 4 helpful weblinks below:</Typography>
       <Box display="flex" justifyContent="space-between">
         <TextField
           margin="dense"
