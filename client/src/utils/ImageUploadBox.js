@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
-import Modal from "@mui/material/Modal";
 import {
   Button,
   Dialog,
@@ -24,13 +23,44 @@ function ImageUploadBox() {
     setModalOpen(false);
   };
 
-  function handleUpload(e){
-    setImage(e.target.files[0])
-    setModalOpen(false)
+  function handleUpload(e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("avatar", image);
+
+    fetch("/users/update_avatar", {
+      method: "POST",
+      body: formData,
+      credentials: "same-origin",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    setModalOpen(false);
+  }
+
+  function handleImageChange(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
   }
 
   return (
-    <React.Fragment>
+    <>
       <Box
         sx={{
           display: "flex",
@@ -68,7 +98,7 @@ function ImageUploadBox() {
             marginBottom: "10px"
           }}
         >
-          <Input type="file" id="avatar" />
+          <Input type="file" id="avatar" onChange={handleImageChange}/>
         </Container>
         <Box
         sx={{
@@ -86,7 +116,7 @@ function ImageUploadBox() {
         </Button>
       </Box>
       </Dialog>
-    </React.Fragment>
+    </>
   );
 }
 

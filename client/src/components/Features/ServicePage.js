@@ -2,13 +2,14 @@ import { Box, IconButton, Typography } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import React, { useContext } from 'react'
 import HealersServicesContext from '../../utils/healersServicesContext';
+import Weblinks from './Weblinks';
 
 function ServicePage({id}) {
   const {services} = useContext(HealersServicesContext)
   
   let service = services.find((s) => id === s.id)
 
-  console.log(service)
+  //console.log(service)
   if (!service) {
     return (
       <Typography variant="h4" align="center">
@@ -30,6 +31,7 @@ function ServicePage({id}) {
       <Box sx={{width: "87%", margin: "0 auto"}}>
       <Typography >{service.description}</Typography>
       </Box>
+      <Weblinks links={service.weblinks}/>
     </Box>
   )
 }

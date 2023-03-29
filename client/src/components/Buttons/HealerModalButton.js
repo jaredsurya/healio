@@ -51,7 +51,7 @@ const HealerModalButton = () => {
 let body = {...tempUser, bio: bio, lat: lat, lon: lon, full_address: full_address}
 delete body.created_at
 delete body.weblinks
-console.log("BODY", body)
+//console.log("BODY", body)
 
 function handleDetailSubmit() {
   // setTempUser({...tempUser, weblinks: weblinks})
