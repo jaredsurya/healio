@@ -50,6 +50,14 @@ class UsersController < ApplicationController
     render json: @healers
   end
 
+  def update_avatar
+    byebug
+    user = User.find(request.headers['X-User-Id'])
+    user.avatar.attach(user_params[:avatar]) #may use params instead of user_p
+    # byebug
+    render json: user, status: :created
+  end
+
   private
 
   def user_params 

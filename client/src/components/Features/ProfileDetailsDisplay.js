@@ -37,7 +37,7 @@ const ProfileDetailsDisplay = ({size}) => {
           Account Details:
         </Typography>
         <Box>
-          <ImageUploadBox />
+          <ImageUploadBox id={user.id} />
         </Box>
         <Box>
           <Typography variant="h4">~{user.full_name}~</Typography>

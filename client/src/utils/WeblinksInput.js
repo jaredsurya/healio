@@ -13,7 +13,6 @@ import UserContext from "./userContext";
 function WeblinksInput({ type, tempUser, weblinks, setWeblinks }) {
   const { user, setUser } = useContext(UserContext);
   const [url, setUrl] = useState("");
-  const [title, setTitle] = useState("");
 
   function handleAddLink(e) {
     if (weblinks.length < 4) {
@@ -23,7 +22,7 @@ function WeblinksInput({ type, tempUser, weblinks, setWeblinks }) {
           "Content-Type": "application/json",
           "X-Link-Type": type,
         },
-        body: JSON.stringify({ url: url, title: title }),
+        body: JSON.stringify({ url: url }),
       }).then((r) => {
         if (r.ok) {
           r.json().then((link) => {
@@ -33,20 +32,10 @@ function WeblinksInput({ type, tempUser, weblinks, setWeblinks }) {
           r.json().then((err) => alert(err.errors));
         }
       });
-      //setWeblinks([...weblinks, { url: url }]);
       setUrl("");
-      setTitle("")
-      //console.log("eVal: ", e);
       console.log("weblinks: ", weblinks);
     }
   }
-
-  // function handleDeleteLink(id) {
-    
-  //   const newLinks = [...weblinks];
-  //   newLinks.splice(index, 1);
-  //   setWeblinks(newLinks);
-  // }
 
   function handleDeleteLink(id) {
     fetch(`/weblinks/${id}`, {
@@ -74,18 +63,8 @@ function WeblinksInput({ type, tempUser, weblinks, setWeblinks }) {
       <Box display="flex" justifyContent="space-between">
         <TextField
           margin="dense"
-          id="title"
-          label="Add a concise title for your link here, then . . ."
-          type="text"
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          style={{ flexGrow: 1, marginRight: "10px" }}
-        />
-        <TextField
-          margin="dense"
           id="weblinks"
-          label="add a URL here, then press + to the right."
+          label="Add a URL here - INCLUDING HTTPS:// - then press + to the right."
           type="text"
           name="weblinks"
           value={url}
@@ -116,7 +95,6 @@ function WeblinksInput({ type, tempUser, weblinks, setWeblinks }) {
             alignItems="center"
             justifyContent={"center"}
           >
-            <Typography fontWeight={"bold"}>{link.title}. . . . . .</Typography>
             <Typography color={"blue"}>{link.url}</Typography>
             <IconButton
               onClick={() => handleDeleteLink(link.id)}

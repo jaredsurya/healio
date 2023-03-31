@@ -5,9 +5,13 @@ class UserSerializer < ActiveModel::Serializer
   
   has_many :weblinks, as: :linkable
   # has_many :linkable
-  has_one :avatar
   has_many :services
   has_many :blogs
   has_many :comments
+  # has_one_attached :avatar
+
+  def avatar
+    rails_blob_path(object.avatar, only_path: true) if object.avatar.attached?
+  end
 
 end

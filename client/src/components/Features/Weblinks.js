@@ -5,7 +5,6 @@ import Microlink from "@microlink/react";
 function Weblinks({ links }) {
   return (
     <>
-    {links.length > 0 ? <Typography variant="h5" align="center" gutterBottom>~ Helpful links ~</Typography> : null}
     <Grid container align="center" justifyContent="center" spacing={1}>
       {links.map((link) => {
         return (

@@ -10,6 +10,7 @@ import {
   Tooltip,
   Typography,
   Button,
+  Divider,
 } from "@mui/material";
 import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -21,8 +22,14 @@ import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const settings = ["My Profile", "Edit Account", "About Healio", "Log out"];
-  const pages = ["Services", "Healers", "Interests", "Map"];
+  const settings = ["My Profile", "My Saved Services", "About Healio", "Log out"];
+  const pages = [
+    "Welcome",
+    "Services ∞ Healers",
+    "Map",
+    "Quotes",
+    "Featured Healer",
+  ];
 
   const { user, setUser } = useContext(UserContext);
 
@@ -38,29 +45,48 @@ const NavBar = () => {
 
   // MAYBE USE A SWITCH TERNARY
   const handleNavMenuClick = (page) => {
-    if (page === "Services") {
-      //leftMenuSelect(page);
+    switch (page){
+      case "Welcome":
+        navigate("/main")
+        break;
+      case "Services ∞ Healers":
+        navigate("/main/finder")
+        break;
+      case "Map":
+        navigate("/main/map")
+        break;
+      case "Quotes":
+        navigate("/main/quotes")
+        break;
+      case "Featured Healer":
+        navigate("/main/featuredhealer")
+        break;
     }
     setAnchorElNav(null);
   };
 
-    // MAYBE USE A ~SWITCH~ TERNARY combined with state
+  // MAYBE USE A ~SWITCH~ TERNARY combined with state
   const handleUserMenuClick = (setting) => {
-    if (setting === "Log out") {
-      handleLogout();
-    } else if (setting === "My Profile") {
-      console.log(setting, "profile!");
-    } else if (setting === "Edit Account") {
-      console.log(setting, "Edit Account!");
-    } else {
-      console.log("About Healio MODAL Here...")
+    switch (setting) {
+      case "My Profile":
+        navigate("/main/myprofile")
+        break;
+      case "My Saved Services":
+        navigate("/main/mysaved")
+        break;
+      case "About Healio":
+        navigate("/main/about")
+        break;
+      case "Log out":
+        handleLogout()
+        break;
     }
     setAnchorElUser(null);
   };
 
   function handleLogout() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
-      console.log("response", r)
+      console.log("response", r);
       if (r.ok) {
         setUser(null);
         navigate("/signin");
@@ -113,20 +139,22 @@ const NavBar = () => {
               >
                 {" "}
                 {/* ITEM LIST FOR LEFT NAV MENU */}
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={() => handleNavMenuClick(page)}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
+                {pages.map((page, index) => (
+                  <div key={page}>
+                    <MenuItem onClick={() => handleNavMenuClick(page)}>
+                      <Typography p={0} textAlign="center">{page}</Typography>
+                    </MenuItem>
+                    {index < pages.length - 1 && <Divider />}
+                  </div>
                 ))}
               </Menu>
             </Box>
 
-            
             <Typography
               variant="h4"
               noWrap
               component="a"
-              href=""
+              
               sx={{
                 mr: 2,
                 display: "flex",
@@ -163,13 +191,16 @@ const NavBar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={() => setAnchorElUser(null)}
               >
-                {settings.map((setting) => (
+                {settings.map((setting, index) => (
+                  <div key={setting}>
                   <MenuItem
                     key={setting}
                     onClick={() => handleUserMenuClick(setting)}
                   >
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
+                  {index < settings.length - 1 && <Divider />}
+                  </div>
                 ))}
               </Menu>
             </Box>

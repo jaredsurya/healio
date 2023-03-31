@@ -14,6 +14,13 @@ gem "puma", "~> 5.0"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
+gem "aws-sdk-s3", "~> 1.119"
+gem "dotenv-rails", "~> 2.8"
+
+gem "image_processing", ">= 1.2"
+gem "jsonapi-serializer", "~> 2.2"
+gem "figaro"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

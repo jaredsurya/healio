@@ -12,6 +12,7 @@ import Map from '../Features/Map'
 import HealerPage from '../Features/HealerPage'
 import ServicePage from '../Features/ServicePage'
 import HealersServicesContext from '../../utils/healersServicesContext'
+import AboutHealio from '../Features/AboutHealio'
   
   const Feed = ({theme}) => {
     const { feed, setFeed } = useContext(SwitcherContext);
@@ -34,7 +35,7 @@ import HealersServicesContext from '../../utils/healersServicesContext'
           navigate("/main/quotes")
           break;
         case "savedinterests":
-          navigate("/main/myinterests")
+          navigate("/main/mysaved")
           break;
         case "sortedhealerservice":
           navigate("/main/finder")   
@@ -49,10 +50,11 @@ import HealersServicesContext from '../../utils/healersServicesContext'
     <Box flex={7} bgcolor="#f7f9ff" p={2} height='calc(100vh - 108px)' overflow={"auto"}>
       <Routes>
         <Route path="/featuredhealer" element={<FeaturedHealer size={size} />} />
+        <Route path="/about" element={<AboutHealio />} />
         <Route path="/map" element={<Map size={size} />} />
         <Route path="/myprofile" element={<ProfileDetailsDisplay size={size} />} />
         <Route path="/quotes" element={<Quote size={size} />} />
-        <Route path="/myinterests" element={<SavedInterests size={size} />} />
+        <Route path="/mysaved" element={<SavedInterests size={size} />} />
         <Route path="/finder" element={<SortedHealerService size={size} />} />
         <Route path="/healer/:id" element={<HealerPage id={renderHealer}/>} />
         <Route path="/service/:id" element={<ServicePage id={renderService}/>} />

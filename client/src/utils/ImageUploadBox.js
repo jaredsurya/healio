@@ -11,9 +11,10 @@ import {
 } from "@mui/material";
 import { Container } from "@mui/system";
 
-function ImageUploadBox() {
+function ImageUploadBox({id}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [image, setImage] = useState(null)
+  const [returnImage, setReturnImage] = useState(null)
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -31,6 +32,10 @@ function ImageUploadBox() {
 
     fetch("/users/update_avatar", {
       method: "POST",
+      headers: {
+        'X-User-Id': id,
+        "Content-Type": "image/jpeg"
+      },
       body: formData,
       credentials: "same-origin",
     })
@@ -41,7 +46,8 @@ function ImageUploadBox() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        console.log("image data: ", data)
+        setReturnImage(data);
       })
       .catch((error) => {
         console.error("Error:", error);

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   get "/healers", to: "users#healers"
   post "/signup", to: "users#create"
+  post "/users/update_avatar", to: "users#update_avatar"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   # Defines the root path route ("/")
