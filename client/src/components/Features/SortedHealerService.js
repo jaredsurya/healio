@@ -18,12 +18,8 @@ function SortedHealerService({ size }) {
   let navigate = useNavigate()
   const {
     services,
-    setServices,
     healers,
-    setHealers,
-    renderHealer,
     setRenderHealer,
-    renderService,
     setRenderService,
   } = useContext(HealersServicesContext);
   const [showServices, setShowServices] = useState(true);
@@ -33,7 +29,8 @@ function SortedHealerService({ size }) {
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: "center",
-    color: theme.palette.text.secondary,
+    boxShadow: "2px 2px 10px 2px rgba(0, 0, 0, 0.3)",
+    color: theme.palette.text.primary,
     "&:hover": { cursor: "pointer" },
     display: "inline-block",
   }));
@@ -90,6 +87,8 @@ function SortedHealerService({ size }) {
             variant="outlined"
             color="secondary"
             onClick={() => onServicesClick()}
+            borderWidth="5px"
+            style={{ borderWidth: showServices ? '3px' : '1px' }}
           >
             Services
           </Button>
@@ -105,6 +104,7 @@ function SortedHealerService({ size }) {
             variant="outlined"
             color="secondary"
             onClick={() => onHealersClick()}
+            style={{ borderWidth: showServices ? '1px' : '3px' }}
           >
             Healers
           </Button>
@@ -128,6 +128,7 @@ function SortedHealerService({ size }) {
             variant="outlined"
             color="secondary"
             onClick={() => onServicesClick()}
+            style={{ borderWidth: showServices ? '3px' : '1px' }}
           >
             Services
           </Button>
@@ -145,6 +146,7 @@ function SortedHealerService({ size }) {
             variant="outlined"
             color="secondary"
             onClick={() => onHealersClick()}
+            style={{ borderWidth: showServices ? '1px' : '3px' }}
           >
             Healers
           </Button>

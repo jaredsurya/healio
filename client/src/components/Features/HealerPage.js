@@ -8,8 +8,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function HealerPage({ id }) {
   const {healers} = useContext(HealersServicesContext)
-  let healer = healers.find((h) => id === h.id)
   const [expanded, setExpanded] = useState(false);
+  let healer = healers.find((h) => id === h.id)
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -33,7 +33,7 @@ function HealerPage({ id }) {
         dangerouslySetInnerHTML={{ __html: healer.bio }}
       />
       <Box className="accordions" paddingTop={3}>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+      <Accordion expanded={expanded === 'panel1'}  onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"

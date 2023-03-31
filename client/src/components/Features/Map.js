@@ -112,7 +112,7 @@ function Map({ size }) {
             style={{
               border: "3px solid #0e643e",
               borderRadius: "10px",
-              aspectRatio: "1"
+              minHeight: "410px"
             }}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

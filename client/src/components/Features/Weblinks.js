@@ -3,6 +3,11 @@ import React from "react";
 import Microlink from "@microlink/react";
 
 function Weblinks({ links }) {
+  
+  if(links.length < 1){
+    return <Typography>No links have been added yet.</Typography>
+  }
+  
   return (
     <>
     <Grid container align="center" justifyContent="center" spacing={1}>
