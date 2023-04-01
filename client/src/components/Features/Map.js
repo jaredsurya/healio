@@ -102,7 +102,7 @@ function Map({ size }) {
   } else {
     return (
       <Box p={0.5}>
-        <Typography align="center" p="5px" sx={{ "&:hover": { cursor: "pointer" } }} onClick={() => setFeed("map")}>
+        <Typography align="center" p="5px" sx={{ "&:hover": { cursor: "pointer", color: "blue" } }} onClick={() => setFeed("map")}>
           Use the map markers to find your local healers:
         </Typography>
         {userLocation && (

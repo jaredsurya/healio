@@ -9,7 +9,7 @@ function Quote({size}) {
   const { feed, setFeed } = useContext(SwitcherContext);
   const parsedData = JSON.parse(rawData);
   const quotes = parsedData.map((obj) => ({ quote: obj.q, author: obj.a }));
-  const [quote, setQuote] = useState({ quote: "Forgiveness heals all.", author: "Anon" });
+  const [quote, setQuote] = useState({ quote: "All methods of healing are really indirect ways of rousing the life energy, which is the true and direct healer of all diseases.", author: "Paramahansa Yogananda" });
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

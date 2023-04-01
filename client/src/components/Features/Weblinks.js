@@ -5,7 +5,7 @@ import Microlink from "@microlink/react";
 function Weblinks({ links }) {
   
   if(links.length < 1){
-    return <Typography>No links have been added yet.</Typography>
+    return <Typography fontWeight={"bold"}>No links have been added yet.</Typography>
   }
   
   return (

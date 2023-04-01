@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :services
   resources :users
+  resources :user_services
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get "/me", to: "users#show"
   get "/healers", to: "users#healers"
