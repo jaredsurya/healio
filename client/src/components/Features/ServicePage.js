@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import HealersServicesContext from "../../utils/healersServicesContext";
 import Weblinks from "./Weblinks";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -25,21 +25,31 @@ function ServicePage({ id }) {
   // HAVE TO SET the toggle plus or check to match whether the user and the service have been set (associated) before
   // NEED that to effect the boolean value of "isAssociated"
 
-  function handleAssociation(){
-    if(!isAssociated){
-      console.log(isAssociated)
-    fetch("/user_services", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({service_id: service.id})
-    }).then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err))
-  }
-    setIsAssociated(!isAssociated)
+  function handleAssociation() {
+    if (!isAssociated) {
+      console.log(isAssociated);
+      fetch("/user_services", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ service_id: service.id }),
+      })
+        .then((res) => res.json())
+        .then(setIsAssociated(true))
+        .catch((err) => console.log(err));
+    } else if (isAssociated) {
+      fetch(`/user_services/${id}`, {
+        method: "DELETE",
+      })
+        .then(setIsAssociated(false))
+        .catch((err) => console.log(err))
+    }
   }
 
-  console.log(user.id, service.id)
+  useEffect(() => {
+    user.services.find((svc) => svc.id === id)
+      ? setIsAssociated(true)
+      : setIsAssociated(false);
+  }, [user]);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
