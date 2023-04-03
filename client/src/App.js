@@ -18,6 +18,13 @@ function App() {
   const [healers, setHealers] = useState([]);
   const [renderHealer, setRenderHealer] = useState(null);
   const [renderService, setRenderService] = useState(null);
+  const [savedServices, setSavedServices] = useState([]);
+  
+  useEffect(() => {
+    if(user){
+    setSavedServices(user.services)
+    }
+  }, [user])
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -81,6 +88,8 @@ function App() {
                 setServices,
                 healers,
                 setHealers,
+                savedServices,
+                setSavedServices,
               }}
             >
               <Routes>

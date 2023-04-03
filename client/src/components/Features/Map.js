@@ -77,9 +77,9 @@ function Map({ size }) {
             }}
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              {markers.map((marker) => (
+              {markers.map((marker, index) => (
                 <Marker
-                  key={marker.position.toString()}
+                  key={index}
                   position={marker.position}
                   icon={markerIcon}
                 >
@@ -116,9 +116,9 @@ function Map({ size }) {
             }}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {markers.map((marker) => (
+            {markers.map((marker, index) => (
               <Marker
-                key={marker.position.toString()}
+                key={index}
                 position={marker.position}
                 icon={markerIcon}
               >

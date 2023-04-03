@@ -16,7 +16,7 @@ import UserContext from "../../utils/userContext";
 import { Add, Check, Favorite, FavoriteBorder } from "@mui/icons-material";
 
 function ServicePage({ id }) {
-  const { services } = useContext(HealersServicesContext);
+  const { services, savedServices, setSavedServices } = useContext(HealersServicesContext);
   const { user } = useContext(UserContext);
   const [expanded, setExpanded] = useState(false);
   const [isAssociated, setIsAssociated] = useState(false);
@@ -24,6 +24,15 @@ function ServicePage({ id }) {
 
   // HAVE TO SET the toggle plus or check to match whether the user and the service have been set (associated) before
   // NEED that to effect the boolean value of "isAssociated"
+
+  // function adjustAssociated(){
+  // }
+  // console.log("SS", savedServices)
+  // console.log("s",service)
+  useEffect(() => {
+    setIsAssociated(savedServices.some((s) => s.id === service.id))
+
+  },[service, user])
 
   function handleAssociation() {
     if (!isAssociated) {
@@ -34,16 +43,20 @@ function ServicePage({ id }) {
         body: JSON.stringify({ service_id: service.id }),
       })
         .then((res) => res.json())
-        .then(setIsAssociated(true))
+        .then((data) => {
+          setSavedServices(data);
+          setIsAssociated(true);
+        })
         .catch((err) => console.log(err));
     } else if (isAssociated) {
       fetch(`/user_services/${id}`, {
         method: "DELETE",
       })
-        .then(setIsAssociated(false))
-        .catch((err) => console.log(err))
+        .then(() => setIsAssociated(false))
+        .catch((err) => console.log(err));
     }
   }
+  
 
   useEffect(() => {
     user.services.find((svc) => svc.id === id)
