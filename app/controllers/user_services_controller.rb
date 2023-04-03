@@ -10,7 +10,7 @@ class UserServicesController < ApplicationController
   def destroy
     user_service = UserService.find_by(service_id: params[:id], user_id: current_user.id)
     user_service.destroy
-    head :no_content
+    render json: current_user.services, status: :ok
   end
 
   private

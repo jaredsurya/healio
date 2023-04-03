@@ -19,6 +19,7 @@ function App() {
   const [renderHealer, setRenderHealer] = useState(null);
   const [renderService, setRenderService] = useState(null);
   const [savedServices, setSavedServices] = useState([]);
+  const [isAssociated, setIsAssociated] = useState(false)
   
   useEffect(() => {
     if(user){
@@ -90,6 +91,8 @@ function App() {
                 setHealers,
                 savedServices,
                 setSavedServices,
+                isAssociated,
+                setIsAssociated,
               }}
             >
               <Routes>

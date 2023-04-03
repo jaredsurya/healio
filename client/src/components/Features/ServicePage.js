@@ -16,10 +16,9 @@ import UserContext from "../../utils/userContext";
 import { Add, Check, Favorite, FavoriteBorder } from "@mui/icons-material";
 
 function ServicePage({ id }) {
-  const { services, savedServices, setSavedServices } = useContext(HealersServicesContext);
+  const { services, savedServices, setSavedServices, isAssociated, setIsAssociated } = useContext(HealersServicesContext);
   const { user } = useContext(UserContext);
   const [expanded, setExpanded] = useState(false);
-  const [isAssociated, setIsAssociated] = useState(false);
   let service = services.find((s) => id === s.id);
 
   // HAVE TO SET the toggle plus or check to match whether the user and the service have been set (associated) before
@@ -52,7 +51,11 @@ function ServicePage({ id }) {
       fetch(`/user_services/${id}`, {
         method: "DELETE",
       })
-        .then(() => setIsAssociated(false))
+        .then((res) => res.json())
+        .then((data) => {
+          setSavedServices(data)
+          setIsAssociated(false)
+        })
         .catch((err) => console.log(err));
     }
   }
