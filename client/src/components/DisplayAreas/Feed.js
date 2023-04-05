@@ -20,7 +20,6 @@ import AboutHealio from '../Features/AboutHealio'
     let size = "large"
     let navigate = useNavigate()
   
-      console.log(feed)
     useEffect(() => {
       switch (feed) {
         case "featuredhealer":

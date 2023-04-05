@@ -1,6 +1,7 @@
 import {
   Box,
   Chip,
+  Grid,
   IconButton,
   Paper,
   Stack,
@@ -48,13 +49,13 @@ function SavedInterests({ size }) {
     "&:hover": { cursor: "pointer" },
     display: "inline-flex",
     alignItems: "center",
+    paddingTop: "4px",
+    paddingBottom: "4px",
     margin: "0px auto",
-    gap: "20px",
+    marginTop: "8px",
+    gap: "8px",
     "& .MuiSvgIcon-root": {
       cursor: "pointer",
-    },
-    "&:hover .MuiSvgIcon-root": {
-      color: "#f44336",
     },
     "&:hover": {
       cursor: "pointer",
@@ -77,31 +78,41 @@ function SavedInterests({ size }) {
           fontWeight={"bold"}
           gutterBottom
           align="center"
+          margin={3}
         >
           {user.user_type === "healer"
             ? "The Services You're Offering:"
             : "The Services You've Favorited:"}
         </Typography>
-        <Stack>
-          {savedServices.length > 0 ? (
-            savedServices.map((svc) => (
-              <Item key={svc.id} marginTop= "5px" onClick={() => handleClick(svc.id)}>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Typography sx={{ flex: "1 1 auto" }}>{svc.name}</Typography>
-                  <IconButton onClick={(e) => {
-                    e.stopPropagation()
-                    handleDelete(svc.id)}}>
-                    <HighlightOffIcon />
-                  </IconButton>
-                </Box>
-              </Item>
-            ))
-          ) : (
-            <Typography variant="h6" align="center" color={"grey"}>
-              Services you add will appear here.
-            </Typography>
-          )}
-        </Stack>
+        <Box sx={{ maxWidth: "70%", margin: "0 auto" }}>
+  <Grid container justifyContent="center" alignItems="center" spacing={2}>
+    {savedServices.length > 0 ? (
+      savedServices.map((svc) => (
+        <Grid item md={4} key={svc.id}>
+          <Item onClick={() => handleClick(svc.id)}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Typography sx={{ flex: "1 1 auto" }}>{svc.name}</Typography>
+              <IconButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(svc.id);
+                }}
+                sx={{ "&:hover": { color: "#f44336" } }}
+              >
+                <HighlightOffIcon />
+              </IconButton>
+            </Box>
+          </Item>
+        </Grid>
+      ))
+    ) : (
+      <Typography variant="h6" align="center" color={"grey"}>
+        Services you add will appear here.
+      </Typography>
+    )}
+  </Grid>
+</Box>
+
       </Box>
     );
   } else {
@@ -110,8 +121,8 @@ function SavedInterests({ size }) {
         <Typography
           fontWeight={"bold"}
           onClick={() => {
-            setFeed("savedinterests")
-            navigate("/main/mysaved")
+            setFeed("savedinterests");
+            navigate("/main/mysaved");
           }}
           sx={{
             "&:hover": { cursor: "pointer", color: "blue" },
@@ -123,7 +134,7 @@ function SavedInterests({ size }) {
           {user.user_type === "healer" ? "Your Services:" : "My Favorites:"}
         </Typography>
         <Box sx={{ maxHeight: 250, overflow: "auto" }} align="center">
-          <Stack sx={{ width: "100%" }} align="center">
+          <Stack sx={{ width: "100%", gap: "8px" }} align="center">
             {savedServices.length > 0 ? (
               savedServices.map((svc) => (
                 <Chip
@@ -134,7 +145,13 @@ function SavedInterests({ size }) {
                   variant="outlined"
                   onClick={() => handleClick(svc.id)}
                   onDelete={() => handleDelete(svc.id)}
-                  sx={{ margin: "auto", fontSize: 22 }}
+                  sx={{
+                    margin: "auto",
+                    fontSize: 22,
+                    "& .MuiChip-deleteIcon:hover": {
+                      color: "red",
+                    },
+                  }}
                 />
               ))
             ) : (

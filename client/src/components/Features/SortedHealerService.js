@@ -151,11 +151,11 @@ function SortedHealerService({ size }) {
             Healers
           </Button>
         </Box>
-        <Box height={"300px"} overflow="auto">
+        <Box height={"332px"} overflow="auto">
           <Stack
             direction="column"
             //divider={<Divider orientation="horizontal" flexItem />}
-            spacing={0.5}
+            spacing={0.8}
             sx={{ textAlign: "center" }}
           >
             {showServices ? sortedServices() : sortedHealers()}

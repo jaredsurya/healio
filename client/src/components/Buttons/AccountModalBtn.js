@@ -10,7 +10,7 @@ import {
   FormControlLabel,
   TextField,
 } from "@mui/material";
-import React, { useContext, useCallback, useState } from "react";
+import React, { useContext, useState } from "react";
 import UserContext from "../../utils/userContext";
 import HealerDataModal from "./HealerModalButton";
 
@@ -43,7 +43,6 @@ const AccountModalBtn = () => {
       })
         .then((r) => r.json())
         .then((data) => {
-          //console.log(data)
           setUser(data)
           setTempUser(data);
         })
@@ -53,12 +52,11 @@ const AccountModalBtn = () => {
     const handleChange = (e) => {
       const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
       setTempUser({ ...tempUser, [e.target.name]: value })
-      //console.log(tempUser)
     };
 
     return (
       <Box align="center">
-        <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
           Edit Details
         </Button>
         <Dialog open={showFormDialog} onClose={handleClose}>

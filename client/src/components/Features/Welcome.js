@@ -17,10 +17,10 @@ function Welcome({ size }) {
         </Typography>
         <Box maxWidth={"73%"} align="center" margin="0 auto" p={4}>
           <Typography align="center" lineHeight={2}>
-            Healio is a space to find the healing modalities and practitioners
-            which will be perfect for you. The journey to health is one of
+            Healio is a space to find healing modalities and practitioners
+            that will be perfect for you. The journey to health is one of
             balance and diligent practicing. Here, many of us on the journey
-            have come together and many of us would like to offer services which
+            have come together and we would like to offer services which
             we have discovered. These services, often adopted from ancient
             lineages, are of the most potent variety. We sincerely thank you for
             checking Healio, and we assure you that you are right where you need

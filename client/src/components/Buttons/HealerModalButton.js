@@ -81,7 +81,7 @@ function handleDetailSubmit() {
 
   return (
     <Box>
-      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Edit My Healer Info
       </Button>
       <Dialog open={showFormDialog} onClose={handleClose} maxWidth="lg">

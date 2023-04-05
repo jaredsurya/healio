@@ -35,7 +35,6 @@ function ServicePage({ id }) {
 
   function handleAssociation() {
     if (!isAssociated) {
-      console.log(isAssociated);
       fetch("/user_services", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

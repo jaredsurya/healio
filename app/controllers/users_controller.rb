@@ -2,8 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user, only: [:update, :destroy]
   wrap_parameters format: []
   
-
-
   def create
     @user = User.create!(user_params)
     login_user(user)

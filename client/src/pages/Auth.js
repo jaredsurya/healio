@@ -71,6 +71,7 @@ function Auth() {
       } else {
         r.json().then((err) => {
           setErrors(err.errors);
+          // render this in typographyyyyyyyyyy
           console.log(err.errors);
         });
       }
@@ -166,6 +167,7 @@ function Auth() {
                 id="password"
                 autoComplete="current-password"
               />
+              {errors.length > 0 ? errors.map((err) => <Typography fontWeight="bold" color={"secondary"} align="center">{err}</Typography>) : null}
               <Grid item xs={12}>
                 <FormControlLabel
                   name="pass"
