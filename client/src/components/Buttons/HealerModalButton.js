@@ -19,6 +19,7 @@ import UserContext from "../../utils/userContext";
 import AddressAutocomplete from "../../utils/AddressAutocomplete";
 import QuillEditor from "../../utils/QuillEditor";
 import WeblinksInput from "../../utils/WeblinksInput";
+import { removeNull } from "../../utils/removeNull";
 
 const HealerModalButton = () => {
   const { user, setUser } = useContext(UserContext);
@@ -51,6 +52,7 @@ const HealerModalButton = () => {
 let body = {...tempUser, bio: bio, lat: lat, lon: lon, full_address: full_address}
 delete body.created_at
 delete body.weblinks
+const cleanedBody = removeNull(body)
 //console.log("BODY", body)
 
 function handleDetailSubmit() {
@@ -61,11 +63,12 @@ function handleDetailSubmit() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(cleanedBody),
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          setUser(data);
+          const cleanedData = removeNull(data)
+          setUser(cleanedData);
         });
       } else {
         alert("error in HealerModalBTN");

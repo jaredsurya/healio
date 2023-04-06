@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../utils/userContext.js";
 import { CheckBox } from "@mui/icons-material";
 import { Switch } from "@mui/material";
+import { removeNull } from "../utils/removeNull.js";
 
 function Copyright(props) {
   return (
@@ -47,6 +48,15 @@ function Auth() {
 
   //console.log("USER from Auth", user)
 
+  // function removeNull(data) {
+  //   for (const key in data) {
+  //     if (data[key] === null) {
+  //       data[key] = "";
+  //     }
+  //   }
+  //   return data;
+  // }
+
   const loginSubmit = (event) => {
     event.preventDefault();
     setErrors([])
@@ -63,8 +73,8 @@ function Auth() {
       body: JSON.stringify(user),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => {
-          setUser(user);
+        r.json().then((data) => {
+          setUser(removeNull(data));
           console.log("User has been logged in!", user);
           navigate("/main");
         });
@@ -102,9 +112,9 @@ function Auth() {
       body: JSON.stringify(signUpDeets),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((user) => {
-          setUser(user);
-          setUserType(user.type);
+        r.json().then((data) => {
+          setUser(removeNull(data));
+          setUserType(data.type);
           navigate("/main");
         });
       } else {
@@ -167,7 +177,7 @@ function Auth() {
                 id="password"
                 autoComplete="current-password"
               />
-              {errors.length > 0 ? errors.map((err) => <Typography fontWeight="bold" color={"secondary"} align="center">{err}</Typography>) : null}
+              {errors ? errors.map((err) => <Typography fontWeight="bold" color={"secondary"} align="center">{err}</Typography>) : null}
               <Grid item xs={12}>
                 <FormControlLabel
                   name="pass"

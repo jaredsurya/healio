@@ -13,6 +13,7 @@ import {
 import React, { useContext, useState } from "react";
 import UserContext from "../../utils/userContext";
 import HealerDataModal from "./HealerModalButton";
+import { removeNull } from "../../utils/removeNull";
 
 const AccountModalBtn = () => {
   const { user, setUser } = useContext(UserContext);
@@ -32,6 +33,8 @@ const AccountModalBtn = () => {
       handleClose()
     }
 
+    const cleanedTempUser = removeNull(tempUser)
+
     function handleDetailSubmit() {
       fetch(`/users/${user.id}`, {
         method: "PATCH",
@@ -39,7 +42,7 @@ const AccountModalBtn = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(tempUser),
+        body: JSON.stringify(cleanedTempUser),
       })
         .then((r) => r.json())
         .then((data) => {

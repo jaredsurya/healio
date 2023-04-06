@@ -3,6 +3,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
+  Chip,
   IconButton,
   Tooltip,
   Typography,
@@ -14,24 +15,33 @@ import Weblinks from "./Weblinks";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import UserContext from "../../utils/userContext";
 import { Add, Check, Favorite, FavoriteBorder } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 function ServicePage({ id }) {
-  const { services, savedServices, setSavedServices, isAssociated, setIsAssociated } = useContext(HealersServicesContext);
+  const {
+    services,
+    savedServices,
+    setSavedServices,
+    isAssociated,
+    setIsAssociated,
+    setRenderHealer
+  } = useContext(HealersServicesContext);
   const { user } = useContext(UserContext);
   const [expanded, setExpanded] = useState(false);
+  const navigate = useNavigate()
   let service = services.find((s) => id === s.id);
+
 
   // HAVE TO SET the toggle plus or check to match whether the user and the service have been set (associated) before
   // NEED that to effect the boolean value of "isAssociated"
 
-  // function adjustAssociated(){
-  // }
-  // console.log("SS", savedServices)
-  // console.log("s",service)
   useEffect(() => {
-    setIsAssociated(savedServices.some((s) => s.id === service.id))
+    setExpanded(false);
+  }, [id]);
 
-  },[service, user])
+  useEffect(() => {
+    setIsAssociated(savedServices.some((s) => s.id === service.id));
+  }, [service, user]);
 
   function handleAssociation() {
     if (!isAssociated) {
@@ -52,13 +62,12 @@ function ServicePage({ id }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          setSavedServices(data)
-          setIsAssociated(false)
+          setSavedServices(data);
+          setIsAssociated(false);
         })
         .catch((err) => console.log(err));
     }
   }
-  
 
   useEffect(() => {
     user.services.find((svc) => svc.id === id)
@@ -69,6 +78,11 @@ function ServicePage({ id }) {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  function handleClick(id) {
+    setRenderHealer(id);
+    navigate(`/main/healer/${id}`);
+  }
 
   if (!service) {
     return (
@@ -134,7 +148,20 @@ function ServicePage({ id }) {
           </AccordionSummary>
           <AccordionDetails>
             <Typography fontWeight={"bold"}>
-              ADD IN HEALER BUBBLES HERE
+              {service.users.map((hlr) => (
+                <Chip
+                  key={hlr.id}
+                  size="large"
+                  align="center"
+                  label={hlr.full_name}
+                  variant="outlined"
+                  onClick={() => handleClick(hlr.id)}
+                  sx={{
+                    margin: "auto",
+                    fontSize: 22,
+                  }}
+                />
+              ))}
             </Typography>
           </AccordionDetails>
         </Accordion>

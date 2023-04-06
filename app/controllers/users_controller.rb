@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, only: [:update, :destroy]
+  # before_action :replace_nil_values_with_empty_string
   wrap_parameters format: []
   
   def create
     @user = User.create!(user_params)
-    login_user(user)
-    render json: @user, status: 201, serializer: UserSerializer
+    login_user(@user)
+    @user.remove_null_values
+    render json: @user, status: 201
   end
 
   def show
@@ -58,12 +60,33 @@ class UsersController < ApplicationController
 
   private
 
+  # def replace_nil_values_with_empty_string
+  #   ActiveSupport::Notifications.subscribe('render.active_model_serializers') do |*args|
+  #     event = ActiveSupport::Notifications::Event.new(*args)
+  #     event.payload[:json] = replace_nil_values_with_empty_string_in_hash(event.payload[:json])
+  #   end
+  # end
+
+  # def replace_nil_values_with_empty_string_in_hash(hash)
+  #   hash.transform_values do |value|
+  #     if value.nil?
+  #       ''
+  #     elsif value.is_a?(Hash)
+  #       replace_nil_values_with_empty_string_in_hash(value)
+  #     elsif value.is_a?(Array)
+  #       value.map { |item| replace_nil_values_with_empty_string_in_hash(item) }
+  #     else
+  #       value
+  #     end
+  #   end
+  # end
+
   def user_params 
     params.permit(
       :id, :full_name, :password, :email, :user_type, 
       :allow_email, :location, :avatar, :full_address, 
       :lat, :lon, :phone_number, :type, :bio 
-    )  
+    )
   end
 
   def authenticate_user

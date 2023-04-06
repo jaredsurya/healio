@@ -26,8 +26,6 @@ const ProfileDetailsDisplay = ({ size }) => {
     navigate(`/main/healer/${user.id}`);
   }
 
-  function handleDelete() {}
-
   if (size === "large") {
     return (
       <Box align="center">

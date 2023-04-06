@@ -46,11 +46,11 @@ const AddressAutocomplete = ({setLat, setLon, setFullAddress}) => {
       <TextField type="text" fullWidth label="Address of your healing practice (please click a suggestion below)" value={searchInput} onChange={handleInputChange} margin="dense"/>
       {suggestions.length > 0 && (
         <ul>
-          {suggestions.map((suggestion) => (
+          {suggestions.map((suggestion, index) => (
             <li
               style={{ cursor: "pointer" }}
               className='address'
-              key={suggestion.value}
+              key={index}
               onClick={() => handleItemSelect(suggestion.value, suggestion.lat, suggestion.lon)}
             >
               {suggestion.label}

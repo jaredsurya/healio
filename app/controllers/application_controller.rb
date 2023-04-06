@@ -12,6 +12,12 @@ class ApplicationController < ActionController::API
 
   private 
 
+  def nil_replace
+      self.attributes.each do |attr, value|
+        self[attr] = '' if value.nil?
+    end
+  end
+
   def render_unprocessable_entity_response(invalid)
     render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end

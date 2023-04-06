@@ -6,7 +6,7 @@ import {
   Chip,
   Typography,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import HealersServicesContext from "../../utils/healersServicesContext";
 import Weblinks from "./Weblinks";
@@ -21,6 +21,10 @@ function HealerPage({ id }) {
   let healer = healers.find((h) => id === h.id);
   const navigate = useNavigate()
 
+  useEffect(() => {
+    setExpanded(false);
+  }, [id]);
+
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -30,10 +34,9 @@ function HealerPage({ id }) {
     navigate(`/main/service/${id}`);
   }
 
-  // ACCORDION STAYS OPEN; WHEN I GO TO ANOTHER HEALER PAGE, THE ACCORDION IS OPEN THERE TOO
   // WHEN I DELETE SERVICES FOR THE HEALER IN SAVEDINTERESTS, THE CHANGES AREN'T PERSISTING TO THE SVCS ACCORDION ON HEALER PAGE
 
-  console.log(healer);
+  // console.log(healer);
 
   if (!id) {
     return (

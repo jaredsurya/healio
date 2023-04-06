@@ -21,8 +21,7 @@ function SavedInterests({ size }) {
   const { setRenderService, savedServices, setSavedServices, setIsAssociated } =
     useContext(HealersServicesContext);
   const navigate = useNavigate();
-  //
-  // THE TOGGLES on the like buttons all toggle together - same state - fix that.
+  
   function handleClick(id) {
     setRenderService(id);
     navigate(`/main/service/${id}`);
@@ -35,6 +34,7 @@ function SavedInterests({ size }) {
       .then(() => {
         setSavedServices(savedServices.filter((svc) => svc.id !== id));
         setIsAssociated(false);
+        //more logic here for affecting the accordions' values
       })
       .catch((err) => console.log(err));
   }

@@ -10,6 +10,7 @@ import Protected from "./utils/Protected";
 import SwitcherContext from "./utils/switcherContext";
 import Welcome from "./components/Features/Welcome";
 import HealersServicesContext from "./utils/healersServicesContext";
+import { removeNull } from "./utils/removeNull";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -21,6 +22,8 @@ function App() {
   const [savedServices, setSavedServices] = useState([]);
   const [isAssociated, setIsAssociated] = useState(false)
   
+
+
   useEffect(() => {
     if(user){
     setSavedServices(user.services)
@@ -57,8 +60,9 @@ function App() {
     fetch("/healers").then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          setHealers(data);
-          console.log("HLRS", data);
+          const cleanedData = removeNull(data)
+          setHealers(cleanedData);
+          console.log("HLRS", cleanedData);
         });
       } else {
         res.json().then((err) => console.log("error in services ", err.error));
