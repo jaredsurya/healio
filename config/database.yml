@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: healio_production
-  username: healio
-  password: <%= ENV["HEALIO_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
