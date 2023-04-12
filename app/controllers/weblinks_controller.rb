@@ -4,8 +4,8 @@ class WeblinksController < ApplicationController
     if request.headers['X-Link-Type'] == "user"
       link = current_user.weblinks.create!(w_params)
     else
-      # send service type in the header
-      # then create a weblink with the params
+      svc = Service.find(request.headers['X-Link-Type'])
+      link = svc.weblinks.create!(w_params)
     end
     render json: link, status: 201
   end

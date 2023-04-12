@@ -19,7 +19,7 @@ function HealerPage({ id }) {
   const { user } = useContext(UserContext);
   const [expanded, setExpanded] = useState(false);
   let healer = healers.find((h) => id === h.id);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     setExpanded(false);
@@ -52,7 +52,14 @@ function HealerPage({ id }) {
         {healer.full_name}
       </Typography>
       <div
-        style={{ width: "87%", margin: "0 auto", paddingBottom: "8px" }}
+        style={{
+          width: "84%",
+          margin: "0 auto",
+          paddingBottom: "8px",
+          lineHeight: "1.5",
+          fontSize: "23px",
+          fontFamily: "georgia",
+        }}
         dangerouslySetInnerHTML={{ __html: healer.bio }}
       />
       {user.email === healer.email ? (
@@ -76,20 +83,19 @@ function HealerPage({ id }) {
           </AccordionSummary>
           <AccordionDetails>
             {healer.services.map((svc) => (
-                <Chip
-                  key={svc.id}
-                  size="large"
-                  align="center"
-                  label={svc.name}
-                  variant="outlined"
-                  onClick={() => handleClick(svc.id)}
-                  sx={{
-                    margin: "auto",
-                    fontSize: 22,
-                    
-                  }}
-                />
-              ))}
+              <Chip
+                key={svc.id}
+                size="large"
+                align="center"
+                label={svc.name}
+                variant="outlined"
+                onClick={() => handleClick(svc.id)}
+                sx={{
+                  margin: "auto",
+                  fontSize: 22,
+                }}
+              />
+            ))}
           </AccordionDetails>
         </Accordion>
         <Accordion

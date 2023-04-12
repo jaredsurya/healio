@@ -107,7 +107,7 @@ function handleDetailSubmit() {
             onChange={handleChange}
           />
           <AddressAutocomplete setLat={setLat} setLon={setLon} setFullAddress={setFullAddress}/>
-          <WeblinksInput type={type} tempUser={tempUser} weblinks={weblinks} setWeblinks={setWeblinks} />
+          <WeblinksInput type={type} weblinks={weblinks} setWeblinks={setWeblinks} />
           <Typography>
             Please type your healers biography below. Include anything that makes you stand out.
           </Typography>

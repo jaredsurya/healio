@@ -48,13 +48,12 @@ function App() {
       if (res.ok) {
         res.json().then((data) => {
           setServices(data);
-          console.log("svcs", data);
         });
       } else {
         res.json().then((err) => console.log("error in services ", err.error));
       }
     });
-  }, []);
+  }, [savedServices]);
 
   useEffect(() => {
     fetch("/healers").then((res) => {
@@ -62,13 +61,12 @@ function App() {
         res.json().then((data) => {
           const cleanedData = removeNull(data)
           setHealers(cleanedData);
-          console.log("HLRS", cleanedData);
         });
       } else {
         res.json().then((err) => console.log("error in services ", err.error));
       }
     });
-  }, [user]);
+  }, [user, savedServices]);
 
   if (!user) {
     return (

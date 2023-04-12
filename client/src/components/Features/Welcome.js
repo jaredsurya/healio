@@ -27,7 +27,7 @@ function Welcome({ size }) {
             to be now. ❤️
           </Typography>
         </Box>
-        {user.type === "Healer" ? (
+        {user.user_type === "healer" ? (
           <>
             <Typography variant="h4" align="center" paddingTop={2}>
               HEALERS:
@@ -39,7 +39,7 @@ function Welcome({ size }) {
           </>
         ) : null}
         <Box align="center" p={1}>
-          <HealerModalButton />
+          {user.user_type === "healer" ? <HealerModalButton /> : null }
         </Box>
       </Box>
     );

@@ -10,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import UserContext from "./userContext";
 
-function WeblinksInput({ type, tempUser, weblinks, setWeblinks }) {
+function WeblinksInput({ type, svcid, weblinks, setWeblinks }) {
   const { user, setUser } = useContext(UserContext);
   const [url, setUrl] = useState("");
 

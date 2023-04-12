@@ -128,6 +128,7 @@ function SavedInterests({ size }) {
             "&:hover": { cursor: "pointer", color: "blue" },
             "text-decoration": "underline",
           }}
+          paddingBottom={.5}
           align="center"
           variant="h6"
         >
