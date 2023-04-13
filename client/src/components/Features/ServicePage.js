@@ -27,6 +27,7 @@ import WeblinksInput from "../../utils/WeblinksInput";
 import QuillEditor from "../../utils/QuillEditor";
 import { removeNull } from "../../utils/removeNull";
 import ServiceModalBTN from "../Buttons/ServiceModalBTN";
+import Comments from "../../utils/Comments";
 
 function ServicePage({ id }) {
   const {
@@ -47,6 +48,11 @@ function ServicePage({ id }) {
   const [deleteOpen, setDeleteOpen] = useState(false);
   const navigate = useNavigate();
   let service = services.find((s) => id === s.id);
+
+  let healers = [];
+  if (service && service.users && service.users.length > 0) {
+    healers = service.users.filter((user) => user.user_type === "healer");
+  }
 
   // HAVE TO SET the toggle plus or check to match whether the user and the service have been set (associated) before
   // NEED that to effect the boolean value of "isAssociated"
@@ -173,14 +179,13 @@ function ServicePage({ id }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        setSavedServices(savedServices.filter((svc) => svc.id !== service.id))
-        setServices(data)
+        setSavedServices(savedServices.filter((svc) => svc.id !== service.id));
+        setServices(data);
         setDeleteOpen(false);
         setOpen(false);
-        navigate("/main")
+        navigate("/main");
       })
       .catch((err) => console.log("error in delete-confirm", err));
-    
   };
 
   const handleDeleteCancel = () => {
@@ -323,17 +328,39 @@ function ServicePage({ id }) {
       <Typography variant="h3" gutterBottom align="center">
         {service.name}
       </Typography>
-      <div
-        style={{
+      <Box
+        sx={{
           width: "84%",
           margin: "0 auto",
           paddingBottom: "8px",
-          lineHeight: "1.5",
-          fontSize: "23px",
-          fontFamily: "georgia",
+          textAlign: "center",
         }}
-        dangerouslySetInnerHTML={{ __html: service.description }}
-      />
+      >
+        <Box width={"38%"} align="center" margin="0 auto" paddingBottom={2}>
+          {service.image ? (
+            <img
+              src={service.image}
+              alt="service image"
+              style={{
+                maxWidth: "100%",
+                margin: "0 auto",
+                borderRadius: "16px",
+              }}
+            />
+          ) : null}
+        </Box>
+        <div
+          style={{
+            float: "none",
+            textAlign: "justify",
+            lineHeight: "1.5",
+            fontSize: "23px",
+            fontFamily: "georgia",
+          }}
+          dangerouslySetInnerHTML={{ __html: service.description }}
+        />
+      </Box>
+
       <Box className="accordions" paddingTop={3}>
         <Accordion
           expanded={expanded === "panel1"}
@@ -349,8 +376,9 @@ function ServicePage({ id }) {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography fontWeight={"bold"}>
-              {service.users.map((hlr) => (
+          
+            {healers.length > 0 ? (
+              healers.map((hlr) => (
                 <Chip
                   key={hlr.id}
                   size="large"
@@ -363,8 +391,12 @@ function ServicePage({ id }) {
                     fontSize: 22,
                   }}
                 />
-              ))}
-            </Typography>
+              ))
+            ) : (
+              <Typography fontWeight={"bold"}>
+                {service.name} has no associated healers on Healio yet.
+              </Typography>
+            )}
           </AccordionDetails>
         </Accordion>
         <Accordion
@@ -385,7 +417,8 @@ function ServicePage({ id }) {
           </AccordionDetails>
         </Accordion>
       </Box>
-      <ServiceModalBTN />
+      <Comments service={service} key='a1' />
+      {user.user_type === "healer" ? <ServiceModalBTN /> : null}
     </Box>
   );
 }

@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css";
 import SwitcherContext from "../../utils/switcherContext";
 import HealersServicesContext from "../../utils/healersServicesContext";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../../utils/userContext";
 
 const markerIcon = L.icon({
   iconUrl:
@@ -23,6 +24,7 @@ const markerIcon = L.icon({
 });
 
 function Map({ size }) {
+  const { user } = useContext(UserContext);
   const { feed, setFeed } = useContext(SwitcherContext);
   const { healers, setRenderHealer } = useContext(HealersServicesContext);
   const [userLocation, setUserLocation] = useState([43.0481, -76.1474]);
@@ -71,10 +73,11 @@ function Map({ size }) {
             <MapContainer
               center={position}
               zoom={11}
-              style={{ height: "80vh",
-              border: "3px solid #0e643e",
-              borderRadius: "10px",  
-            }}
+              style={{
+                height: "80vh",
+                border: "3px solid #0e643e",
+                borderRadius: "10px",
+              }}
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
               {markers.map((marker, index) => (
@@ -102,7 +105,12 @@ function Map({ size }) {
   } else {
     return (
       <Box p={0.5}>
-        <Typography align="center" p="5px" sx={{ "&:hover": { cursor: "pointer", color: "blue" } }} onClick={() => setFeed("map")}>
+        <Typography
+          align="center"
+          p="5px"
+          sx={{ "&:hover": { cursor: "pointer", color: "blue" } }}
+          onClick={() => setFeed("map")}
+        >
           Use the map markers to find your local healers:
         </Typography>
         {userLocation && (
@@ -112,16 +120,12 @@ function Map({ size }) {
             style={{
               border: "3px solid #0e643e",
               borderRadius: "10px",
-              minHeight: "410px"
+              minHeight: "410px",
             }}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {markers.map((marker, index) => (
-              <Marker
-                key={index}
-                position={marker.position}
-                icon={markerIcon}
-              >
+              <Marker key={index} position={marker.position} icon={markerIcon}>
                 <Popup>
                   <Box
                     onClick={() => handleMarkerClick(marker)}

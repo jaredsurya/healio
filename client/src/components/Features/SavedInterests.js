@@ -126,7 +126,7 @@ function SavedInterests({ size }) {
           }}
           sx={{
             "&:hover": { cursor: "pointer", color: "blue" },
-            "text-decoration": "underline",
+            "textDecoration": "underline",
           }}
           paddingBottom={.5}
           align="center"

@@ -1,6 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :content
-  belongs_to :visitor
-  has_one :healer
-  has_one :service
+  attributes :id, :content, :user_id, :service_id
+  belongs_to :service
+  
 end

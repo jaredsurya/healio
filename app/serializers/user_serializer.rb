@@ -7,7 +7,6 @@ class UserSerializer < ActiveModel::Serializer
   # has_many :linkable
   has_many :services
   has_many :blogs
-  has_many :comments
   # has_one_attached :avatar
 
   def avatar
