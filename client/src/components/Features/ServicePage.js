@@ -15,6 +15,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import React, { useContext, useState, useEffect } from "react";
 import HealersServicesContext from "../../utils/healersServicesContext";
@@ -27,7 +28,48 @@ import WeblinksInput from "../../utils/WeblinksInput";
 import QuillEditor from "../../utils/QuillEditor";
 import { removeNull } from "../../utils/removeNull";
 import ServiceModalBTN from "../Buttons/ServiceModalBTN";
-import Comments from "../../utils/Comments";
+import styled from "@emotion/styled";
+
+const CommentsContainer = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  margin: "2rem",
+  marginTop: "1rem",
+  marginBottom: ".5rem"
+});
+
+const CommentBox = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: "100%",
+  margin: "0 auto",
+  marginBottom: ".7rem",
+  padding: ".5rem",
+  backgroundColor: "#f0f4ff",
+  borderRadius: "5px",
+  outline: "1px dotted lightgrey",
+});
+
+const CommentAuthor = styled(Typography)({
+  fontWeight: "bold",
+  marginBottom: "0.5rem",
+});
+
+const CommentText = styled(Typography)({
+  marginBottom: "0.5rem",
+});
+
+const CommentInput = styled(TextField)({
+  width: "83%",
+  marginTop: ".5rem",
+  marginBottom: ".5rem",
+});
+
+const SubmitButton = styled(Button)({
+  marginTop: "0rem",
+});
 
 function ServicePage({ id }) {
   const {
@@ -38,6 +80,8 @@ function ServicePage({ id }) {
     isAssociated,
     setIsAssociated,
     setRenderHealer,
+    comments,
+    setComments,
   } = useContext(HealersServicesContext);
   const { user } = useContext(UserContext);
   const [expanded, setExpanded] = useState(false);
@@ -46,6 +90,8 @@ function ServicePage({ id }) {
   const [weblinks, setWeblinks] = useState([]);
   const [desc, setDesc] = useState("");
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [comment, setComment] = useState("");
+  const [pageComments, setPageComments] = useState([]);
   const navigate = useNavigate();
   let service = services.find((s) => id === s.id);
 
@@ -54,8 +100,28 @@ function ServicePage({ id }) {
     healers = service.users.filter((user) => user.user_type === "healer");
   }
 
-  // HAVE TO SET the toggle plus or check to match whether the user and the service have been set (associated) before
-  // NEED that to effect the boolean value of "isAssociated"
+  useEffect(() => {
+    setPageComments(comments.filter((cmt) => cmt.service_id === id));
+  }, [comments, id]);
+
+  useEffect(() => {
+    if (id) {
+      fetch(`/comments/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setComments(data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [id, setComments]);
+  //console.log(comments)
+
+  // useEffect(() => {
+  //   if (service) {
+  //     const commentsForService = comments.filter((comment) => comment.service_id === service.id);
+  //     setPageComments(commentsForService);
+  //   }
+  // }, [service, comments]);
 
   useEffect(() => {
     if (editService) {
@@ -191,6 +257,37 @@ function ServicePage({ id }) {
   const handleDeleteCancel = () => {
     setDeleteOpen(false);
   };
+
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+    fetch("/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content: comment,
+        user_id: user.id,
+        service_id: service.id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setComments(data);
+      })
+      .catch((err) => alert(err));
+    setComment("");
+  };
+
+  function handleCommentDelete(id) {
+    fetch(`/comments/${id}`, { method: "DELETE" })
+      .then(setComments(comments.filter((cmnt) => cmnt.id !== id)))
+      .catch((err) => console.log(err));
+  }
 
   if (!service) {
     return (
@@ -376,7 +473,6 @@ function ServicePage({ id }) {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-          
             {healers.length > 0 ? (
               healers.map((hlr) => (
                 <Chip
@@ -417,7 +513,63 @@ function ServicePage({ id }) {
           </AccordionDetails>
         </Accordion>
       </Box>
-      <Comments service={service} key='a1' />
+      <CommentsContainer>
+        <Typography
+          variant="h4"
+          fontWeight={"bold"}
+          color={"primary"}
+          marginBottom=".8rem"
+          marginTop=".5rem"
+        >
+          Comments:
+        </Typography>
+        {pageComments.length > 0 ? (
+          pageComments.map((cmnt) => {
+            return (
+              <Box
+                display="flex"
+                margin="0 auto"
+                justifyContent="space-between"
+                width="72%"
+              >
+                <CommentBox key={cmnt.id}>
+                  <CommentAuthor>{cmnt.user.full_name}</CommentAuthor>
+                  <CommentText>{cmnt.content}</CommentText>
+                </CommentBox>
+                {cmnt.user.id === user.id ? (
+                  <Tooltip title="Delete">
+                    <IconButton
+                      onClick={() => handleCommentDelete(cmnt.id)}
+                      sx={{ color: "#c2c2c2", "&:hover": { color: "red" } }}
+                      disableFocusRipple
+                      disableRipple
+                    >
+                      <DeleteForeverIcon />
+                    </IconButton>
+                  </Tooltip>
+                ) : null}
+              </Box>
+            );
+          })
+        ) : (
+          <Typography>No comments yet.</Typography>
+        )}
+        <CommentInput
+          label="Add a comment"
+          variant="outlined"
+          value={comment}
+          onChange={handleCommentChange}
+          multiline
+          rows={4}
+        />
+        <SubmitButton
+          variant="contained"
+          color="primary"
+          onClick={(e) => handleCommentSubmit(e)}
+        >
+          Submit
+        </SubmitButton>
+      </CommentsContainer>
       {user.user_type === "healer" ? <ServiceModalBTN /> : null}
     </Box>
   );

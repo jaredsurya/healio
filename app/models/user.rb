@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :user_services, dependent: :destroy
   has_many :services, through: :user_services, dependent: :destroy
   has_many :weblinks, as: :linkable, dependent: :destroy
+  has_many :comments, dependent: :destroy
   validates :email, uniqueness: true
 
   def remove_null_values

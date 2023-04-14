@@ -21,6 +21,8 @@ function App() {
   const [renderService, setRenderService] = useState(null);
   const [savedServices, setSavedServices] = useState([]);
   const [isAssociated, setIsAssociated] = useState(false)
+  const [comments, setComments] = useState([]);
+
   
 
 
@@ -95,6 +97,8 @@ function App() {
                 setSavedServices,
                 isAssociated,
                 setIsAssociated,
+                comments,
+                setComments,
               }}
             >
               <Routes>
