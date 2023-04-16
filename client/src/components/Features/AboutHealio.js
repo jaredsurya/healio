@@ -13,6 +13,10 @@ function AboutHealio() {
         find that on the services page of your liking you can see the associated
         healers on this site which offer that kind of service.
       </Typography>
+      <br/>
+      <Typography variant="h6" align="center">If there is any issue you would like to report or if you would
+        just like to inquire about Healio, please contact Jared at <strong>jaredsurya@gmail.com</strong>
+      </Typography>
       </Box>
     </Box>
   );

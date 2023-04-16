@@ -51,7 +51,7 @@ function Map({ size }) {
       }));
     }
     setMarkers(newMarkers);
-  }, [healers]);
+  }, [healers, user]);
 
   const position = userLocation;
 
@@ -104,14 +104,17 @@ function Map({ size }) {
     );
   } else {
     return (
-      <Box p={0.5}>
+      <Box p={0.5} paddingTop={0} marginTop={"0px"}>
         <Typography
           align="center"
           p="5px"
+          paddingBottom={1}
+          fontWeight={"bold"}
+          color={"primary"}
           sx={{ "&:hover": { cursor: "pointer", color: "blue" } }}
           onClick={() => setFeed("map")}
         >
-          Use the map markers to find your local healers:
+          Use the blue map markers below to find your local healers:
         </Typography>
         {userLocation && (
           <MapContainer

@@ -11,6 +11,13 @@ class ServicesController < ApplicationController
     render json: @services
   end 
 
+  def update
+    service = Service.find(svc_param[:id])
+    service.update(svc_param)
+    services = Service.all
+    render json: services
+  end
+
   def destroy
     service = Service.find(params[:id])
     service.destroy

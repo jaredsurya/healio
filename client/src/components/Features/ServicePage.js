@@ -68,7 +68,9 @@ const CommentInput = styled(TextField)({
 });
 
 const SubmitButton = styled(Button)({
-  marginTop: "0rem",
+  width: "23%",
+  letterSpacing: ".18em",
+  fontSize: "15pt"
 });
 
 function ServicePage({ id }) {
@@ -99,6 +101,7 @@ function ServicePage({ id }) {
   if (service && service.users && service.users.length > 0) {
     healers = service.users.filter((user) => user.user_type === "healer");
   }
+
 
   useEffect(() => {
     setPageComments(comments.filter((cmt) => cmt.service_id === id));
@@ -189,7 +192,7 @@ function ServicePage({ id }) {
       if (res.ok) {
         res.json().then((data) => {
           const cleanedData = removeNull(data);
-          service = cleanedData;
+          setServices(cleanedData)
         });
       } else {
         alert("error in SERVICE PAGE");

@@ -131,6 +131,7 @@ function SavedInterests({ size }) {
           paddingBottom={.5}
           align="center"
           variant="h6"
+          color="primary"
         >
           {user.user_type === "healer" ? "Your Services:" : "My Favorites:"}
         </Typography>

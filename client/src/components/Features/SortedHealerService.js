@@ -27,19 +27,21 @@ function SortedHealerService({ size }) {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
-    padding: theme.spacing(1),
+    padding: theme.spacing(1.3),
     textAlign: "center",
     boxShadow: "2px 2px 10px 2px rgba(0, 0, 0, 0.3)",
     color: theme.palette.text.primary,
     "&:hover": { cursor: "pointer" },
     display: "inline-block",
+    // fontWeight: "bold",
+    fontSize: "16pt",
   }));
 
   function sortedServices() {
     return services
       .sort((a, b) => a.name.localeCompare(b.name))
       .map((service) => (
-        <Box key={service.id}  display="inline-block">
+        <Box key={service.id} p={.3} display="inline-block">
           <Item onClick={() => showService(service.id)}>{service.name}</Item>
         </Box>
       ));
@@ -54,7 +56,7 @@ function SortedHealerService({ size }) {
     return healers
       .sort((a, b) => a.full_name.localeCompare(b.full_name))
       .map((healer) => (
-        <Box key={healer.id} display="inline-block">
+        <Box key={healer.id} p={.3} display="inline-block">
           <Item onClick={() => showHealer(healer.id)}>{healer.full_name}</Item>
         </Box>
       ));
@@ -82,19 +84,20 @@ function SortedHealerService({ size }) {
           Click the buttons below to explore the featured services and who
           offers them.
         </Typography>
-        <Box id="buttons" align="center" justifyItems={"space-between"}>
+        <Box id="buttons" align="center" paddingTop={2} paddingBottom={1.8} justifyItems={"space-between"}>
           <Button
             variant="outlined"
             color="secondary"
             onClick={() => onServicesClick()}
-            borderWidth="5px"
-            style={{ borderWidth: showServices ? '3px' : '1px' }}
+            // borderWidth="5px"
+            size="large"
+            style={{ borderWidth: showServices ? '4px' : '1px' }}
           >
             Services
           </Button>
           <AllInclusiveIcon
             style={{
-              fontSize: "2rem",
+              fontSize: "2.8rem",
               color: "#0e643e",
               verticalAlign: "middle",
               padding: "12px",
@@ -103,16 +106,16 @@ function SortedHealerService({ size }) {
           <Button
             variant="outlined"
             color="secondary"
+            size="large"
             onClick={() => onHealersClick()}
-            style={{ borderWidth: showServices ? '1px' : '3px' }}
+            style={{ borderWidth: showServices ? '1px' : '4px' }}
           >
             Healers
           </Button>
         </Box>
         <Stack
           direction="column"
-          //divider={<Divider orientation="horizontal" flexItem />}
-          spacing={1}
+          spacing={1.4}
           sx={{ textAlign: "center" }}
         >
           {showServices ? sortedServices() : sortedHealers()}
