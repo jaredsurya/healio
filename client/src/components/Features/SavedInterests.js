@@ -149,6 +149,7 @@ function SavedInterests({ size }) {
                   onDelete={() => handleDelete(svc.id)}
                   sx={{
                     margin: "auto",
+                    backgroundColor: "white",
                     fontSize: 22,
                     "& .MuiChip-deleteIcon:hover": {
                       color: "red",

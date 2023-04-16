@@ -12,7 +12,6 @@ import {
   Button,
   Divider,
 } from "@mui/material";
-import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
 import MenuIcon from "@mui/icons-material/Menu";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useContext } from "react";
@@ -22,7 +21,12 @@ import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const settings = ["My Profile", "My Saved Services", "About Healio", "Log out"];
+  const settings = [
+    "My Profile",
+    "My Saved Services",
+    "About Healio",
+    "Log out",
+  ];
   const pages = [
     "Welcome",
     "Services ∞ Healers",
@@ -45,21 +49,21 @@ const NavBar = () => {
 
   // MAYBE USE A SWITCH TERNARY
   const handleNavMenuClick = (page) => {
-    switch (page){
+    switch (page) {
       case "Welcome":
-        navigate("/main")
+        navigate("/main");
         break;
       case "Services ∞ Healers":
-        navigate("/main/finder")
+        navigate("/main/finder");
         break;
       case "Map":
-        navigate("/main/map")
+        navigate("/main/map");
         break;
       case "Quotes":
-        navigate("/main/quotes")
+        navigate("/main/quotes");
         break;
       case "Featured Healer":
-        navigate("/main/featuredhealer")
+        navigate("/main/featuredhealer");
         break;
     }
     setAnchorElNav(null);
@@ -69,16 +73,16 @@ const NavBar = () => {
   const handleUserMenuClick = (setting) => {
     switch (setting) {
       case "My Profile":
-        navigate("/main/myprofile")
+        navigate("/main/myprofile");
         break;
       case "My Saved Services":
-        navigate("/main/mysaved")
+        navigate("/main/mysaved");
         break;
       case "About Healio":
-        navigate("/main/about")
+        navigate("/main/about");
         break;
       case "Log out":
-        handleLogout()
+        handleLogout();
         break;
     }
     setAnchorElUser(null);
@@ -105,7 +109,7 @@ const NavBar = () => {
     <ThemeProvider theme={theme}>
       <AppBar position="static">
         <Container maxWidth="xl">
-          <Toolbar disableGutters>
+          <Toolbar disableGutters sx={{ justifyContent: "center" }}>
             {/* MENU ICON FOR NAVIGATION */}
             <Box sx={{ flexGrow: 1, display: "flex" }}>
               <IconButton
@@ -142,31 +146,42 @@ const NavBar = () => {
                 {pages.map((page, index) => (
                   <div key={page}>
                     <MenuItem onClick={() => handleNavMenuClick(page)}>
-                      <Typography p={0} textAlign="center">{page}</Typography>
+                      <Typography p={0} textAlign="center">
+                        {page}
+                      </Typography>
                     </MenuItem>
                     {index < pages.length - 1 && <Divider />}
                   </div>
                 ))}
               </Menu>
             </Box>
-
-            <Typography
-              variant="h4"
-              noWrap
-              component="a"
-              
+            <Box
               sx={{
-                mr: 2,
                 display: "flex",
-                flexGrow: 1,
-                fontFamily: "lobster",
-                fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
+                alignItems: "center",
+                flexGrow: 100,
+                
+                justifyContent: "center",
               }}
             >
-              Healio
-            </Typography>
+              <Typography
+                variant="h4"
+                noWrap
+                component="a"
+                onClick={() => navigate("/main/about")}
+                sx={{
+                  fontFamily: "lobster",
+                  fontWeight: 700,
+                  color: "inherit",
+                  textDecoration: "none",
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
+              >
+                Healio
+              </Typography>
+            </Box>
 
             {/* USER MENU AND ITEMS */}
             <Box sx={{ flexGrow: 0 }}>
@@ -193,13 +208,13 @@ const NavBar = () => {
               >
                 {settings.map((setting, index) => (
                   <div key={setting}>
-                  <MenuItem
-                    key={setting}
-                    onClick={() => handleUserMenuClick(setting)}
-                  >
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                  {index < settings.length - 1 && <Divider />}
+                    <MenuItem
+                      key={setting}
+                      onClick={() => handleUserMenuClick(setting)}
+                    >
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                    {index < settings.length - 1 && <Divider />}
                   </div>
                 ))}
               </Menu>

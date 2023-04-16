@@ -84,7 +84,7 @@ function SortedHealerService({ size }) {
           Click the buttons below to explore the featured services and who
           offers them.
         </Typography>
-        <Box id="buttons" align="center" paddingTop={2} paddingBottom={1.8} justifyItems={"space-between"}>
+        <Box id="buttons" align="center" paddingTop={2} paddingBottom={2} justifyItems={"space-between"}>
           <Button
             variant="outlined"
             color="secondary"
@@ -158,7 +158,7 @@ function SortedHealerService({ size }) {
           <Stack
             direction="column"
             //divider={<Divider orientation="horizontal" flexItem />}
-            spacing={0.8}
+            spacing={0.4}
             sx={{ textAlign: "center" }}
           >
             {showServices ? sortedServices() : sortedHealers()}
