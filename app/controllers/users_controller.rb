@@ -52,34 +52,16 @@ class UsersController < ApplicationController
 
   def update_avatar
     byebug
-    user = User.find(request.headers['X-User-Id'])
-    user.avatar.attach(user_params[:avatar]) #may use params instead of user_p
-    # byebug
-    render json: user, status: :created
+    if params[:avatar]
+      current_user.avatar.attach(params[:avatar])
+      current_user.avatar.variant(resize_to_limit: [700, 700])
+      render json: current_user, status: :created
+    else
+      render json: { error: "Avatar not provided" }, status: 400
+    end
   end
-
+  
   private
-
-  # def replace_nil_values_with_empty_string
-  #   ActiveSupport::Notifications.subscribe('render.active_model_serializers') do |*args|
-  #     event = ActiveSupport::Notifications::Event.new(*args)
-  #     event.payload[:json] = replace_nil_values_with_empty_string_in_hash(event.payload[:json])
-  #   end
-  # end
-
-  # def replace_nil_values_with_empty_string_in_hash(hash)
-  #   hash.transform_values do |value|
-  #     if value.nil?
-  #       ''
-  #     elsif value.is_a?(Hash)
-  #       replace_nil_values_with_empty_string_in_hash(value)
-  #     elsif value.is_a?(Array)
-  #       value.map { |item| replace_nil_values_with_empty_string_in_hash(item) }
-  #     else
-  #       value
-  #     end
-  #   end
-  # end
 
   def user_params 
     params.permit(

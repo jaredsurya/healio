@@ -30,11 +30,13 @@ function ImageUploadBox({id}) {
     const formData = new FormData();
     formData.append("avatar", image);
 
+    // console.log(formData)
+    //console.log("upload", formData.get('avatar'))
+
     fetch("/users/update_avatar", {
       method: "POST",
       headers: {
         'X-User-Id': id,
-        "Content-Type": "image/jpeg"
       },
       body: formData,
       credentials: "same-origin",
@@ -61,6 +63,7 @@ function ImageUploadBox({id}) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
+      console.log("change",reader.result)
       setImage(reader.result);
     };
   }
@@ -104,7 +107,7 @@ function ImageUploadBox({id}) {
             marginBottom: "10px"
           }}
         >
-          <Input type="file" id="avatar" onChange={handleImageChange}/>
+          <Input type="file" accept="image/*" id="avatar" onChange={handleImageChange}/>
         </Container>
         <Box
         sx={{

@@ -159,7 +159,7 @@ const NavBar = () => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                flexGrow: 100,
+                flexGrow: 400,
                 
                 justifyContent: "center",
               }}

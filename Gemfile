@@ -21,6 +21,8 @@ gem "image_processing", ">= 1.2"
 gem "jsonapi-serializer", "~> 2.2"
 gem "figaro"
 
+gem 'cloudinary'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

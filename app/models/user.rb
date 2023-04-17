@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  has_one_attached :avatar, dependent: :destroy
+  has_one_attached :avatar, service: :cloudinary, dependent: :destroy
   has_many :blogs, dependent: :destroy
   has_many :user_services, dependent: :destroy
   has_many :services, through: :user_services, dependent: :destroy
