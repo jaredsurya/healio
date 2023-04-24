@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HealersServicesContext from "../../utils/healersServicesContext";
 import Weblinks from "./Weblinks";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -33,10 +33,6 @@ function HealerPage({ id }) {
     setRenderService(id);
     navigate(`/main/service/${id}`);
   }
-
-  // WHEN I DELETE SERVICES FOR THE HEALER IN SAVEDINTERESTS, THE CHANGES AREN'T PERSISTING TO THE SVCS ACCORDION ON HEALER PAGE
-
-  // console.log(healer);
 
   if (!id) {
     return (

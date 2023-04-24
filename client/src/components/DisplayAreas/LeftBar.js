@@ -8,13 +8,9 @@ import SavedInterests from "../Features/SavedInterests";
 import SortedHealerService from "../Features/SortedHealerService";
 import Welcome from "../Features/Welcome";
 
-// MAKE INTO MINI VARIANT DRAWER AT SMALL/XS SIZES
 
-// CONTAINS: user box, saved services (MUI chips), services/healers alphabetical, map
 const LeftBar = ({ theme }) => {
   let size = "widget"
-  // CANNOT SET BREAKPOINTS IN SX SETTINGS
-  // sx={{display:{ xs: "none"}}}
 
   return (
     <Box
@@ -34,8 +30,6 @@ const LeftBar = ({ theme }) => {
         <Quote size={size}/>
         <SortedHealerService />
         <Map />
-        {/* Conditional rendering of Services/Healers/Map
-      Switch Statement */}
       </Stack>
     </Box>
   );

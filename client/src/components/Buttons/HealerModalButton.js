@@ -1,16 +1,11 @@
 import {
   Box,
   Button,
-  Checkbox,
-  Chip,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  FormControlLabel,
-  IconButton,
-  InputAdornment,
   TextField,
   Typography,
 } from "@mui/material";
@@ -48,15 +43,12 @@ const HealerModalButton = () => {
     setLon("")
     handleClose()
   }
-// console.log(user)
 let body = {...tempUser, bio: bio, lat: lat, lon: lon, full_address: full_address}
 delete body.created_at
 delete body.weblinks
 const cleanedBody = removeNull(body)
-//console.log("BODY", body)
 
 function handleDetailSubmit() {
-  // setTempUser({...tempUser, weblinks: weblinks})
     fetch(`/users/${user.id}`, {
       method: "PATCH",
       headers: {

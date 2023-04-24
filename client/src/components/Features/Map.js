@@ -25,7 +25,7 @@ const markerIcon = L.icon({
 
 function Map({ size }) {
   const { user } = useContext(UserContext);
-  const { feed, setFeed } = useContext(SwitcherContext);
+  const { setFeed } = useContext(SwitcherContext);
   const { healers, setRenderHealer } = useContext(HealersServicesContext);
   const [userLocation, setUserLocation] = useState([43.0481, -76.1474]);
   const [markers, setMarkers] = useState([]);
@@ -58,8 +58,6 @@ function Map({ size }) {
   const handleMarkerClick = (e) => {
     setRenderHealer(e.id);
     navigate(`/main/healer/${e.id}`);
-    // Pass the marker data to your feed component
-    console.log("Clicked marker:", e);
   };
 
   if (size === "large") {

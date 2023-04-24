@@ -46,7 +46,6 @@ function WeblinksInput({ type, svcid, weblinks, setWeblinks }) {
     })
       .then((r) => {
         if (r.ok) {
-          // update the state of weblinks to remove the deleted link
           setWeblinks(weblinks.filter((link) => link.id !== id));
         } else {
           r.json().then((err) => alert(err.errors));

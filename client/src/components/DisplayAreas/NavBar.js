@@ -9,7 +9,6 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-  Button,
   Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -47,7 +46,6 @@ const NavBar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  // MAYBE USE A SWITCH TERNARY
   const handleNavMenuClick = (page) => {
     switch (page) {
       case "Welcome":
@@ -69,7 +67,6 @@ const NavBar = () => {
     setAnchorElNav(null);
   };
 
-  // MAYBE USE A ~SWITCH~ TERNARY combined with state
   const handleUserMenuClick = (setting) => {
     switch (setting) {
       case "My Profile":
@@ -101,8 +98,6 @@ const NavBar = () => {
     });
   }
 
-  // console.log("USER in context:", user);
-
   const theme = createTheme(themeOptions);
 
   return (
@@ -110,7 +105,6 @@ const NavBar = () => {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ justifyContent: "center" }}>
-            {/* MENU ICON FOR NAVIGATION */}
             <Box sx={{ flexGrow: 1, display: "flex" }}>
               <IconButton
                 size="large"
@@ -182,7 +176,6 @@ const NavBar = () => {
                 Healio
               </Typography>
             </Box>
-
             {/* USER MENU AND ITEMS */}
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">

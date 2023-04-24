@@ -3,15 +3,12 @@ import React, { useContext } from "react";
 import UserContext from "../../utils/userContext";
 import AccountModalBtn from "../Buttons/AccountModalBtn";
 import HealerModalButton from "../Buttons/HealerModalButton";
-import ImageUploadBox from "../../utils/ImageUploadBox";
-import SwitcherContext from "../../utils/switcherContext";
 import HealersServicesContext from "../../utils/healersServicesContext";
 import { useNavigate } from "react-router-dom";
 import DeleteModal from "../../utils/DeleteModal";
 
 const ProfileDetailsDisplay = ({ size }) => {
-  const { user, setUser } = useContext(UserContext);
-  const { feed, setFeed } = useContext(SwitcherContext);
+  const { user } = useContext(UserContext);
   const { setRenderHealer } = useContext(HealersServicesContext);
   let navigate = useNavigate();
   const date = new Date(user.created_at);
@@ -37,9 +34,9 @@ const ProfileDetailsDisplay = ({ size }) => {
         >
           Account Details:
         </Typography>
-        <Box marginTop={2} marginBottom={0}>
-          <ImageUploadBox id={user.id} />
-        </Box>
+        {/* <Box marginTop={2} marginBottom={0}>
+          <ImageUploadBox id={user.id} /> 
+        </Box> */}
         <Box margin={3}>
           <Typography variant="h4" paddingBottom={.9}>~ {user.full_name} ~</Typography>
           <Typography variant="h6" p={.7}>User-type: <strong>{user.user_type}</strong></Typography>

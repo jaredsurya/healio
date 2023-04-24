@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Container, Grid, Paper, styled, Typography } from "@mui/material";
+import { Container, Paper, styled, Typography } from "@mui/material";
 import { Box } from "@mui/material";
 import SwitcherContext from "../../utils/switcherContext";
 

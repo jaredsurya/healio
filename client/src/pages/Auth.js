@@ -46,17 +46,6 @@ function Auth() {
   const [errors, setErrors] = useState([]);
   const [toggle, setToggle] = useState(true);
 
-  //console.log("USER from Auth", user)
-
-  // function removeNull(data) {
-  //   for (const key in data) {
-  //     if (data[key] === null) {
-  //       data[key] = "";
-  //     }
-  //   }
-  //   return data;
-  // }
-
   const loginSubmit = (event) => {
     event.preventDefault();
     setErrors([])
@@ -81,14 +70,11 @@ function Auth() {
       } else {
         r.json().then((err) => {
           setErrors(err.errors);
-          // render this in typographyyyyyyyyyy
           console.log(err.errors);
         });
       }
     });
   };
-
-  // SIGN UP LOGIC BELOW
 
   const [userType, setUserType] = useState(null);
 
@@ -269,7 +255,6 @@ function Auth() {
               sx={{ mt: 2 }}
             >
               <Grid container spacing={2}>
-                {/*  GO IN AND MAKE THE GRID WIDTH SMALLER FOR BELOW ITEMS, ALSO CENTER CONTENT  */}
                 <Grid item xs={12} justifyContent="center">
                   <TextField
                     required
@@ -300,7 +285,6 @@ function Auth() {
                     id="password"
                     autoComplete="new-password"
                   />
-                  {/* Add showPassword state which uses checkbox w 'show password', affecting type parameter text/password */}
                 </Grid>
                 {errors ? errors.map((error) => <Typography key={error} fontWeight={"bold"} color={"error"} paddingLeft={"2em"}>Error: {error}</Typography>) : null}
                 <Grid item xs={12}>

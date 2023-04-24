@@ -1,13 +1,9 @@
 production:
   cloud_name: dtlq78n5z
-  api_key: 375783462319189
-  api_secret: JoIIr8wCXVBhT5pb9nrI4xX8fqA
-  enhance_image_tag: true
-  static_file_support: false
+  api_key: '375783462319189'
+  api_secret: 'JoIIr8wCXVBhT5pb9nrI4xX8fqA'
 
 development:
   cloud_name: dtlq78n5z
-  api_key: 375783462319189
-  api_secret: JoIIr8wCXVBhT5pb9nrI4xX8fqA
-  enhance_image_tag: true
-  static_file_support: false
+  api_key: '375783462319189'
+  api_secret: 'JoIIr8wCXVBhT5pb9nrI4xX8fqA'

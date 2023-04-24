@@ -1,16 +1,11 @@
-import React from "react";
 import NavBar from "../components/DisplayAreas/NavBar";
 import LeftBar from "../components/DisplayAreas/LeftBar";
 import RightBar from "../components/DisplayAreas/RightBar";
 import Feed from "../components/DisplayAreas/Feed";
 import themeOptions from "../utils/themeOptions";
-import { Box, createTheme, Stack, ThemeProvider } from "@mui/material";
-import { Route, Routes } from "react-router-dom";
-import ProfileDetailsDisplay from "../components/Features/ProfileDetailsDisplay";
+import { createTheme, Stack, ThemeProvider } from "@mui/material";
 
 const theme = createTheme(themeOptions);
-
-//Create Menu context for both left and right menus, with state variables and setters for both
 
 const Main = () => {
   return (

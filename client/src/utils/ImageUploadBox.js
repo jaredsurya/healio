@@ -14,7 +14,7 @@ import { Container } from "@mui/system";
 function ImageUploadBox({id}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [image, setImage] = useState(null)
-  const [returnImage, setReturnImage] = useState(null)
+  const [setReturnImage] = useState(null)
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -28,18 +28,14 @@ function ImageUploadBox({id}) {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("avatar", image);
-
-    // console.log(formData)
-    //console.log("upload", formData.get('avatar'))
+    formData.append("avatar", image.avatar);
 
     fetch("/users/update_avatar", {
-      method: "POST",
+      method: "PATCH",
       headers: {
         'X-User-Id': id,
       },
       body: formData,
-      credentials: "same-origin",
     })
       .then((response) => {
         if (!response.ok) {
@@ -60,12 +56,7 @@ function ImageUploadBox({id}) {
 
   function handleImageChange(e) {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      console.log("change",reader.result)
-      setImage(reader.result);
-    };
+      setImage({avatar: file});
   }
 
   return (
@@ -107,7 +98,9 @@ function ImageUploadBox({id}) {
             marginBottom: "10px"
           }}
         >
+          <form encType="multipart/form-data">
           <Input type="file" accept="image/*" id="avatar" onChange={handleImageChange}/>
+          </form>
         </Container>
         <Box
         sx={{

@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import React, { useContext, useEffect } from 'react'
 import ProfileDetailsDisplay from '../Features/ProfileDetailsDisplay'
 import Welcome from '../Features/Welcome'
@@ -15,7 +15,7 @@ import HealersServicesContext from '../../utils/healersServicesContext'
 import AboutHealio from '../Features/AboutHealio'
   
   const Feed = ({theme}) => {
-    const { feed, setFeed } = useContext(SwitcherContext);
+    const { feed } = useContext(SwitcherContext);
     const { renderHealer, renderService } = useContext(HealersServicesContext);
     let size = "large"
     let navigate = useNavigate()

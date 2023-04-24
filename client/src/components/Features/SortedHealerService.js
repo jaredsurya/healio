@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Divider,
   Paper,
   Stack,
   styled,
@@ -14,7 +13,7 @@ import HealersServicesContext from "../../utils/healersServicesContext";
 import { useNavigate } from "react-router-dom";
 
 function SortedHealerService({ size }) {
-  const { feed, setFeed } = useContext(SwitcherContext);
+  const { setFeed } = useContext(SwitcherContext);
   let navigate = useNavigate()
   const {
     services,
@@ -33,7 +32,6 @@ function SortedHealerService({ size }) {
     color: theme.palette.text.primary,
     "&:hover": { cursor: "pointer" },
     display: "inline-block",
-    // fontWeight: "bold",
     fontSize: "16pt",
   }));
 
@@ -69,12 +67,10 @@ function SortedHealerService({ size }) {
 
   function onServicesClick() {
     setShowServices(true);
-    //return jsx with list of services
   }
 
   function onHealersClick() {
     setShowServices(false);
-    //return jsx with list of healers
   }
 
   if (size === "large") {
@@ -89,7 +85,6 @@ function SortedHealerService({ size }) {
             variant="outlined"
             color="secondary"
             onClick={() => onServicesClick()}
-            // borderWidth="5px"
             size="large"
             style={{ borderWidth: showServices ? '4px' : '1px' }}
           >
@@ -119,7 +114,6 @@ function SortedHealerService({ size }) {
           sx={{ textAlign: "center" }}
         >
           {showServices ? sortedServices() : sortedHealers()}
-          {/* display healers or services here */}
         </Stack>
       </Box>
     );
@@ -157,14 +151,11 @@ function SortedHealerService({ size }) {
         <Box height={"332px"} overflow="auto">
           <Stack
             direction="column"
-            //divider={<Divider orientation="horizontal" flexItem />}
             spacing={0.4}
             sx={{ textAlign: "center" }}
           >
             {showServices ? sortedServices() : sortedHealers()}
           </Stack>
-          {/* MAKE A STACK HERE THAT HAS A DIVIDER BETWEEN THEM. MAKE AVATARS FOR EACH HEALER THAT IS ASSOCIATED WITH A SERVICE, VICE VERSA */}
-          {/* display healers or services here */}
         </Box>
       </Box>
     );

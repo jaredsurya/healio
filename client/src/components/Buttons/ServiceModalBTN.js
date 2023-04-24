@@ -43,7 +43,6 @@ const ServiceModalBTN = () => {
   };
 
   function handleEditOpen() {
-    //resetForm()
     setOpen(true);
   }
 
@@ -53,7 +52,6 @@ const ServiceModalBTN = () => {
   }
 
   function handleDetailSubmit() {
-    // setTempUser({...tempUser, weblinks: weblinks})
     fetch(`/services`, {
       method: "POST",
       headers: {

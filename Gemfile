@@ -20,8 +20,13 @@ gem "dotenv-rails", "~> 2.8"
 gem "image_processing", ">= 1.2"
 gem "jsonapi-serializer", "~> 2.2"
 gem "figaro"
-
+gem 'activestorage', '~> 7.0', '>= 7.0.4'
+gem 'activestorage-validator', '~> 0.2.2'
 gem 'cloudinary'
+gem "net-http"
+gem "net-smtp"
+gem "net-imap"
+gem "uri", "0.10.0"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

@@ -8,7 +8,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import HealersServicesContext from "../../utils/healersServicesContext";
 import SwitcherContext from "../../utils/switcherContext";
@@ -34,7 +34,6 @@ function SavedInterests({ size }) {
       .then(() => {
         setSavedServices(savedServices.filter((svc) => svc.id !== id));
         setIsAssociated(false);
-        //more logic here for affecting the accordions' values
       })
       .catch((err) => console.log(err));
   }

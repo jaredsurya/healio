@@ -117,15 +117,7 @@ function ServicePage({ id }) {
         .catch((err) => console.log(err));
     }
   }, [id, setComments]);
-  //console.log(comments)
-
-  // useEffect(() => {
-  //   if (service) {
-  //     const commentsForService = comments.filter((comment) => comment.service_id === service.id);
-  //     setPageComments(commentsForService);
-  //   }
-  // }, [service, comments]);
-
+  
   useEffect(() => {
     if (editService) {
       setWeblinks(editService.weblinks);
@@ -169,7 +161,6 @@ function ServicePage({ id }) {
 
   function handleCancel() {
     setEditService(service);
-    // all the setters
     setDesc([]);
     setWeblinks([]);
     handleEditClose();
@@ -179,7 +170,6 @@ function ServicePage({ id }) {
   delete body.user_services;
   delete body.users;
   delete body.weblinks;
-  //console.log("BODY", body)
   function handleDetailSubmit() {
     fetch(`/services/${service.id}`, {
       method: "PATCH",
@@ -218,7 +208,6 @@ function ServicePage({ id }) {
   }
 
   function handleEditOpen() {
-    //console.log("clicked")
     setEditService(service);
     setOpen(true);
   }

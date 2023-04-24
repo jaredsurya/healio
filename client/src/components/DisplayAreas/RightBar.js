@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Stack, Typography, Box, Divider } from "@mui/material";
-import { Adsense } from "@ctrl/react-adsense";
-import Quote from "../Features/Quote";
+import { Stack, Box, Divider } from "@mui/material";
 import ProfileDetailsDisplay from "../Features/ProfileDetailsDisplay";
-import Ad from "../Features/Ad";
+import Adv from "../Features/Adv";
 import FeaturedHealer from "../Features/FeaturedHealer";
 import SavedInterests from "../Features/SavedInterests";
-
-// CONTENTS: Quotes, Advertisements, Featured Healer(daily)
 
 const RightBar = ({ theme }) => {
   let size = "widget"
@@ -27,7 +22,7 @@ const RightBar = ({ theme }) => {
       >
         <ProfileDetailsDisplay />
         <SavedInterests />
-        <Ad />
+        <Adv />
         <FeaturedHealer />
       </Stack>
     </Box>

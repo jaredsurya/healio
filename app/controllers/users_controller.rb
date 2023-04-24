@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
+  include ActiveStorage::Blob::Analyzable
   before_action :authenticate_user, only: [:update, :destroy]
-  # before_action :replace_nil_values_with_empty_string
   wrap_parameters format: []
   
   def create
@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   def update
     user = User.find(user_params[:id])    
     if user == current_user
-      # update_weblinks(user_params[:weblinks])
       user.update!(user_params)
       render json: user, status: 202
     else
@@ -52,12 +51,13 @@ class UsersController < ApplicationController
 
   def update_avatar
     byebug
-    if params[:avatar]
-      current_user.avatar.attach(params[:avatar])
-      current_user.avatar.variant(resize_to_limit: [700, 700])
-      render json: current_user, status: :created
-    else
-      render json: { error: "Avatar not provided" }, status: 400
+    if user_params[:avatar].present?
+      begin
+        current_user.update!(user_params)
+        render json: current_user, status: :ok
+      rescue StandardError => e
+        render json: { errors: ["Error uploading avatar, #{e.message}"] }, status: :internal_server_error
+      end
     end
   end
   
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     params.permit(
       :id, :full_name, :password, :email, :user_type, 
       :allow_email, :location, :avatar, :full_address, 
-      :lat, :lon, :phone_number, :type, :bio 
+      :lat, :lon, :phone_number, :type, :bio, :signed_blob_id 
     )
   end
 
