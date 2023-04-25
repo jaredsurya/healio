@@ -1,5 +1,3 @@
-# * README UNDER CONSTRUCTION *
-
 # Healio - A space for healing.
 
 ## Overview
