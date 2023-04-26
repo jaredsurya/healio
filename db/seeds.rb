@@ -1,14 +1,5 @@
 # SERVICES
 
-create_table "services", force: :cascade do |t|
-  t.string "name"
-  t.text "description"
-  t.string "image"
-  t.datetime "created_at", null: false
-  t.datetime "updated_at", null: false
-  t.string "desc"
-end
-
 def reiki
   name = "Reiki"
   desc = "Reiki is a Japanese healing technique that involves the transfer of energy through the hands of a practitioner to promote physical, emotional, and spiritual well-being."
@@ -209,7 +200,7 @@ def dancetherapy
   Research has shown that dance therapy can be an effective treatment for a variety of mental health conditions. It has been found to improve self-esteem, reduce anxiety and depression, promote relaxation, and improve interpersonal relationships. Dance therapy can also improve physical health by increasing flexibility, balance, and coordination.
   
   In summary, dance therapy is a powerful form of therapy that combines movement and dance with psychotherapy to support individuals in improving their emotional, physical, and mental well-being. It is a flexible and adaptable form of therapy that can be tailored to the unique needs and abilities of each client. Through movement and dance, clients can gain insight into their emotions, develop coping skills, and improve their self-awareness and self-esteem."
-#   image = "https://hips.hearstapps.com/hmg-prod/images/female-dancer-in-motion-royalty-free-image-1575472481.jpg"
+  image = "https://hips.hearstapps.com/hmg-prod/images/female-dancer-in-motion-royalty-free-image-1575472481.jpg"
 hash = {
   name: name,
   desc: desc,
@@ -640,90 +631,6 @@ Service.create(chakrabalancing)
 # end
 # Service.create(crystalhealing)
 
-# def crystalhealing
-#   name = ""
-#   description = ""
-#   image = ""
-
-#   hash = {
-#     name: name,
-#     description: description,
-#     image: image
-#   }
-#   return hash
-# end
-# Service.create(crystalhealing)
-
-# def crystalhealing
-#   name = ""
-#   description = ""
-#   image = ""
-
-#   hash = {
-#     name: name,
-#     description: description,
-#     image: image
-#   }
-#   return hash
-# end
-# Service.create(crystalhealing)
-
-# def crystalhealing
-#   name = ""
-#   description = ""
-#   image = ""
-
-#   hash = {
-#     name: name,
-#     description: description,
-#     image: image
-#   }
-#   return hash
-# end
-# Service.create(crystalhealing)
-
-# def crystalhealing
-#   name = ""
-#   description = ""
-#   image = ""
-
-#   hash = {
-#     name: name,
-#     description: description,
-#     image: image
-#   }
-#   return hash
-# end
-# Service.create(crystalhealing)
-
-# def crystalhealing
-#   name = ""
-#   description = ""
-#   image = ""
-
-#   hash = {
-#     name: name,
-#     description: description,
-#     image: image
-#   }
-#   return hash
-# end
-# Service.create(crystalhealing)
-
-# def crystalhealing
-#   name = ""
-#   description = ""
-#   image = ""
-
-#   hash = {
-#     name: name,
-#     description: description,
-#     image: image
-#   }
-#   return hash
-# end
-# Service.create(crystalhealing)
-
 svc1 = Service.find_by(name: "Reiki")
 svc2 = Service.find_by(name: "Moxibustion")
 svc3 = Service.find_by(name: "Nutritional Therapy")
@@ -740,8 +647,7 @@ def one
     user_type: "healer",
     phone_number: "1231112222",
     lat: "43.048655",
-    lon: "-76.215013",
-    address: "ya can't find me!"
+    lon: "-76.215013"
   }
   return hash
 end
@@ -756,8 +662,7 @@ def two
     user_type: "healer",
     phone_number: "1231112222",
     lat: "43.03449",
-    lon: "-76.062067",
-    address: "ya can't find me!"
+    lon: "-76.062067"
   }
   return hash
 end
@@ -772,8 +677,7 @@ def three
     user_type: "healer",
     phone_number: "1231112222",
     lat: "42.977419",
-    lon: "-76.141077",
-    address: "ya can't find me!"
+    lon: "-76.141077"
   }
   return hash
 end

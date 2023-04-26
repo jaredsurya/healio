@@ -34,7 +34,7 @@ function SavedInterests({ size }) {
       .then(() => {
         setSavedServices(savedServices.filter((svc) => svc.id !== id));
         setIsAssociated(false);
-      })
+       })
       .catch((err) => console.log(err));
   }
 
