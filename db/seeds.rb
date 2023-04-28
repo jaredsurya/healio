@@ -685,13 +685,16 @@ tres = User.create(three)
 
 uno.services << svc2
 uno.services << svc4
+uno.save
 
 dos.services << svc2
 dos.services << svc3
 dos.services << svc4
+dos.save
 
 tres.services << svc1
 tres.services << svc3
 tres.services << svc4
+tres.save
 
 puts "~ DONE SEEDING ~"

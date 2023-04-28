@@ -45,10 +45,11 @@ function Auth() {
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   const [toggle, setToggle] = useState(true);
+  const [isHealer, setIsHealer] = useState(false);
 
   const loginSubmit = (event) => {
     event.preventDefault();
-    setErrors([])
+    setErrors([]);
     const data = new FormData(event.currentTarget);
     const user = {
       email: data.get("email"),
@@ -80,7 +81,7 @@ function Auth() {
 
   function signupSubmit(event) {
     event.preventDefault();
-    setErrors([])
+    setErrors([]);
     const data = new FormData(event.currentTarget);
     const signUpDeets = {
       full_name: data.get("fullName"),
@@ -88,6 +89,7 @@ function Auth() {
       password: data.get("password"),
       user_type: data.get("type") ? "healer" : "visitor",
       allow_email: data.get("allowemail") ? true : false,
+      phone_number: data.get("phone_number"),
     };
 
     fetch("/signup", {
@@ -105,11 +107,11 @@ function Auth() {
         });
       } else {
         r.json().then((err) => {
-          console.log(err)
-          setErrors(err.errors)});
-        }
+          console.log(err);
+          setErrors(err.errors);
+        });
       }
-    );
+    });
   }
 
   if (toggle === true) {
@@ -163,7 +165,17 @@ function Auth() {
                 id="password"
                 autoComplete="current-password"
               />
-              {errors ? errors.map((err) => <Typography fontWeight="bold" color={"secondary"} align="center">{err}</Typography>) : null}
+              {errors
+                ? errors.map((err) => (
+                    <Typography
+                      fontWeight="bold"
+                      color={"secondary"}
+                      align="center"
+                    >
+                      {err}
+                    </Typography>
+                  ))
+                : null}
               <Grid item xs={12}>
                 <FormControlLabel
                   name="pass"
@@ -224,8 +236,6 @@ function Auth() {
       </ThemeProvider>
     );
   } else {
-    
-    
     // SIGN UP LOGIC BELOW
     return (
       <ThemeProvider theme={theme}>
@@ -242,10 +252,18 @@ function Auth() {
               alignItems: "center",
             }}
           >
-            <Avatar style={{ width: "62px", height: "62px" }} sx={{ mt: 3, mb: 2, bgcolor: "primary.main" }}>
+            <Avatar
+              style={{ width: "62px", height: "62px" }}
+              sx={{ mt: 3, mb: 2, bgcolor: "primary.main" }}
+            >
               <AllInclusiveIcon style={{ width: "54px", height: "54px" }} />
             </Avatar>
-            <Typography component="h1" variant="h4" gutterBottom fontFamily={"Lobster"}>
+            <Typography
+              component="h1"
+              variant="h4"
+              gutterBottom
+              fontFamily={"Lobster"}
+            >
               Sign up for Healio
             </Typography>
             <Box
@@ -275,6 +293,18 @@ function Auth() {
                     autoComplete="email"
                   />
                 </Grid>
+                {isHealer ? (
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="phone_number"
+                      label="Phone Number (10 digits only please)"
+                      name="phone_number"
+                      autoComplete="phone_number"
+                    />
+                  </Grid>
+                ) : null}
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -286,7 +316,18 @@ function Auth() {
                     autoComplete="new-password"
                   />
                 </Grid>
-                {errors ? errors.map((error) => <Typography key={error} fontWeight={"bold"} color={"error"} paddingLeft={"2em"}>Error: {error}</Typography>) : null}
+                {errors
+                  ? errors.map((error) => (
+                      <Typography
+                        key={error}
+                        fontWeight={"bold"}
+                        color={"error"}
+                        paddingLeft={"2em"}
+                      >
+                        Error: {error}
+                      </Typography>
+                    ))
+                  : null}
                 <Grid item xs={12}>
                   <FormControlLabel
                     name="pass"
@@ -303,6 +344,7 @@ function Auth() {
                 <Grid item xs={12}>
                   <FormControlLabel
                     name="type"
+                    onChange={() => setIsHealer(!isHealer)}
                     control={<Checkbox value="true" color="primary" />}
                     label="I am signing up to serve as a HEALER on this website."
                   />

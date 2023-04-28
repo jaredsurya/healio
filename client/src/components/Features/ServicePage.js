@@ -93,6 +93,7 @@ function ServicePage({ id }) {
   const [desc, setDesc] = useState("");
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [comment, setComment] = useState("");
+  const [error, setError] = useState(null)
   const [pageComments, setPageComments] = useState([]);
   const navigate = useNavigate();
   let service = services.find((s) => id === s.id);
@@ -256,6 +257,7 @@ function ServicePage({ id }) {
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
+    setError(false)
     fetch("/comments", {
       method: "POST",
       headers: {
@@ -267,11 +269,16 @@ function ServicePage({ id }) {
         service_id: service.id,
       }),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setComments(data);
+      .then((res) => {
+        console.log(res)
+        return res.json()
+      }).then((data) => {
+        if(data.errors){
+          setError(data.errors[0])
+        }else{
+          setComments(data)
+        }
       })
-      .catch((err) => alert(err));
     setComment("");
   };
 
@@ -554,6 +561,7 @@ function ServicePage({ id }) {
           multiline
           rows={4}
         />
+        {error ? <Typography color={"red"} fontWeight={"bold"}>{error}</Typography> : null}
         <SubmitButton
           variant="contained"
           color="primary"

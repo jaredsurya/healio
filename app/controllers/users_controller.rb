@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   end 
 
   def update
+    # byebug
     user = User.find(user_params[:id])    
     if user == current_user
       user.update!(user_params)
@@ -49,24 +50,24 @@ class UsersController < ApplicationController
     render json: @healers
   end
 
-  def update_avatar
-    byebug
-    if user_params[:avatar].present?
-      begin
-        current_user.update!(user_params)
-        render json: current_user, status: :ok
-      rescue StandardError => e
-        render json: { errors: ["Error uploading avatar, #{e.message}"] }, status: :internal_server_error
-      end
-    end
-  end
+  # def update_avatar
+  #   byebug
+  #   if user_params[:avatar].present?
+  #     begin
+  #       current_user.update!(user_params)
+  #       render json: current_user, status: :ok
+  #     rescue StandardError => e
+  #       render json: { errors: ["Error uploading avatar, #{e.message}"] }, status: :internal_server_error
+  #     end
+  #   end
+  # end
   
   private
 
   def user_params 
     params.permit(
       :id, :full_name, :password, :email, :user_type, 
-      :allow_email, :location, :avatar, :full_address, 
+      :allow_email, :location, :full_address, 
       :lat, :lon, :phone_number, :type, :bio, :signed_blob_id 
     )
   end

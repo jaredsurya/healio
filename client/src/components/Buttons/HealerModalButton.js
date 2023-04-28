@@ -24,6 +24,7 @@ const HealerModalButton = () => {
   const [bio, setBio] = useState(tempUser.bio)
   const [lat, setLat] = useState(tempUser.lat)
   const [lon, setLon] = useState(tempUser.lon)
+  const [errors, setErrors] = useState([])
   const [full_address, setFullAddress] = useState(tempUser.full_address)
   const type = "user"
   
@@ -46,9 +47,13 @@ const HealerModalButton = () => {
 let body = {...tempUser, bio: bio, lat: lat, lon: lon, full_address: full_address}
 delete body.created_at
 delete body.weblinks
+delete body.services
+delete body.blogs
+delete body.comments
 const cleanedBody = removeNull(body)
 
 function handleDetailSubmit() {
+  setErrors([])
     fetch(`/users/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -61,14 +66,30 @@ function handleDetailSubmit() {
         res.json().then((data) => {
           const cleanedData = removeNull(data)
           setUser(cleanedData);
+          handleClose();
         });
       } else {
-        alert("error in HealerModalBTN");
+        res.json().then(err => setErrors(err.errors))
         setTempUser(user)
       }
     });
-    handleClose();
   }
+  //     return res.json()})
+  //     .then((data) => {
+  //       console.log(data)
+  //       if(data.errors){
+  //         console.log(data.errors)
+  //         setErrors(data.errors)
+  //       } else {
+  //         const cleanedData = removeNull(data)
+  //         setUser(cleanedData);
+  //         setTempUser(cleanedData)
+  //         setErrors([])
+  //         handleClose()
+  //       }
+          
+  //       });
+  // }
 
   function handleChange(e){
     setTempUser({...tempUser, [e.target.name]: e.target.value})
@@ -90,7 +111,7 @@ function handleDetailSubmit() {
           <TextField
             margin="dense"
             id="tel"
-            label="Work Phone Number (XXX-XXX-XXXX)"
+            label="Work Phone Number (TEN digits, ALL numbers)"
             type="tel"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
             name="phone_number"
@@ -98,6 +119,7 @@ function handleDetailSubmit() {
             fullWidth
             onChange={handleChange}
           />
+          {errors ? errors.map((error, index) => <Typography key={index} color={"error"} fontWeight={"bold"}>{error}</Typography>) : null} 
           <AddressAutocomplete setLat={setLat} setLon={setLon} setFullAddress={setFullAddress}/>
           <WeblinksInput type={type} weblinks={weblinks} setWeblinks={setWeblinks} />
           <Typography>
