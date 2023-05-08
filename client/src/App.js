@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import themeOptions from "./utils/themeOptions.js";
 import { ThemeProvider } from "@mui/material/styles";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./pages/Auth";
 import Main from "./pages/Main";
 import UserContext from "./utils/userContext";
@@ -22,9 +22,6 @@ function App() {
   const [savedServices, setSavedServices] = useState([]);
   const [isAssociated, setIsAssociated] = useState(false)
   const [comments, setComments] = useState([]);
-
-  
-
 
   useEffect(() => {
     if(user){
@@ -103,7 +100,7 @@ function App() {
             >
               <Routes>
                 {/* <Route path="*" element={<Navigate to="/main" replace />} /> */}
-                <Route path="/signin" element={<Auth />} />
+                <Route path="/*" element={<Navigate to="/main" replace />} />
                 <Route path="/main/*" element={<Main />} />
               </Routes>
             </HealersServicesContext.Provider>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -18,6 +18,7 @@ import UserContext from "../utils/userContext.js";
 import { CheckBox } from "@mui/icons-material";
 import { Switch } from "@mui/material";
 import { removeNull } from "../utils/removeNull.js";
+import { check } from "prettier";
 
 function Copyright(props) {
   return (
@@ -46,6 +47,16 @@ function Auth() {
   const [errors, setErrors] = useState([]);
   const [toggle, setToggle] = useState(true);
   const [isHealer, setIsHealer] = useState(false);
+
+  function checkLoggedIn(){
+    if(user){
+      navigate("/main")
+    }
+  }
+
+  useEffect(() =>{
+    checkLoggedIn()
+  },[])
 
   const loginSubmit = (event) => {
     event.preventDefault();

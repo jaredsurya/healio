@@ -4,7 +4,7 @@ import SwitcherContext from "../../utils/switcherContext";
 import HealersServicesContext from "../../utils/healersServicesContext";
 
 function FeaturedHealer({ size }) {
-  return (<Typography>Featured Healer: Stretch Goal</Typography>)
+  return (<Typography>Featured Healer: Stretch Goal UNDER CONSTRUCTION</Typography>)
   // const { feed, setFeed } = useContext(SwitcherContext);
   // const { healers } = useContext(HealersServicesContext);
   // const [featured, setFeatured] = useState([]);
