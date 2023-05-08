@@ -7,7 +7,7 @@ function Adv() {
 
   return (
     <Box>
-      <Typography>Advertisement: Stretch Goal UNDER CONSTRUCTION</Typography>
+      <Typography>Advertisement: Stretch Goal, COMING SOON</Typography>
     </Box>
   );
 }
