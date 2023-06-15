@@ -2,7 +2,6 @@ class UserServicesController < ApplicationController
   wrap_parameters format: []
   
   def create
-    #byebug
     user_service = UserService.create!({user_id: current_user.id, service_id: accepted_params[:service_id]})
     render json: current_user.services, status: :created
   end

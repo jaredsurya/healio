@@ -10,16 +10,6 @@ class WeblinksController < ApplicationController
     render json: link, status: 201
   end
 
-  def show
-
-  end
-
-  def index
-  end
-
-  def update
-  end
-
   def destroy
     link = Weblink.find(params[:id])
     link.destroy
