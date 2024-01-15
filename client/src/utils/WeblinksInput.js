@@ -63,7 +63,7 @@ function WeblinksInput({ type, svcid, weblinks, setWeblinks }) {
         <TextField
           margin="dense"
           id="weblinks"
-          label="Add a URL here - INCLUDING HTTPS:// - then press + to the right."
+          label="Add URL here, INCLUDE HTTPS:// then press + to the right"
           type="text"
           name="weblinks"
           value={url}
