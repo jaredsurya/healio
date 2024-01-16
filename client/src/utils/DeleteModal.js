@@ -45,8 +45,8 @@ function DeleteModal() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            If you choose to delete, all of your service associations, comments and other info will be removed.
-            You can always create another account, but any saved data will be lost. 
+            If you choose to delete then all of your service associations, comments and other info will be removed.
+            You can always create another account, but any saved data associations will be lost. 
           </DialogContentText>
         </DialogContent>
         <DialogActions>
